@@ -41,7 +41,7 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         port: ${{ secrets.SERVER_PORT }}
         script: |
-          cd /home/ubuntu/projects/guru
+          cd /home/ubuntu/projects/my-resume
           
           # 파일 존재 확인 및 디버깅
           echo "=== Current directory: $(pwd) ==="
