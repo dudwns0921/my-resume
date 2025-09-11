@@ -1,0 +1,6 @@
+services:
+  my-resume:
+    image: dudwns0921/my-resume:latest
+    ports:
+      - "8085:80"
+    restart: unless-stopped
