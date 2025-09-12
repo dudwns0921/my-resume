@@ -1,16 +1,16 @@
 import ResumeHeader from './components/ResumeHeader';
-import WorkExperience from './components/WorkExperience';
-import OtherExperience from './components/OtherExperience';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
+import WorkExperience from './components/workExprience/WorkExperience';
+import Education from './components/education/Eduction';
+import Contact from './components/contact/Contact';
+import Awards from './components/awards/Awards';
 
 function App() {
   return (
-    <div className="container mx-auto max-w-3xl py-16">
+    <div className="container flex flex-col p-12 gap-8">
       <ResumeHeader />
       <WorkExperience />
-      <OtherExperience />
-      <Skills />
+      <Education />
+      <Awards />
       <Contact />
     </div>
   );
