@@ -1,4 +1,4 @@
-import HighLight from '../common/Highlight';
+import HighLight from '../common/HighLight';
 import TitleComponent from '../common/TitleComponent';
 
 const Awards = () => (
