@@ -45,7 +45,7 @@ export const workExperiences: WorkExperienceItemProps[] = [
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Node.js', 'LangChain', 'Jenkins'],
         achievements: [
           {
-            description: '현대제네시스 전무 대상 데모 주도 및 성공적 시연 (요구사항 90% 이상 충족)',
+            description: '현대제네시스 전무 대상 데모 주도 및 성공적 시연',
             strong: true,
           },
           {
