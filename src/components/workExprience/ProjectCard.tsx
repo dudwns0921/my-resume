@@ -23,7 +23,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, onClick }: ProjectCardProps) => (
   <div
-    className="bg-white border rounded-lg p-4 relative flex flex-col gap-2 shadow-md"
+    className="bg-white border rounded-lg p-6 relative flex flex-col gap-2 shadow-md"
     onClick={onClick}
   >
     <InfoItem

@@ -20,15 +20,15 @@ export const workExperiences: WorkExperienceItemProps[] = [
             strong: true,
           },
           {
+            description: 'Vitest를 활용한 유닛/통합 테스트 환경 구축',
+            strong: true,
+          },
+          {
             description: '중앙집중형 에러 핸들링 구조 설계 및 구현',
             strong: false,
           },
           {
             description: 'WebView - 네이티브 통신 인터페이스 설계',
-            strong: false,
-          },
-          {
-            description: 'Vitest를 활용한 유닛/통합 테스트 환경 구축',
             strong: false,
           },
           {
