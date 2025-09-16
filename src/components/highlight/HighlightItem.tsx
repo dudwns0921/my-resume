@@ -1,4 +1,4 @@
-interface HighlightItemProps {
+export interface HighlightItemProps {
   title?: string;
   description?: string;
 }

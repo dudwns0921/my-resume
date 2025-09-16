@@ -9,7 +9,7 @@ export const workExperiences: WorkExperienceItemProps[] = [
       'Toyota, 현대모비스, KGM 등 글로벌 모빌리티 기업과 차량용 인포테인먼트 및 AI 서비스를 개발하고 있습니다.',
     projects: [
       {
-        title: 'TOYOTA 차량관리용 모바일 앱',
+        title: 'Toyota 차량관리용 모바일 앱',
         period: '2024.11 - 진행중',
         role: 'Frontend Developer',
         description: 'TOYOTA 차량 관리를 위한 하이브리드 모바일 앱 개발',

@@ -1,9 +1,10 @@
 import ResumeHeader from './components/ResumeHeader';
 import WorkExperience from './components/workExprience/WorkExperience';
 import Education from './components/education/Education';
-import Awards from './components/awards/Awards';
+import Award from './components/award/Award';
 import Highlight from './components/highlight/Highlight';
 import Additional from './components/additional/Additional';
+import Qualification from './components/qualification/Qulification';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Highlight />
       <WorkExperience />
       <Education />
-      <Awards />
+      <Award />
+      <Qualification />
       <Additional />
     </div>
   );
