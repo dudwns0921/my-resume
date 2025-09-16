@@ -1,4 +1,11 @@
-import { BadgeCheck } from 'lucide-react';
+import InfoItem from '../common/InfoItem';
+import StrongComponent from '../common/StrongComponent';
+import Badge from '../common/Badge';
+
+export interface Achievement {
+  description: string;
+  strong?: boolean;
+}
 
 export interface Project {
   period: string;
@@ -6,7 +13,7 @@ export interface Project {
   title: string;
   description: string;
   techStack: string[];
-  achievements: string[];
+  achievements: Achievement[];
 }
 
 interface ProjectCardProps {
@@ -16,24 +23,29 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, onClick }: ProjectCardProps) => (
   <div
-    className="bg-white border rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition relative"
+    className="bg-white border rounded-lg p-4 relative flex flex-col gap-2 shadow-md"
     onClick={onClick}
   >
-    <div className="font-semibold text-lg text-brand-steelblue">{project.title}</div>
-    <div className="text-xs text-gray-500">{project.period}</div>
-    <div className="text-sm text-gray-600">{project.role}</div>
-    <div className="text-gray-700 text-sm line-clamp-2">{project.description}</div>
-    <div className="text-xs text-gray-500">
-      <span className="font-semibold">Tech Stack:</span> {project.techStack.join(', ')}
+    <InfoItem
+      title={project.title}
+      subInfo={project.period}
+      subInfo2={project.role}
+      description={project.description}
+    />
+    <div>
+      <div className="flex flex-wrap gap-2">
+        {project.techStack.map((tech, index) => (
+          <Badge key={index} text={tech} />
+        ))}
+      </div>
     </div>
-    <ul className="list-disc pl-5 text-xs text-gray-700">
+    <ul className="list-disc pl-5 text-gray-700 space-y-1">
       {project.achievements.map((a, i) => (
-        <li key={i}>{a}</li>
+        <li key={i}>
+          {a.strong ? <StrongComponent>{a.description}</StrongComponent> : a.description}
+        </li>
       ))}
     </ul>
-    <div className="absolute right-0 top-0">
-      <BadgeCheck size={24} style={{ color: '#10B981' }} />
-    </div>
   </div>
 );
 

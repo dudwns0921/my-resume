@@ -1,7 +1,13 @@
 import DotComponent from './DotComponent';
 
-const TitleComponent = ({ title }: { title: string }) => (
-  <h2 className="text-5xl font-bold mb-6">
+const TitleComponent = ({
+  title,
+  size,
+}: {
+  title: string;
+  size: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
+}) => (
+  <h2 className={`text-${size} font-bold mb-4`}>
     {title}
     <DotComponent />
   </h2>

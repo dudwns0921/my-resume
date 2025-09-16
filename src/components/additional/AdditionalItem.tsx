@@ -1,9 +1,9 @@
-interface ContactItemProps {
+interface AdditionalItemProps {
   href: string;
   label: string;
 }
 
-const ContactItem = ({ href, label }: ContactItemProps) => (
+const AdditionalItem = ({ href, label }: AdditionalItemProps) => (
   <li>
     <a href={href} className="text-blue-600 hover:underline" target="_blank">
       {label}
@@ -11,4 +11,4 @@ const ContactItem = ({ href, label }: ContactItemProps) => (
   </li>
 );
 
-export default ContactItem;
+export default AdditionalItem;
