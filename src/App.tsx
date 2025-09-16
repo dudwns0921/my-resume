@@ -8,7 +8,7 @@ import Qualification from './components/qualification/Qulification';
 
 function App() {
   return (
-    <div className="container flex flex-col p-8 gap-8">
+    <div className="container flex flex-col p-8 gap-8 max-w-3xl mx-auto">
       <ResumeHeader />
       <Highlight />
       <WorkExperience />

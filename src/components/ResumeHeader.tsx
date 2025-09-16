@@ -5,7 +5,7 @@ const ResumeHeader = () => (
     <h1 className="text-5xl md:text-6xl font-bold mb-4 break-keep">
       안녕하세요,
       <br />
-      <span className="text-3xl font-semibold my-2 block md:inline md:text-6xl md:font-bold md:my-0">
+      <span className="text-3xl font-semibold my-2 block md:inline md:text-5xl md:font-bold md:my-0">
         믿고 맡길 수 있는
       </span>
       <span className="hidden md:inline"> </span>
