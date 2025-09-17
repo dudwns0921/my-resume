@@ -1,12 +1,6 @@
 @import 'tailwindcss';
 @import './font.css';
 
-@theme {
-    --color-brand-main:#C0C0C0;
-    --color-brand-secondary:#4682B4;
-    --color-brand-accent:#E34234;
-}
-
 body {
     font-family: 'Pretendard';
 }
