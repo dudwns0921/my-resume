@@ -16,16 +16,12 @@ export interface Project {
   achievements: Achievement[];
 }
 
-interface ProjectCardProps {
+interface ProjectInfoProps {
   project: Project;
-  onClick: () => void;
 }
 
-const ProjectCard = ({ project, onClick }: ProjectCardProps) => (
-  <div
-    className="bg-white border rounded-lg p-6 relative flex flex-col gap-2 shadow-md"
-    onClick={onClick}
-  >
+const ProjectInfo = ({ project }: ProjectInfoProps) => (
+  <div className="relative flex flex-col gap-4">
     <InfoItem
       title={project.title}
       subInfo={project.period}
@@ -49,4 +45,4 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => (
   </div>
 );
 
-export default ProjectCard;
+export default ProjectInfo;

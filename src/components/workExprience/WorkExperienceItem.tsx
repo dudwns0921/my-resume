@@ -1,6 +1,6 @@
 import type { InfoItemProps } from '../common/InfoItem';
 import InfoItem from '../common/InfoItem';
-import ProjectCard, { type Project } from './ProjectCard';
+import ProjectInfo, { type Project } from './ProjectInfo';
 
 export interface WorkExperienceItemProps extends InfoItemProps {
   projects?: Project[];
@@ -18,9 +18,9 @@ const WorkExperienceItem = ({
       <InfoItem title={company} subInfo={period} subInfo2={role} description={description} />
       <div>
         {projects.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pl-4">
             {projects.map((project, idx) => (
-              <ProjectCard key={project.title + idx} project={project} onClick={() => {}} />
+              <ProjectInfo key={project.title + idx} project={project} />
             ))}
           </div>
         )}
