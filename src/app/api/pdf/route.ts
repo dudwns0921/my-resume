@@ -2,10 +2,16 @@ import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
 export async function GET(req: NextRequest) {
-  const url = 'http://localhost:3000';
+  const { origin } = new URL(req.url);
+  const url = origin;
 
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-web-security',
+    ],
   });
   const page = await browser.newPage();
 
