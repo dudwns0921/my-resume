@@ -2,10 +2,9 @@ import { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
 export async function GET(req: NextRequest) {
-  // 배포 환경에서는 localhost:8087 사용, 개발 환경에서는 동적 URL 사용
-  const url = process.env.NODE_ENV === 'production' 
-    ? 'http://localhost:3000' 
-    : new URL(req.url).origin;
+  const { searchParams } = new URL(req.url);
+  const urlParam = searchParams.get('url');
+  const url = urlParam;
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -16,6 +15,10 @@ export async function GET(req: NextRequest) {
     ],
   });
   const page = await browser.newPage();
+
+  if(!url) {
+    return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
+  }
 
   await page.goto(url, { waitUntil: 'networkidle0' });
 
