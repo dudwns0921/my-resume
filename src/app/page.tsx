@@ -9,13 +9,13 @@ import DownloadPDFButton from './components/DownloadPDFButton';
 
 function App() {
   return (
-    <div className="container mx-auto max-w-3xl">
+    <div className="grid grid-rows-[max-content_1fr] min-h-dvh mx-auto max-w-3xl">
       <header className='no-pdf'>
         <div className="w-full p-4 flex justify-end">
           <DownloadPDFButton />
         </div>
       </header>
-      <main className="flex flex-col px-8 gap-8">
+      <main className="flex flex-col px-8 gap-8 overflow-y-scroll">
         <ResumeHeader />
         <Highlight />
         <WorkExperience />
@@ -23,12 +23,12 @@ function App() {
         <Award />
         <Qualification />
         <Additional />
+        <footer>
+          <div className="w-full p-4 text-center text-sm text-gray-500">
+            &copy; 2025 Jung Young Joon. All rights reserved.
+          </div>
+        </footer>
       </main>
-      <footer>
-        <div className="w-full p-4 text-center text-sm text-gray-500">
-          &copy; 2025 Jung Young Joon. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }
