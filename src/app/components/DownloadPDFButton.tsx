@@ -8,7 +8,7 @@ const DownloadPDFButton = () => {
   const handleDownloadPDF = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/my-resume-next/api/pdf?url=' + window.location.href);
+      const response = await fetch('/my-resume/api/pdf?url=' + window.location.href);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -46,4 +46,3 @@ const DownloadPDFButton = () => {
 };
 
 export default DownloadPDFButton;
-// filepath: d:\Elio Jung\my-resume\src\components\DownloadPDFButton.tsx
