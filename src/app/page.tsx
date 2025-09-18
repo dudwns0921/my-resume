@@ -9,7 +9,7 @@ import DownloadPDFButton from './components/DownloadPDFButton';
 
 function App() {
   return (
-    <div className="grid grid-rows-[max-content_1fr] min-h-dvh mx-auto max-w-3xl">
+    <div className="grid grid-rows-[max-content_1fr] h-dvh mx-auto max-w-3xl">
       <header className='no-pdf'>
         <div className="w-full p-4 flex justify-end">
           <DownloadPDFButton />
