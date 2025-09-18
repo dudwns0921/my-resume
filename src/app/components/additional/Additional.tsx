@@ -1,4 +1,4 @@
-import { additionals } from '../../data/additionals';
+import { additionals } from '@/data/additionals';
 import TitleComponent from '../common/TitleComponent';
 import AdditionalItem from './AdditionalItem';
 

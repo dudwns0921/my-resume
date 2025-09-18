@@ -1,4 +1,4 @@
-import { educations } from '../../data/educations';
+import { educations } from '@/data/educations';
 import InfoItem from '../common/InfoItem';
 import TitleComponent from '../common/TitleComponent';
 

@@ -1,6 +1,6 @@
 services:
   my-resume:
-    image: dudwns0921/my-resume:latest
+    image: my-resume-next
     ports:
-      - "8085:80"
+      - "8085:3000"
     restart: unless-stopped

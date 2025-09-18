@@ -1,4 +1,4 @@
-import { highlights } from '../../data/highlights';
+import { highlights } from '@/data/highlights';
 import TitleComponent from '../common/TitleComponent';
 import HighlightItem from './HighlightItem';
 

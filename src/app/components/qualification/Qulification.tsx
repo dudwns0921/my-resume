@@ -1,16 +1,16 @@
-import { awards } from '../../data/awards';
+import { qualifications } from '@/data/qualifications';
 import InfoItem from '../common/InfoItem';
 import TitleComponent from '../common/TitleComponent';
 
-const Award = () => (
-  <section className="w-full">
-    <TitleComponent title="Award" size="5xl" />
+const Qualification = () => (
+  <section>
+    <TitleComponent title="Qualification" size="5xl" />
     <div className="w-full flex flex-col gap-4">
-      {awards.map((exp) => (
+      {qualifications.map((exp) => (
         <InfoItem key={exp.title} {...exp} />
       ))}
     </div>
   </section>
 );
 
-export default Award;
+export default Qualification;

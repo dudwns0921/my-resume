@@ -1,4 +1,4 @@
-import { workExperiences } from '../../data/workExperiences';
+import { workExperiences } from '@/data/workExperiences';
 import TitleComponent from '../common/TitleComponent';
 import WorkExperienceItem from './WorkExperienceItem';
 
