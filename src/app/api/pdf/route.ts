@@ -4,7 +4,7 @@ import puppeteer from 'puppeteer';
 export async function GET(req: NextRequest) {
   // 배포 환경에서는 localhost:8087 사용, 개발 환경에서는 동적 URL 사용
   const url = process.env.NODE_ENV === 'production' 
-    ? 'http://localhost:8087' 
+    ? 'http://localhost:3000' 
     : new URL(req.url).origin;
 
   const browser = await puppeteer.launch({
