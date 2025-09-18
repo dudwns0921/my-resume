@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import './font.css';
-@import './hexVariables.css';
 
 body {
     font-family: 'Pretendard';
