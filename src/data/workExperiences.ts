@@ -1,6 +1,4 @@
-import type { WorkExperienceItemProps } from '../components/workExprience/WorkExperienceItem';
-
-export const workExperiences: WorkExperienceItemProps[] = [
+export const workExperiences = [
   {
     title: '오비고',
     subInfo: '2022.03 - 현재',

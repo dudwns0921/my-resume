@@ -1,5 +1,4 @@
-import type { InfoItemProps } from '../common/InfoItem';
-import InfoItem from '../common/InfoItem';
+import InfoItem, { InfoItemProps } from '../common/InfoItem';
 import ProjectInfo, { type Project } from './ProjectInfo';
 
 export interface WorkExperienceItemProps extends InfoItemProps {

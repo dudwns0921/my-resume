@@ -1,6 +1,4 @@
-import type { InfoItemProps } from '../components/common/InfoItem';
-
-export const educations: InfoItemProps[] = [
+export const educations = [
   {
     title: '방송통신대학교 컴퓨터과학과',
     subInfo: '2023.03 - 2025.08 | 졸업',

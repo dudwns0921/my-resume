@@ -1,6 +1,4 @@
-import type { HighlightItemProps } from '../components/highlight/HighlightItem';
-
-export const highlights: HighlightItemProps[] = [
+export const highlights = [
   {
     title: '입사 후 매년 인사평가 최고 등급 달성',
     description:

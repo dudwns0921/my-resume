@@ -1,6 +1,4 @@
-import type { InfoItemProps } from '../components/common/InfoItem';
-
-export const qualifications: InfoItemProps[] = [
+export const qualifications = [
   {
     title: 'TOEIC',
     subInfo: '2021.02 | 960',
