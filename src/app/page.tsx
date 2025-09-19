@@ -9,13 +9,13 @@ import DownloadPDFButton from './components/DownloadPDFButton';
 
 function App() {
   return (
-    <div className="grid grid-rows-[max-content_1fr] h-dvh mx-auto max-w-3xl">
+    <div className="grid grid-rows-[max-content_1fr] h-dvh mx-auto max-w-[50rem]">
       <header className='no-pdf'>
         <div className="w-full p-4 flex justify-end">
           <DownloadPDFButton />
         </div>
       </header>
-      <main className="flex flex-col px-8 gap-8 overflow-y-scroll">
+      <main className="flex flex-col px-8 gap-8 overflow-y-scroll scrollbar-hide">
         <ResumeHeader />
         <Highlight />
         <WorkExperience />
