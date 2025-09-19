@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Spinner from './common/Spinner';
+import { getApiRoot } from '@/utils';
 
 const DownloadPDFButton = () => {
   const [loading, setLoading] = useState(false);
@@ -8,7 +9,7 @@ const DownloadPDFButton = () => {
   const handleDownloadPDF = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/my-resume/api/pdf?url=' + window.location.href);
+      const response = await fetch(getApiRoot() + '/pdf?url=' + window.location.href);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
