@@ -7,6 +7,31 @@ export const workExperiences = [
       'Toyota, 현대모비스, KGM 등 글로벌 모빌리티 기업과 차량용 인포테인먼트 및 AI 서비스를 개발하고 있습니다.',
     projects: [
       {
+        title: '근무일지 자동화 솔루션',
+        period: '2025.10 - 2025.10(1주)',
+        role: 'Full-stack Developer',
+        description: 'JIRA 데이터 기반 근무일지 자동 생성 및 관리 시스템 개발',
+        techStack: ['Next.js', 'TypeScript', 'n8n', 'chatGPT API', 'JIRA API'],
+        achievements: [
+          {
+            description: '사내 AI 챌린지 1위',
+            strong: true,
+          },
+          {
+            description: '이사진, 인사팀에게 실용성을 인정받아 전사 적용 계획 수립',
+            strong: true,
+          },
+          {
+            description: 'JIRA 티켓 자동 분석 및 일지 생성으로 작성 시간 90% 단축',
+            strong: false,
+          },
+          {
+            description: 'n8n 워크플로우 자동화로 수동 개입 최소화',
+            strong: false,
+          }
+        ],
+      },
+      {
         title: 'Toyota 차량관리용 모바일 앱',
         period: '2024.11 - 진행중',
         role: 'Frontend Developer',
