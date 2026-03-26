@@ -7,6 +7,32 @@ export const workExperiences = [
       'Toyota, 현대모비스, KGM 등 글로벌 모빌리티 기업과 차량용 인포테인먼트 및 AI 서비스를 개발하고 있습니다.',
     projects: [
       {
+        title: 'KGM Music - 차량용 뮤직 스트리밍 서비스',
+        period: '2025.12 - 진행중',
+        role: 'Frontend Developer',
+        description:
+          'KGM 차량 AVN에 탑재되는 뮤직 스트리밍 클라이언트 개발.',
+        techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
+        achievements: [
+          {
+            description: '서비스 아키텍처 전체 설계 주도 (상태 관리·에러 핸들링·로딩 시스템·테마 등)',
+            strong: true,
+          },
+          {
+            description: 'Context API 기반 경량 전역 상태 설계',
+            strong: false,
+          },
+          {
+            description: 'WebView ↔ Native(AAOS) 브릿지 인터페이스 설계 및 구현',
+            strong: false,
+          },
+          {
+            description: 'Vitest + MSW 기반 유닛·통합 테스트 환경 구축',
+            strong: false,
+          },
+        ],
+      },
+      {
         title: '근무일지 작성 자동화 솔루션',
         period: '2025.10 - 2025.10(1주)',
         role: 'Full-stack Developer',
