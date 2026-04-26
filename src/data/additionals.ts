@@ -5,12 +5,4 @@ export const additionals = [
     href: 'https://elioground.com/my-resume',
     label: '웹 이력서',
   },
-  {
-    href: 'https://elioground.com/greetify',
-    label: 'AI 인사말 서비스 Greetify (구름 교육 우수상 수상)',
-  },
-  {
-    href: 'https://elioground.com/guru',
-    label: 'AI 교육 플랫폼 Guru',
-  },
 ];
