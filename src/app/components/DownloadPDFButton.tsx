@@ -10,6 +10,7 @@ const DownloadPDFButton = () => {
     setLoading(true);
     try {
       const response = await fetch(getApiRoot() + '/pdf?url=' + window.location.href);
+      if (!response.ok) throw new Error('PDF 생성에 실패했습니다.');
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
