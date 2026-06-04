@@ -11,28 +11,20 @@ export const workExperiences = [
         period: '2025.12 - 진행중',
         role: 'Frontend Developer',
         description:
-          'KGM 차량 AVN에 탑재되는 뮤직 스트리밍 클라이언트 개발.',
+          'KGM 차량 AVN에 탑재되는 뮤직 스트리밍 클라이언트 개발. 백엔드 API 연동부터 Android 브릿지 구현, E2E 테스트, JIRA 이슈 관리까지 개발 전 과정에 Claude Code를 깊이 통합해 운영.',
         techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
         achievements: [
           {
-            description: 'Claude Code 활용해 백엔드 네이티브 규격 tool 개발, API 연동 작업 효율 30% 향상',
+            description: '백엔드·브릿지·음성발화 등 도메인 규격을 Claude Code 스킬화 — AI가 프로젝트 컨텍스트를 즉시 파악해 개발 효율 전반 향상',
             strong: true,
           },
           {
-            description: 'JIRA tool 개발로 티켓 번호 입력 → 자동 수정 → 커밋까지 자동화, 반복 작업 최소화',
+            description: 'JIRA 커맨드 개발 — 티켓 번호 입력만으로 이슈 조회·수정·ESLint·E2E 검증·커밋까지 원커맨드 자동화',
             strong: true,
-          },
-          {
-            description: 'Context API 기반 경량 전역 상태 설계로 불필요한 리렌더링 방지',
-            strong: false,
           },
           {
             description: 'WebView ↔ Native(AAOS) 브릿지 인터페이스 설계 및 구현',
-            strong: false,
-          },
-          {
-            description: 'Vitest + MSW 기반 유닛·통합 테스트 환경 구축',
-            strong: false,
+            strong: true,
           },
           {
             description: '서비스 아키텍처 전체 설계 주도 (상태 관리·에러 핸들링·로딩 시스템·테마 등)',
@@ -94,7 +86,7 @@ export const workExperiences = [
           },
           {
             description: 'WebView - 네이티브 통신 인터페이스 설계 및 반응형 UI 구현',
-            strong: false,
+            strong: true,
           },
           {
             description: 'Jenkins 기반 빌드·배포·테스트 자동화',
