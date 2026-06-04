@@ -14,6 +14,7 @@ export interface Project {
   description: string;
   techStack: string[];
   achievements: Achievement[];
+  href?: string;
 }
 
 interface ProjectInfoProps {
@@ -22,12 +23,24 @@ interface ProjectInfoProps {
 
 const ProjectInfo = ({ project }: ProjectInfoProps) => (
   <div className="relative flex flex-col gap-4">
-    <InfoItem
-      title={project.title}
-      subInfo={project.period}
-      subInfo2={project.role}
-      description={project.description}
-    />
+    <div>
+      <InfoItem
+        title={project.title}
+        subInfo={project.period}
+        subInfo2={project.role}
+        description={project.description}
+      />
+      {project.href && (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-1 text-sm text-blue-600 underline underline-offset-2"
+        >
+          🌐 Live Demo
+        </a>
+      )}
+    </div>
     <div>
       <div className="flex flex-wrap gap-2">
         {project.techStack.map((tech, index) => (
