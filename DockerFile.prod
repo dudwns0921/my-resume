@@ -3,12 +3,16 @@ FROM node:22-slim AS build
 
 WORKDIR /app
 
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+
 COPY package*.json ./
 COPY pnpm-lock.yaml ./
 COPY . .
 
 RUN corepack enable pnpm
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --ignore-scripts
+RUN pnpm rebuild @tailwindcss/oxide sharp unrs-resolver
 RUN pnpm run build
 
 FROM node:22-slim AS runner

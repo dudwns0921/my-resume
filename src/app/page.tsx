@@ -1,5 +1,6 @@
 import ResumeHeader from './components/ResumeHeader';
 import WorkExperience from './components/workExprience/WorkExperience';
+import SideProject from './components/sideProject/SideProject';
 import Education from './components/education/Education';
 import Award from './components/award/Award';
 import Highlight from './components/highlight/Highlight';
@@ -19,6 +20,7 @@ function App() {
         <ResumeHeader />
         <Highlight />
         <WorkExperience />
+        <SideProject />
         <Education />
         <Award />
         <Qualification />
