@@ -2,6 +2,7 @@
   "name": "my-resume-next",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.34.5",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -9,21 +10,21 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "15.5.3",
-    "puppeteer": "^24.22.0",
+    "next": "15.5.26",
+    "puppeteer": "^25.11.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.3",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^20.19.43",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "15.5.26",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -31,6 +32,10 @@
       "puppeteer",
       "sharp",
       "unrs-resolver"
-    ]
+    ],
+    "overrides": {
+      "postcss": "^8.5.23",
+      "@rushstack/eslint-patch": "1.12.0"
+    }
   }
 }
