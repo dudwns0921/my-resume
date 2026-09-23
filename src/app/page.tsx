@@ -3,6 +3,7 @@ import WorkExperience from './components/workExprience/WorkExperience';
 import SideProject from './components/sideProject/SideProject';
 import Education from './components/education/Education';
 import Award from './components/award/Award';
+import Patent from './components/patent/Patent';
 import Highlight from './components/highlight/Highlight';
 import Additional from './components/additional/Additional';
 import Qualification from './components/qualification/Qulification';
@@ -23,6 +24,7 @@ function App() {
         <SideProject />
         <Education />
         <Award />
+        <Patent />
         <Qualification />
         <Additional />
         <footer>
