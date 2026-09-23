@@ -4,7 +4,6 @@ import Activity from './components/activity/Activity';
 import Education from './components/education/Education';
 import Award from './components/award/Award';
 import Patent from './components/patent/Patent';
-import Highlight from './components/highlight/Highlight';
 import Additional from './components/additional/Additional';
 import Qualification from './components/qualification/Qulification';
 import DownloadPDFButton from './components/DownloadPDFButton';
@@ -19,7 +18,6 @@ function App() {
       </header>
       <main className="flex flex-col px-8 gap-8 overflow-y-scroll scrollbar-hide">
         <ResumeHeader />
-        <Highlight />
         <WorkExperience />
         <Award />
         <Patent />
