@@ -7,29 +7,6 @@ export const workExperiences = [
       'Toyota, 현대모비스, KGM 등 글로벌 모빌리티 기업들과 협업하며 차량용 인포테인먼트, 뮤직 스트리밍, AI 서비스 등 다양한 모빌리티 솔루션을 개발하고 있습니다. AI 도구를 적극 활용해 개발 생산성을 높이고, 반복 작업을 자동화하여 핵심 개발에 집중하는 방식으로 업무를 수행합니다.',
     projects: [
       {
-        title: 'ObiVision - 사진 기반 차량 외관 검수 AI',
-        period: '2026.06',
-        role: '팀장 · Frontend Developer',
-        description:
-          'Push to Prod SEOUL(Anthropic × Replit × 한국투자액셀러레이터) 해커톤 본선에서 오비고 3인 팀을 리드. 자체 비전 모델 기반 차량 외관 검수 파이프라인 위에 Claude Vision 검증 레이어를 더해, 신뢰할 수 있는 검수·견적 문서를 만드는 기능을 약 2시간 빌드 타임 안에 구현.',
-        techStack: ['Claude Vision', 'Claude Code', 'Replit'],
-        achievements: [
-          {
-            description: '사전 제출 프로젝트(서울 실시간 교통 3D 시각화 대시보드)로 본선 진출, 팀장 및 프론트엔드 담당',
-            strong: true,
-          },
-          {
-            description:
-              '자체 비전 파이프라인(파손 탐지 → 외판 분할 → 파손-외판 매칭) 끝단에 Claude Vision 후단 검증 레이어 추가 — 파손 외판명이 실제 손상 위치와 부합하는지 차량 전체 맥락에서 재확인하고 보정 후보 제시',
-            strong: true,
-          },
-          {
-            description: '검수자·고객 코멘트와 이미지 분석 결과를 교차 검증해 외판명 불일치를 감지하는 기능 신규 도입',
-            strong: false,
-          },
-        ],
-      },
-      {
         title: 'KGM Music - 차량용 뮤직 스트리밍 서비스',
         period: '2025.12 - 진행중',
         role: 'Frontend Developer',

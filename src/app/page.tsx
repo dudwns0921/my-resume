@@ -1,6 +1,6 @@
 import ResumeHeader from './components/ResumeHeader';
 import WorkExperience from './components/workExprience/WorkExperience';
-import SideProject from './components/sideProject/SideProject';
+import Activity from './components/activity/Activity';
 import Education from './components/education/Education';
 import Award from './components/award/Award';
 import Patent from './components/patent/Patent';
@@ -21,10 +21,10 @@ function App() {
         <ResumeHeader />
         <Highlight />
         <WorkExperience />
-        <SideProject />
-        <Education />
         <Award />
         <Patent />
+        <Activity />
+        <Education />
         <Qualification />
         <Additional />
         <footer>

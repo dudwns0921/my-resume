@@ -15,6 +15,7 @@ export interface Project {
   techStack: string[];
   achievements: Achievement[];
   href?: string;
+  hrefLabel?: string;
 }
 
 interface ProjectInfoProps {
@@ -37,7 +38,7 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
           rel="noopener noreferrer"
           className="inline-block mt-1 text-sm text-blue-600 underline underline-offset-2"
         >
-          🌐 Live Demo
+          {project.hrefLabel ?? '🌐 Live Demo'}
         </a>
       )}
     </div>
