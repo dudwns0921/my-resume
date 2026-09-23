@@ -2,9 +2,7 @@ name: resume deployment
 
 on:
   push:
-    branches: [release]
-  pull_request:
-    branches: [release]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
