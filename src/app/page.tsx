@@ -19,9 +19,9 @@ function App() {
       <main className="flex flex-col px-8 gap-8 overflow-y-scroll scrollbar-hide">
         <ResumeHeader />
         <WorkExperience />
+        <Activity />
         <Award />
         <Patent />
-        <Activity />
         <Education />
         <Qualification />
         <Additional />
