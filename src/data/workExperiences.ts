@@ -34,10 +34,10 @@ export const workExperiences = [
       },
       {
         title: '근무일지 작성 자동화 솔루션',
-        period: '2025.10 - 2025.10(1주)',
+        period: '2025.10 (1주)',
         role: 'Full-stack Developer',
         description: 'JIRA 데이터 기반 근무일지 자동 생성 및 메일 전송 솔루션 개발',
-        techStack: ['Next.js', 'TypeScript', 'n8n', 'chatGPT API', 'JIRA API'],
+        techStack: ['Next.js', 'TypeScript', 'n8n', 'OpenAI API', 'JIRA API'],
         achievements: [
           {
             description: '사내 AI 챌린지 1위',
@@ -124,11 +124,11 @@ export const workExperiences = [
         ],
       },
       {
-        title: 'Toyota 차량용 Infortainment 서비스',
+        title: 'Toyota 차량용 Infotainment 서비스',
         period: '2023.06 - 진행중',
         role: 'Frontend Developer',
         description:
-          '편의 기능 및 엔터테인먼트 기능을 제공하는 차량용 하이브리드 Infortainment 서비스 개발',
+          '편의 기능 및 엔터테인먼트 기능을 제공하는 차량용 하이브리드 Infotainment 서비스 개발',
         techStack: ['Vue.js', 'JavaScript', 'Flow', 'Webpack', 'Jenkins'],
         achievements: [
           {
@@ -150,10 +150,10 @@ export const workExperiences = [
         ],
       },
       {
-        title: 'KGM 차량용 Infortainment 서비스',
+        title: 'KGM 차량용 Infotainment 서비스',
         period: '2023.06 - 진행중',
         role: 'Frontend Developer',
-        description: 'KGM(쌍용) 차량용 하이브리드 Infortainment 서비스 개발',
+        description: 'KGM(쌍용) 차량용 하이브리드 Infotainment 서비스 개발',
         techStack: ['Vue.js', 'TypeScript', 'Webpack'],
         achievements: [
           {
