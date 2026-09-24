@@ -1,11 +1,5 @@
 export const qualifications = [
   {
-    title: 'TOEIC',
-    subInfo: '2021.02 | 960',
-    subInfo2: '',
-    description: '',
-  },
-  {
     title: 'SQL개발자(SQLD)',
     subInfo: '2021.12 | 한국데이터베이스진흥센터',
     subInfo2: '',
@@ -14,6 +8,12 @@ export const qualifications = [
   {
     title: '리눅스마스터 2급',
     subInfo: '2021.12 | 한국정보통신인력개발센터',
+    subInfo2: '',
+    description: '',
+  },
+  {
+    title: 'TOEIC',
+    subInfo: '2021.02 | 960',
     subInfo2: '',
     description: '',
   },
