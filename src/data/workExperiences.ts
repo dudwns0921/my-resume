@@ -4,30 +4,29 @@ export const workExperiences = [
     subInfo: '2022.03 - 현재',
     subInfo2: 'Frontend Developer',
     description:
-      '차량용 인포테인먼트 플랫폼과 서비스를 만드는 모빌리티 소프트웨어 기업. 차량 AVN에서 동작하는 웹 애플리케이션을 중심으로, 차량 연동 모바일 앱과 생성형 AI 서비스까지 개발하고 있습니다.',
+      '차량용 인포테인먼트 플랫폼과 서비스를 만드는 모빌리티 소프트웨어 기업. 차량 AVN 웹앱, 차량 연동 모바일 앱, 생성형 AI 서비스를 개발합니다.',
     projects: [
       {
         title: 'KGM Music - 차량용 뮤직 스트리밍 서비스',
         period: '2025.12 - 진행중',
         role: 'Frontend Developer',
-        description:
-          'KGM 차량 AVN에 탑재되는 뮤직 스트리밍 클라이언트 개발. 백엔드 API 연동부터 Android 브릿지 구현, E2E 테스트, JIRA 이슈 관리까지 개발 전 과정에 Claude Code를 깊이 통합해 운영.',
+        description: 'KGM 차량 AVN에 탑재되는 뮤직 스트리밍 클라이언트 개발. 개발 전 과정에 Claude Code를 통합해 운영.',
         techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
         achievements: [
           {
-            description: '백엔드·브릿지·음성발화 등 도메인 규격을 Claude Code 스킬화 — AI가 프로젝트 컨텍스트를 즉시 파악해 개발 효율 전반 향상',
+            description: '백엔드·브릿지·음성발화 규격을 Claude Code 스킬화 — AI가 도메인 맥락을 바로 이해해 규격 설명 없이 구현',
             strong: true,
           },
           {
-            description: 'JIRA 커맨드 개발 — 티켓 번호 입력만으로 이슈 조회·수정·ESLint·E2E 검증·커밋까지 원커맨드 자동화',
-            strong: true,
+            description: 'JIRA 커맨드로 티켓 조회부터 수정·검증·커밋까지 원커맨드 자동화',
+            strong: false,
           },
           {
             description: 'WebView ↔ Native(AAOS) 브릿지 인터페이스 설계 및 구현',
-            strong: true,
+            strong: false,
           },
           {
-            description: '서비스 아키텍처 전체 설계 주도 (상태 관리·에러 핸들링·로딩 시스템·테마 등)',
+            description: '서비스 아키텍처 설계 주도 (상태 관리·에러 핸들링·로딩·테마)',
             strong: false,
           },
         ],
@@ -36,36 +35,29 @@ export const workExperiences = [
         title: '근무일지 작성 자동화 솔루션',
         period: '2025.10 (1주)',
         role: 'Full-stack Developer',
-        description: 'JIRA 데이터 기반 근무일지 자동 생성 및 메일 전송 솔루션 개발',
-        techStack: ['Next.js', 'TypeScript', 'n8n', 'OpenAI API', 'JIRA API'],
+        description:
+          'JIRA 워크로그 기반 근무일지 자동 생성 솔루션. 워크로그가 매일 꼼꼼히 기록되지는 않는 현실을 반영해, 자동 전송 대신 생성된 초안을 직접 검토·수정하는 흐름으로 설계.',
+        techStack: ['Next.js', 'TypeScript', 'OpenAI API', 'JIRA API'],
         achievements: [
           {
-            description: '사내 AI 챌린지 1위',
+            description: '사내 AI 챌린지 1위 및 전사 도입',
             strong: true,
           },
           {
-            description: '이사진·인사팀에게 실용성을 인정받아 전사 도입',
-            strong: true,
-          },
-          {
-            description: 'Next.js App Router와 Server Actions를 활용한 서버 사이드 API 통합',
+            description: 'JIRA 티켓 분석 기반 일지 초안 생성으로 작성 시간 90% 단축',
             strong: false,
           },
           {
-            description: 'JIRA 티켓 자동 분석 및 일지 생성으로 작성 시간 90% 단축',
+            description: 'Next.js App Router·Server Actions 기반 서버 사이드 API 통합 및 별도 서버 배포',
             strong: false,
           },
-          {
-            description: 'n8n 워크플로우 자동화로 수동 개입 최소화',
-            strong: false,
-          }
         ],
       },
       {
         title: 'Toyota 차량관리용 모바일 앱',
         period: '2024.11 - 진행중',
         role: 'Frontend Developer',
-        description: 'TOYOTA 차량 관리를 위한 하이브리드 모바일 앱 개발',
+        description: 'Toyota 차량 관리용 하이브리드 모바일 앱 개발',
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Jenkins'],
         achievements: [
           {
@@ -73,20 +65,16 @@ export const workExperiences = [
             strong: true,
           },
           {
-            description: 'Vitest를 활용한 유닛/통합 테스트 환경 구축',
-            strong: true,
-          },
-          {
-            description: 'RESTful API 연동 및 비동기 데이터 처리 최적화',
+            description: 'Vitest 기반 유닛/통합 테스트 환경 구축',
             strong: false,
           },
           {
-            description: '중앙집중형 에러 핸들링 구조 설계 및 구현',
+            description: '중앙집중형 에러 핸들링 구조 설계',
             strong: false,
           },
           {
-            description: 'WebView - 네이티브 통신 인터페이스 설계 및 반응형 UI 구현',
-            strong: true,
+            description: 'WebView ↔ 네이티브 통신 인터페이스 설계',
+            strong: false,
           },
           {
             description: 'Jenkins 기반 빌드·배포·테스트 자동화',
@@ -98,7 +86,7 @@ export const workExperiences = [
         title: '현대모비스 GENESIS 차량용 AI 서비스',
         period: '2024.05 - 2025.01',
         role: 'Full-stack & AI Integration Developer',
-        description: '차량 음성 인식 및 개인화 서비스를 제공하는 AI 기반 차량용 WebApp 개발',
+        description: '음성 인식·개인화 기능을 제공하는 AI 기반 차량용 WebApp 개발',
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Node.js', 'LangChain', 'Jenkins'],
         achievements: [
           {
@@ -106,12 +94,12 @@ export const workExperiences = [
             strong: true,
           },
           {
-            description: 'Node.js + LangChain 백엔드 개발 및 Vue.js 프론트엔드 통합으로 풀스택 개발 수행',
-            strong: true,
+            description: 'Node.js + LangChain 백엔드부터 Vue.js 프론트엔드까지 풀스택 개발',
+            strong: false,
           },
           {
-            description: 'LangChain 및 RAG 기반 AI 응답 시스템 설계 및 구현',
-            strong: true,
+            description: 'LangChain·RAG 기반 AI 응답 시스템 설계 및 구현',
+            strong: false,
           },
         ],
       },
@@ -119,8 +107,7 @@ export const workExperiences = [
         title: 'Toyota 차량용 Infotainment 서비스',
         period: '2023.06 - 진행중',
         role: 'Frontend Developer',
-        description:
-          '편의 기능 및 엔터테인먼트 기능을 제공하는 차량용 하이브리드 Infotainment 서비스 개발',
+        description: '편의·엔터테인먼트 기능을 제공하는 차량용 하이브리드 Infotainment 서비스 개발',
         techStack: ['Vue.js', 'JavaScript', 'Flow', 'Webpack', 'Jenkins'],
         achievements: [
           {
@@ -132,11 +119,7 @@ export const workExperiences = [
             strong: false,
           },
           {
-            description: '백엔드 API 연동 및 데이터 바인딩 최적화로 화면 렌더링 성능 개선',
-            strong: false,
-          },
-          {
-            description: 'ESLint, Prettier, Stylelint 적용 및 빌드/앱 설치 자동화',
+            description: 'ESLint·Prettier·Stylelint 도입 및 빌드/앱 설치 자동화',
             strong: false,
           },
         ],
@@ -151,10 +134,6 @@ export const workExperiences = [
           {
             description: 'Confluence 기반 협업 체계로 이슈 해결 시간 50% 단축',
             strong: true,
-          },
-          {
-            description: '백엔드 API 연동 및 실시간 데이터 처리 로직 구현',
-            strong: false,
           },
         ],
       },
