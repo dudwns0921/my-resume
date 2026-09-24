@@ -5,12 +5,14 @@ export interface InfoItemProps {
   subInfo: string;
   subInfo2: string;
   description: string;
+  // PDF에서 짧은 항목은 페이지 사이에서 나뉘지 않게 한다. 긴 프로젝트는 false로 두어 줄 단위로 흐르게 한다.
+  keepTogether?: boolean;
 }
 
-const InfoItem = ({ title, subInfo, subInfo2, description }: InfoItemProps) => {
+const InfoItem = ({ title, subInfo, subInfo2, description, keepTogether = true }: InfoItemProps) => {
   return (
-    <div className="break-inside-avoid">
-      <div className="font-semibold text-2xl break-keep">
+    <div className={keepTogether ? 'break-inside-avoid' : undefined}>
+      <div className="font-semibold text-2xl break-keep break-after-avoid">
         {title}
         <DotComponent />
       </div>

@@ -35,12 +35,13 @@ const renderHighlights = (text: string) =>
 
 const ProjectInfo = ({ project }: ProjectInfoProps) => (
   <div className="relative flex flex-col gap-4">
-    <div className="break-inside-avoid break-after-avoid">
+    <div>
       <InfoItem
         title={project.title}
         subInfo={project.period}
         subInfo2={project.role}
         description={project.description}
+        keepTogether={false}
       />
       {project.links && project.links.length > 0 && (
         <div className="mt-1 flex flex-wrap gap-x-3 text-sm">
@@ -59,7 +60,7 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
       )}
     </div>
     {project.techStack.length > 0 && (
-      <div className="flex flex-wrap gap-2 break-inside-avoid break-after-avoid">
+      <div className="flex flex-wrap gap-2 break-inside-avoid">
         {project.techStack.map((tech, index) => (
           <Badge key={index} text={tech} />
         ))}
@@ -67,7 +68,7 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
     )}
     <ul className="list-disc pl-5 text-gray-700 space-y-1">
       {project.achievements.map((a, i) => (
-        <li key={i} className="break-inside-avoid">
+        <li key={i}>
           {a.strong ? <StrongComponent>{a.description}</StrongComponent> : renderHighlights(a.description)}
         </li>
       ))}
