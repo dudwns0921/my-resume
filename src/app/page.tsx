@@ -27,7 +27,7 @@ function App() {
         <Additional />
         <footer>
           <div className="w-full p-4 text-center text-sm text-gray-500">
-            &copy; 2025 Jung Young Joon. All rights reserved.
+            &copy; {new Date().getFullYear()} Jung Young Joon. All rights reserved.
           </div>
         </footer>
       </main>
