@@ -44,7 +44,7 @@ export const workExperiences = [
             strong: true,
           },
           {
-            description: '이사진, 인사팀에게 실용성을 인정받아 전사 적용 계획 수립',
+            description: '이사진·인사팀에게 실용성을 인정받아 전사 도입',
             strong: true,
           },
           {
@@ -153,7 +153,7 @@ export const workExperiences = [
         title: 'KGM 차량용 Infotainment 서비스',
         period: '2023.06 - 진행중',
         role: 'Frontend Developer',
-        description: 'KGM(쌍용) 차량용 하이브리드 Infotainment 서비스 개발',
+        description: 'KGM(쌍용) 차량용 하이브리드 Infotainment 서비스 개발. 현재 신규 차종 대응 및 유지보수 진행 중',
         techStack: ['Vue.js', 'TypeScript', 'Webpack'],
         achievements: [
           {
