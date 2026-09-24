@@ -22,6 +22,12 @@ interface ProjectInfoProps {
   project: Project;
 }
 
+// '**단어**'로 감싼 부분만 강조한다.
+const renderHighlights = (text: string) =>
+  text
+    .split(/\*\*(.+?)\*\*/)
+    .map((part, i) => (i % 2 === 1 ? <StrongComponent key={i}>{part}</StrongComponent> : part));
+
 const ProjectInfo = ({ project }: ProjectInfoProps) => (
   <div className="relative flex flex-col gap-4">
     <div>
@@ -42,17 +48,17 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
         </a>
       )}
     </div>
-    <div>
+    {project.techStack.length > 0 && (
       <div className="flex flex-wrap gap-2">
         {project.techStack.map((tech, index) => (
           <Badge key={index} text={tech} />
         ))}
       </div>
-    </div>
+    )}
     <ul className="list-disc pl-5 text-gray-700 space-y-1">
       {project.achievements.map((a, i) => (
         <li key={i}>
-          {a.strong ? <StrongComponent>{a.description}</StrongComponent> : a.description}
+          {a.strong ? <StrongComponent>{a.description}</StrongComponent> : renderHighlights(a.description)}
         </li>
       ))}
     </ul>
