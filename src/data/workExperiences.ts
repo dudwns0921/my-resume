@@ -113,14 +113,6 @@ export const workExperiences = [
             description: 'LangChain 및 RAG 기반 AI 응답 시스템 설계 및 구현',
             strong: true,
           },
-          {
-            description: '프로젝트 초기 인프라 및 환경 설정 주도',
-            strong: false,
-          },
-          {
-            description: 'Jenkins 기반 빌드·배포·테스트 자동화',
-            strong: false,
-          },
         ],
       },
       {
@@ -162,10 +154,6 @@ export const workExperiences = [
           },
           {
             description: '백엔드 API 연동 및 실시간 데이터 처리 로직 구현',
-            strong: false,
-          },
-          {
-            description: 'ESLint, Prettier, Stylelint 적용 및 빌드/앱 설치 자동화',
             strong: false,
           },
         ],
