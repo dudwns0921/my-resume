@@ -7,6 +7,12 @@ export interface Achievement {
   strong?: boolean;
 }
 
+// 운영 PDF 환경에는 이모지 폰트가 없으므로 label에 이모지를 쓰지 않는다.
+export interface ProjectLink {
+  label: string;
+  href: string;
+}
+
 export interface Project {
   period: string;
   role: string;
@@ -14,8 +20,7 @@ export interface Project {
   description: string;
   techStack: string[];
   achievements: Achievement[];
-  href?: string;
-  hrefLabel?: string;
+  links?: ProjectLink[];
 }
 
 interface ProjectInfoProps {
@@ -37,15 +42,20 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
         subInfo2={project.role}
         description={project.description}
       />
-      {project.href && (
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block mt-1 text-sm text-blue-600 underline underline-offset-2"
-        >
-          {project.hrefLabel ?? '🌐 Live Demo'}
-        </a>
+      {project.links && project.links.length > 0 && (
+        <div className="mt-1 flex flex-wrap gap-x-3 text-sm">
+          {project.links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline underline-offset-2"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
       )}
     </div>
     {project.techStack.length > 0 && (

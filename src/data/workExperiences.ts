@@ -57,6 +57,10 @@ export const workExperiences = [
         title: 'Toyota 차량관리용 모바일 앱',
         period: '2024.11 - 진행 중',
         role: 'Frontend Developer',
+        links: [
+          { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.lguplus.tmctccssapp&hl=ko' },
+          { label: 'App Store', href: 'https://apps.apple.com/kr/app/%ED%86%A0%EC%9A%94%ED%83%80-%EC%BB%A4%EB%84%A5%ED%8A%B8/id1594323775' },
+        ],
         description: 'Toyota 차량 관리용 하이브리드 모바일 앱 개발.',
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Jenkins'],
         achievements: [
@@ -107,6 +111,7 @@ export const workExperiences = [
         title: 'Toyota 차량용 인포테인먼트 서비스',
         period: '2023.06 - 진행 중',
         role: 'Frontend Developer',
+        links: [{ label: '서비스 소개', href: 'https://www.toyota.co.kr/toyota-connect/infotainment/drive-home/' }],
         description: '편의·엔터테인먼트 기능을 제공하는 차량용 하이브리드 인포테인먼트 서비스 개발.',
         techStack: ['Vue.js', 'JavaScript', 'Flow', 'Webpack', 'Jenkins'],
         achievements: [
@@ -128,6 +133,7 @@ export const workExperiences = [
         title: 'KGM 차량용 인포테인먼트 서비스',
         period: '2023.06 - 진행 중',
         role: 'Frontend Developer',
+        links: [{ label: '서비스 소개 (홈 IoT 항목부터)', href: 'https://kgmlink.kg-mobility.com/service-static/service-convenience.do#convenience5' }],
         description: 'KGM(쌍용) 차량용 하이브리드 인포테인먼트 서비스 개발.',
         techStack: ['Vue.js', 'TypeScript', 'Webpack'],
         achievements: [
