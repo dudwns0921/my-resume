@@ -11,8 +11,8 @@ export const activities = [
     achievements: [
       {
         description:
-          "공통 소재 **'2026년'을 자산 광풍으로 화폐가 무너진 해로 해석**하는 아이디어 제안 — 세 소재(2026년·감각·수집)를 한 줄로 잇는 세계관의 출발점",
-        strong: false,
+          "공통 소재 '2026년'을 자산 광풍으로 화폐가 무너진 해로 해석하는 아이디어 제안 — 세 소재(2026년·감각·수집)를 한 줄로 잇는 세계관의 출발점",
+        strong: true,
       },
       {
         description:
