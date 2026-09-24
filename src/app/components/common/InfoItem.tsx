@@ -9,7 +9,7 @@ export interface InfoItemProps {
 
 const InfoItem = ({ title, subInfo, subInfo2, description }: InfoItemProps) => {
   return (
-    <div>
+    <div className="break-inside-avoid">
       <div className="font-semibold text-2xl break-keep">
         {title}
         <DotComponent />

@@ -29,7 +29,7 @@ const renderHighlights = (text: string) =>
     .map((part, i) => (i % 2 === 1 ? <StrongComponent key={i}>{part}</StrongComponent> : part));
 
 const ProjectInfo = ({ project }: ProjectInfoProps) => (
-  <div className="relative flex flex-col gap-4">
+  <div className="relative flex flex-col gap-4 break-inside-avoid">
     <div>
       <InfoItem
         title={project.title}

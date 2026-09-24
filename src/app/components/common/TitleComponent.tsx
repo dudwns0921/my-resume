@@ -7,7 +7,7 @@ const TitleComponent = ({
   title: string;
   size: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
 }) => (
-  <h2 className={`text-${size} font-bold mb-4`}>
+  <h2 className={`text-${size} font-bold mb-4 break-after-avoid`}>
     {title}
     <DotComponent />
   </h2>
