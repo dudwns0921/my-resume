@@ -1,6 +1,6 @@
 export const activities = [
   {
-    title: '23 · NAN 2026 AI 게임 해커톤',
+    title: 'NAN 2026 AI 게임 해커톤 — 「23」',
     period: '2026.09',
     role: 'Developer · 게임 로직 · LLM 서버 · 배포',
     href: 'https://dudwns0921.github.io/2026/09/08/NAN-2026-Retrospective/',
@@ -16,7 +16,7 @@ export const activities = [
       },
       {
         description:
-          '팀 공동 GDD 기반 초안을 ultracode(Claude Code 멀티 에이전트 워크플로우)로 병렬 생성 → 플레이 테스트 이슈는 Fable이 분석·문서화하고 Opus/Sonnet이 구현하는 모델 역할 분리로 토큰 절약',
+          '팀 공동 기획서(GDD)를 바탕으로 Claude Code 멀티 에이전트 워크플로우로 초안을 병렬 생성 → 플레이 테스트 이슈는 분석·문서화 모델과 구현 모델을 나눠 쓰는 역할 분리로 토큰 절약 (분석: Claude Fable, 구현: Claude Opus·Sonnet)',
         strong: true,
       },
       {
@@ -25,7 +25,7 @@ export const activities = [
         strong: false,
       },
       {
-        description: '팀 커밋 320개 중 243개 기여 — 프로젝트 테스트 게임 GUT 526개 · 서버 vitest 175개',
+        description: '팀 커밋 320개 중 243개 기여',
         strong: false,
       },
       {
@@ -58,7 +58,7 @@ export const activities = [
     techStack: ['Claude Vision', 'Claude Code', 'Replit'],
     achievements: [
       {
-        description: '사전 제출 프로젝트(서울 실시간 교통 3D 시각화 대시보드)로 본선 진출, 팀장 및 프론트엔드 담당',
+        description: '본선 진출, 팀장 및 프론트엔드 담당',
         strong: true,
       },
       {
