@@ -9,7 +9,7 @@ const DownloadPDFButton = () => {
   const handleDownloadPDF = async () => {
     setLoading(true);
     try {
-      const response = await fetch(getApiRoot() + '/pdf?url=' + window.location.href);
+      const response = await fetch(getApiRoot() + '/pdf?url=' + encodeURIComponent(window.location.href));
       if (!response.ok) throw new Error('PDF 생성에 실패했습니다.');
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
@@ -20,6 +20,8 @@ const DownloadPDFButton = () => {
       a.click();
       a.remove();
       window.URL.revokeObjectURL(url);
+    } catch {
+      alert('PDF 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.');
     } finally {
       setLoading(false);
     }
