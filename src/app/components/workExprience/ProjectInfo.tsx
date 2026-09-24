@@ -34,8 +34,8 @@ const renderHighlights = (text: string) =>
     .map((part, i) => (i % 2 === 1 ? <StrongComponent key={i}>{part}</StrongComponent> : part));
 
 const ProjectInfo = ({ project }: ProjectInfoProps) => (
-  <div className="relative flex flex-col gap-4 break-inside-avoid">
-    <div>
+  <div className="relative flex flex-col gap-4">
+    <div className="break-inside-avoid break-after-avoid">
       <InfoItem
         title={project.title}
         subInfo={project.period}
@@ -59,7 +59,7 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
       )}
     </div>
     {project.techStack.length > 0 && (
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 break-inside-avoid break-after-avoid">
         {project.techStack.map((tech, index) => (
           <Badge key={index} text={tech} />
         ))}
@@ -67,7 +67,7 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
     )}
     <ul className="list-disc pl-5 text-gray-700 space-y-1">
       {project.achievements.map((a, i) => (
-        <li key={i}>
+        <li key={i} className="break-inside-avoid">
           {a.strong ? <StrongComponent>{a.description}</StrongComponent> : renderHighlights(a.description)}
         </li>
       ))}

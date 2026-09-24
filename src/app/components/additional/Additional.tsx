@@ -3,7 +3,7 @@ import TitleComponent from '../common/TitleComponent';
 import AdditionalItem from './AdditionalItem';
 
 const Additional = () => (
-  <section className="w-full">
+  <section className="w-full break-inside-avoid">
     <TitleComponent title="Additional" size="5xl" />
     <ul className="space-y-2 list-disc pl-6">
       {additionals.map((c) => (
