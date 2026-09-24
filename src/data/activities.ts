@@ -44,7 +44,7 @@ export const activities = [
     techStack: [],
     achievements: [
       {
-        description: '본선 진출 아이디어를 발전시켜 사내 특허 출원 (발명자)',
+        description: '본선 진출 아이디어를 발전시켜 사내 특허 출원 진행 중 (발명자)',
         strong: true,
       },
     ],
