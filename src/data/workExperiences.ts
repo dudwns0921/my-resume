@@ -14,7 +14,7 @@ export const workExperiences = [
         techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
         achievements: [
           {
-            description: '백엔드·브릿지·음성발화 규격을 Claude Code 스킬화 — AI가 도메인 맥락을 바로 이해해 규격 설명 없이 구현',
+            description: '백엔드 API·네이티브 브릿지·음성발화·차량 제어 규격을 Claude Code 스킬화 — AI가 도메인 맥락을 바로 이해해 규격 설명 없이 구현',
             strong: true,
           },
           {
@@ -22,7 +22,7 @@ export const workExperiences = [
             strong: false,
           },
           {
-            description: 'WebView ↔ Native(AAOS) 브릿지 인터페이스 설계 및 구현',
+            description: 'WebView ↔ 네이티브(AAOS) 브릿지 인터페이스 설계 및 구현',
             strong: false,
           },
           {
@@ -36,7 +36,7 @@ export const workExperiences = [
         period: '2025.10 (1주)',
         role: 'Full-stack Developer',
         description:
-          'JIRA 워크로그 기반 근무일지 자동 생성 솔루션. 워크로그가 매일 꼼꼼히 기록되지는 않는 현실을 반영해, 자동 전송 대신 생성된 초안을 직접 검토·수정하는 흐름으로 설계.',
+          'JIRA 워크로그를 분석해 근무일지를 자동으로 쓰는 솔루션. 워크로그가 매일 꼼꼼히 기록되지는 않는 현실을 고려해, 생성된 일지를 직접 검토·수정할 수 있도록 설계.',
         techStack: ['Next.js', 'TypeScript', 'OpenAI API', 'JIRA API'],
         achievements: [
           {
@@ -44,7 +44,7 @@ export const workExperiences = [
             strong: true,
           },
           {
-            description: 'JIRA 티켓 분석 기반 일지 초안 생성으로 작성 시간 90% 단축',
+            description: 'JIRA 워크로그 분석 기반 일지 자동 생성으로 작성 시간 90% 단축',
             strong: false,
           },
           {
@@ -73,7 +73,7 @@ export const workExperiences = [
             strong: false,
           },
           {
-            description: 'WebView ↔ 네이티브 통신 인터페이스 설계',
+            description: 'WebView ↔ 네이티브 브릿지 인터페이스 설계',
             strong: false,
           },
           {
@@ -86,7 +86,7 @@ export const workExperiences = [
         title: '현대모비스 GENESIS 차량용 AI 서비스',
         period: '2024.05 - 2025.01',
         role: 'Full-stack & AI Integration Developer',
-        description: '음성 인식·개인화 기능을 제공하는 AI 기반 차량용 WebApp 개발',
+        description: '음성 인식·개인화 기능을 제공하는 AI 기반 차량용 웹앱 개발',
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Node.js', 'LangChain', 'Jenkins'],
         achievements: [
           {
@@ -104,10 +104,10 @@ export const workExperiences = [
         ],
       },
       {
-        title: 'Toyota 차량용 Infotainment 서비스',
+        title: 'Toyota 차량용 인포테인먼트 서비스',
         period: '2023.06 - 진행중',
         role: 'Frontend Developer',
-        description: '편의·엔터테인먼트 기능을 제공하는 차량용 하이브리드 Infotainment 서비스 개발',
+        description: '편의·엔터테인먼트 기능을 제공하는 차량용 하이브리드 인포테인먼트 서비스 개발',
         techStack: ['Vue.js', 'JavaScript', 'Flow', 'Webpack', 'Jenkins'],
         achievements: [
           {
@@ -125,10 +125,10 @@ export const workExperiences = [
         ],
       },
       {
-        title: 'KGM 차량용 Infotainment 서비스',
+        title: 'KGM 차량용 인포테인먼트 서비스',
         period: '2023.06 - 진행중',
         role: 'Frontend Developer',
-        description: 'KGM(쌍용) 차량용 하이브리드 Infotainment 서비스 개발. 현재 신규 차종 대응 및 유지보수 진행 중',
+        description: 'KGM(쌍용) 차량용 하이브리드 인포테인먼트 서비스 개발. 현재 신규 차종 대응 및 유지보수 진행 중',
         techStack: ['Vue.js', 'TypeScript', 'Webpack'],
         achievements: [
           {
