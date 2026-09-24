@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Spinner from './common/Spinner';
-import { getApiRoot } from '@/utils';
+import { getPdfUrl } from '@/utils';
 
 const DownloadPDFButton = () => {
   const [loading, setLoading] = useState(false);
@@ -9,7 +9,7 @@ const DownloadPDFButton = () => {
   const handleDownloadPDF = async () => {
     setLoading(true);
     try {
-      const response = await fetch(getApiRoot() + '/pdf');
+      const response = await fetch(getPdfUrl());
       if (!response.ok) throw new Error('PDF 생성에 실패했습니다.');
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);

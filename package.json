@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
+    "pdf": "node scripts/generate-pdf.mjs",
     "start": "next start",
     "lint": "eslint"
   },
