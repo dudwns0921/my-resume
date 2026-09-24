@@ -11,8 +11,8 @@ export const activities = [
     achievements: [
       {
         description:
-          "공통 소재 '2026년'을 자산 광풍으로 화폐가 무너진 해로 해석하는 아이디어 제안 — 세 소재(2026년·감각·수집)를 한 줄로 잇는 세계관의 출발점",
-        strong: true,
+          "공통 소재 **'2026년'을 자산 광풍으로 화폐가 무너진 해로 해석**하는 아이디어 제안 — 세 소재(2026년·감각·수집)를 한 줄로 잇는 세계관의 출발점",
+        strong: false,
       },
       {
         description:
@@ -35,8 +35,8 @@ export const activities = [
     techStack: [],
     achievements: [
       {
-        description: '본선 진출 아이디어를 발전시켜 사내 직무발명으로 특허 출원 진행 중',
-        strong: true,
+        description: '본선 진출 아이디어를 발전시켜 사내 직무발명으로 **특허 출원 진행 중**',
+        strong: false,
       },
     ],
   },

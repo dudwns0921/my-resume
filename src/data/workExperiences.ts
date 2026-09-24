@@ -14,8 +14,8 @@ export const workExperiences = [
         techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
         achievements: [
           {
-            description: '백엔드 API·네이티브 브릿지·음성발화·차량 제어 규격을 Claude Code 스킬화 — AI가 도메인 맥락을 바로 이해해 규격 설명 없이 구현',
-            strong: true,
+            description: '백엔드 API·네이티브 브릿지·음성발화·차량 제어 규격을 Claude Code 스킬화 — **AI가 도메인 맥락을 바로 이해**해 규격 설명 없이 구현',
+            strong: false,
           },
           {
             description: 'JIRA 커맨드로 티켓 조회부터 수정·검증·커밋까지 원커맨드 자동화',
@@ -40,8 +40,8 @@ export const workExperiences = [
         techStack: ['Next.js', 'TypeScript', 'OpenAI API', 'JIRA API'],
         achievements: [
           {
-            description: '사내 AI 챌린지 1위 및 전사 도입',
-            strong: true,
+            description: '**사내 AI 챌린지 1위** 및 **전사 도입**',
+            strong: false,
           },
           {
             description: 'JIRA 워크로그 분석 기반 일지 자동 생성으로 작성 시간 90% 단축',
@@ -61,8 +61,8 @@ export const workExperiences = [
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Jenkins'],
         achievements: [
           {
-            description: '프로젝트 초기 인프라 및 환경 설정 주도',
-            strong: true,
+            description: '프로젝트 **초기 인프라 및 환경 설정 주도**',
+            strong: false,
           },
           {
             description: 'Vitest 기반 유닛·통합 테스트 환경 구축',
@@ -90,8 +90,8 @@ export const workExperiences = [
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Node.js', 'LangChain', 'Jenkins'],
         achievements: [
           {
-            description: '현대제네시스 전무 대상 데모 주도 및 성공적 시연',
-            strong: true,
+            description: '**현대제네시스 전무 대상 데모** 주도 및 성공적 시연',
+            strong: false,
           },
           {
             description: 'Node.js + LangChain 백엔드부터 Vue.js 프론트엔드까지 풀스택 개발',
@@ -111,8 +111,8 @@ export const workExperiences = [
         techStack: ['Vue.js', 'JavaScript', 'Flow', 'Webpack', 'Jenkins'],
         achievements: [
           {
-            description: '유닛·통합 테스트 환경 구축 및 가이드 문서 작성',
-            strong: true,
+            description: '**유닛·통합 테스트 환경 구축** 및 가이드 문서 작성',
+            strong: false,
           },
           {
             description: 'devTools 컴포넌트 개발로 퍼블리싱 속도 30% 개선',
@@ -132,8 +132,8 @@ export const workExperiences = [
         techStack: ['Vue.js', 'TypeScript', 'Webpack'],
         achievements: [
           {
-            description: 'Confluence 기반 협업 체계로 이슈 해결 시간 50% 단축',
-            strong: true,
+            description: 'Confluence 기반 협업 체계로 **이슈 해결 시간 50% 단축**',
+            strong: false,
           },
         ],
       },
