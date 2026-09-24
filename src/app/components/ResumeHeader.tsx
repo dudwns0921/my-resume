@@ -28,7 +28,8 @@ const ResumeHeader = () => (
         메일 초안 검수, 학습 기록 정리처럼 매일 하는 일도 AI로 자동화해 일상 업무 흐름에 자연스럽게 자리 잡게 했습니다.
       </p>
       <p>
-        이 밖에도 NAN 2026 Game X AI 해커톤에서 <StrongComponent>588팀 중 3위로 우수상</StrongComponent>을 받았고, CODEGATE 2026 AI
+        이 밖에도 NAN 2026 Game X AI 해커톤에서 지원 588팀 중 본선 10팀에 올라{' '}
+        <StrongComponent>3위로 우수상</StrongComponent>을 받았고, CODEGATE 2026 AI
         스타트업 해커톤 본선에 오른 아이디어를 발전시켜 사내 특허 출원을 진행하고 있습니다.
       </p>
     </div>
