@@ -8,7 +8,7 @@ export const workExperiences = [
     projects: [
       {
         title: 'KGM Music - 차량용 뮤직 스트리밍 서비스',
-        period: '2025.12 - 진행중',
+        period: '2025.12 - 진행 중',
         role: 'Frontend Developer',
         description: 'KGM 차량 AVN에 탑재되는 뮤직 스트리밍 클라이언트 개발. 개발 전 과정에 Claude Code를 통합해 운영.',
         techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
@@ -55,9 +55,9 @@ export const workExperiences = [
       },
       {
         title: 'Toyota 차량관리용 모바일 앱',
-        period: '2024.11 - 진행중',
+        period: '2024.11 - 진행 중',
         role: 'Frontend Developer',
-        description: 'Toyota 차량 관리용 하이브리드 모바일 앱 개발',
+        description: 'Toyota 차량 관리용 하이브리드 모바일 앱 개발.',
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Jenkins'],
         achievements: [
           {
@@ -65,7 +65,7 @@ export const workExperiences = [
             strong: true,
           },
           {
-            description: 'Vitest 기반 유닛/통합 테스트 환경 구축',
+            description: 'Vitest 기반 유닛·통합 테스트 환경 구축',
             strong: false,
           },
           {
@@ -86,7 +86,7 @@ export const workExperiences = [
         title: '현대모비스 GENESIS 차량용 AI 서비스',
         period: '2024.05 - 2025.01',
         role: 'Full-stack & AI Integration Developer',
-        description: '음성 인식·개인화 기능을 제공하는 AI 기반 차량용 웹앱 개발',
+        description: '음성 인식·개인화 기능을 제공하는 AI 기반 차량용 웹앱 개발.',
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Node.js', 'LangChain', 'Jenkins'],
         achievements: [
           {
@@ -105,13 +105,13 @@ export const workExperiences = [
       },
       {
         title: 'Toyota 차량용 인포테인먼트 서비스',
-        period: '2023.06 - 진행중',
+        period: '2023.06 - 진행 중',
         role: 'Frontend Developer',
-        description: '편의·엔터테인먼트 기능을 제공하는 차량용 하이브리드 인포테인먼트 서비스 개발',
+        description: '편의·엔터테인먼트 기능을 제공하는 차량용 하이브리드 인포테인먼트 서비스 개발.',
         techStack: ['Vue.js', 'JavaScript', 'Flow', 'Webpack', 'Jenkins'],
         achievements: [
           {
-            description: '유닛/통합 테스트 환경 구축 및 가이드 문서 작성',
+            description: '유닛·통합 테스트 환경 구축 및 가이드 문서 작성',
             strong: true,
           },
           {
@@ -119,16 +119,16 @@ export const workExperiences = [
             strong: false,
           },
           {
-            description: 'ESLint·Prettier·Stylelint 도입 및 빌드/앱 설치 자동화',
+            description: 'ESLint·Prettier·Stylelint 도입 및 빌드·앱 설치 자동화',
             strong: false,
           },
         ],
       },
       {
         title: 'KGM 차량용 인포테인먼트 서비스',
-        period: '2023.06 - 진행중',
+        period: '2023.06 - 진행 중',
         role: 'Frontend Developer',
-        description: 'KGM(쌍용) 차량용 하이브리드 인포테인먼트 서비스 개발. 현재 신규 차종 대응 및 유지보수 진행 중',
+        description: 'KGM(쌍용) 차량용 하이브리드 인포테인먼트 서비스 개발.',
         techStack: ['Vue.js', 'TypeScript', 'Webpack'],
         achievements: [
           {
