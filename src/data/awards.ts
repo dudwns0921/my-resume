@@ -1,6 +1,6 @@
 export const awards = [
   {
-    title: 'NAN 2026 AI 게임 제작 해커톤 우수상 (588팀 중 3위)',
+    title: 'NAN 2026 Game X AI 해커톤 우수상 (588팀 중 3위)',
     subInfo: '2026.09 | NHN',
     subInfo2: '',
     description: '',
