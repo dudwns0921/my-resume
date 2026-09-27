@@ -5,7 +5,7 @@ export const activities = [
     role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·컷신)',
     links: [{ label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' }],
     description:
-      '외눈박이 거인의 동굴에 갇힌 오디세우스가 잠든 거인 곁을 몰래 오가며 무기를 만들고 선원들과 탈출하는 3인칭 3D 어드벤처. 호메로스 『오디세이아』의 키클롭스 에피소드를 바탕으로 기획부터 출시까지 전 과정을 1인으로 진행해, itch.io에 무료로 출시.',
+      '외눈박이 거인의 동굴에 갇힌 오디세우스가 잠든 거인 곁을 몰래 오가며 무기를 만들고 선원들과 탈출하는 3인칭 3D 어드벤처. 호메로스 『오디세이아』의 키클롭스 에피소드를 바탕으로 기획부터 출시까지 전 과정을 1인으로 진행해, itch.io에 출시.',
     techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'Godot MCP Pro', 'Meshy AI', 'ElevenLabs', 'ChatGPT'],
     achievements: [
       {
