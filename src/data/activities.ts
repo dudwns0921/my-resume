@@ -1,26 +1,26 @@
 export const activities = [
   {
-    title: 'Outis — 개인 게임 프로젝트',
+    title: '개인 게임 프로젝트 — 「Outis」',
     period: '2026.09',
-    role: '기획 전 과정 · AI 디렉팅',
+    role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·컷신)',
     links: [{ label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' }],
     description:
-      '호메로스 『오디세이아』의 키클롭스 에피소드를 바탕으로 만든 3인칭 어드벤처 게임. 기획부터 출시까지 전 과정을 1인으로 진행해 itch.io에 무료 출시.',
+      '외눈박이 거인의 동굴에 갇힌 오디세우스가 잠든 거인 곁을 몰래 오가며 무기를 만들고 선원들과 탈출하는 3인칭 3D 어드벤처. 호메로스 『오디세이아』의 키클롭스 에피소드를 바탕으로 기획부터 출시까지 전 과정을 1인으로 진행해, itch.io에 무료로 출시.',
     techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'Godot MCP Pro', 'Meshy AI', 'ElevenLabs', 'ChatGPT'],
     achievements: [
       {
         description:
-          '기획서(GDD)와 코드를 양방향으로 맞추는 동기화 스킬 설계 — 수치·규칙·입력·HUD 항목에 ID를 붙여, 기획서를 바꾸면 코드에, 코드를 바꾸면 기획서에 곧바로 반영',
+          '기획서(GDD)와 코드를 양방향으로 맞추는 동기화 스킬 설계 — 수치·규칙·입력·HUD 항목에 ID를 붙여, 어느 한쪽을 바꿔도 다른 쪽에 곧바로 반영되는 구조 확보',
         strong: true,
       },
       {
         description:
-          "원작 재해석 — 이름이 붙은 선원 12명을 체력이자 마지막 단계의 필수 인력으로 설계하고, 원작의 '아무도 아니다' 장면을 진짜 이름을 외칠지 고르는 선택 엔딩으로 구성",
+          "원작의 '아무도 아니다' 장면을 진짜 이름을 외칠지 고르는 선택 엔딩으로 재해석",
         strong: false,
       },
       {
         description:
-          '3D 에셋은 Meshy AI, 사운드는 ElevenLabs, 흑화식 도기 스타일 컷신은 Claude로 뽑은 프롬프트를 ChatGPT 이미지로 만드는 등 AI 서비스를 적극 활용하고, 구현은 Claude Code가 Godot 에디터를 직접 조작하게 해 기획에 집중',
+          '3D 에셋은 Meshy AI, 사운드는 ElevenLabs, 흑화식 도기 스타일 컷신은 Claude로 뽑은 프롬프트를 ChatGPT 이미지로 제작 — 구현은 Claude Code가 Godot 에디터를 직접 조작하게 해 기획에 집중',
         strong: false,
       },
     ],
