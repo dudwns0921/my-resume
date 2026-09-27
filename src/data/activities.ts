@@ -1,5 +1,36 @@
 export const activities = [
   {
+    title: 'Outis — 개인 게임 프로젝트',
+    period: '2026.09',
+    role: '기획 전 과정 · AI 디렉팅',
+    links: [{ label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' }],
+    description:
+      '호메로스 『오디세이아』의 키클롭스 에피소드를 유머러스하게 비튼 3인칭 어드벤처 게임. 세계관·퍼즐·밸런스 기획부터 출시까지 전 과정을 혼자 이끌고, 에셋·사운드·구현은 AI 서비스를 적극 활용해 itch.io에 무료 출시.',
+    techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'Godot MCP Pro', 'Meshy AI', 'ElevenLabs', 'ChatGPT'],
+    achievements: [
+      {
+        description:
+          '800줄 분량의 기획서(GDD)를 쓰고, 수치·규칙·입력·HUD 항목에 ID를 붙여 기획서와 코드를 항상 일치시키는 동기화 규칙 설계 — 기획을 바꾸면 곧바로 게임에 반영되는 구조',
+        strong: true,
+      },
+      {
+        description:
+          "플레이 테스트로 설계 수정 — '위기감이 없다'는 피드백에 하루마다 선원 2명을 잃는 규칙을 더하고, 불 피우기가 잡일이 되자 퍼즐 순서를 '어둠 속에서 준비하고 불은 마지막에 되살리는' 흐름으로 재설계",
+        strong: false,
+      },
+      {
+        description:
+          "원작 재해석 — 이름이 붙은 선원 12명을 체력이자 마지막 단계의 필수 인력으로 설계하고, 원작의 '아무도 아니다' 장면을 진짜 이름을 외칠지 고르는 선택 엔딩으로 구성",
+        strong: false,
+      },
+      {
+        description:
+          '3D 에셋은 Meshy AI, 사운드는 ElevenLabs, 흑화식 도기 스타일 컷신은 Claude로 뽑은 프롬프트를 ChatGPT 이미지로 만드는 등 AI 서비스를 적극 활용하고, 구현은 Claude Code가 Godot 에디터를 직접 조작하게 해 기획에 집중',
+        strong: false,
+      },
+    ],
+  },
+  {
     title: 'NAN 2026 Game X AI 해커톤 — 「23」',
     period: '2026.09',
     role: '공동 기획 · 개발(게임 로직·LLM 서버·배포) · 문서·발표',
