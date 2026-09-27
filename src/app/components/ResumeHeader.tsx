@@ -31,7 +31,7 @@ const ResumeHeader = () => (
       <p>
         이 밖에도 NAN 2026 Game X AI 해커톤에서 지원 588팀 중 본선 10팀에 올라{' '}
         <StrongComponent>3위로 우수상</StrongComponent>을 받았고, 『오디세이아』의 키클롭스 에피소드를 바탕으로
-        만든 3인칭 어드벤처 게임 「Outis」를 itch.io에 출시했습니다. CODEGATE 2026 AI 스타트업 해커톤 본선에 오른 아이디어로는 사내 특허 출원을 진행하고
+        1인 개발한 3인칭 어드벤처 게임 「Outis」를 itch.io에 출시했습니다. CODEGATE 2026 AI 스타트업 해커톤 본선에 오른 아이디어로는 사내 특허 출원을 진행하고
         있습니다.
       </p>
     </div>
