@@ -14,8 +14,8 @@ export const workExperiences = [
         techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
         achievements: [
           {
-            description: '백엔드 API·네이티브 브릿지·음성발화·차량 제어 규격을 Claude Code 스킬화 — AI가 도메인 맥락을 바로 이해해 규격 설명 없이 구현',
-            strong: true,
+            description: '**백엔드 API·네이티브 브릿지·음성발화·차량 제어 규격을 Claude Code 스킬화** — AI가 도메인 맥락을 바로 이해해 규격 설명 없이 구현',
+            strong: false,
           },
           {
             description: 'JIRA 커맨드로 티켓 조회부터 수정·검증·커밋까지 원커맨드 자동화',
