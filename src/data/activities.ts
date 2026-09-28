@@ -15,6 +15,11 @@ export const activities = [
       },
       {
         description:
+          '밸런스 수치 111개를 엑셀 표로 관리 — 저장하면 실행 중인 게임에 즉시 반영되어, 게임을 끄지 않고 값을 바꿔 가며 조정하는 구조 구축',
+        strong: false,
+      },
+      {
+        description:
           "원작의 '아무도 아니다' 장면을 진짜 이름을 외칠지 고르는 선택 엔딩으로 재해석",
         strong: false,
       },
