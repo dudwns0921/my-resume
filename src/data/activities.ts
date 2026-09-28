@@ -3,15 +3,23 @@ export const activities = [
     title: '개인 게임 프로젝트 — 「Outis」',
     period: '2026.09',
     role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·컷신)',
-    links: [{ label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' }],
+    links: [
+      { label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' },
+      { label: '제작기', href: 'https://dudwns0921.github.io/2026/09/28/Outis-Devlog/' },
+    ],
     description:
       '외눈박이 거인의 동굴에 갇힌 오디세우스가 잠든 거인 곁을 몰래 오가며 무기를 만들고 선원들과 탈출하는 3인칭 3D 어드벤처. 호메로스 『오디세이아』의 키클롭스 에피소드를 바탕으로 기획부터 출시까지 전 과정을 1인으로 진행해, itch.io에 출시.',
     techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'Godot MCP Pro', 'Meshy AI', 'ElevenLabs', 'ChatGPT'],
     achievements: [
       {
         description:
-          '기획서(GDD)와 코드를 양방향으로 맞추는 동기화 스킬 설계 — 수치·규칙·입력·HUD 항목에 ID를 붙여, 어느 한쪽을 바꿔도 다른 쪽에 곧바로 반영되는 구조 확보',
-        strong: true,
+          '**기획서(GDD)와 코드를 양방향으로 맞추는 동기화 스킬 설계** — 수치·규칙·입력·HUD 항목에 ID를 붙여, 어느 한쪽을 바꿔도 다른 쪽에 곧바로 반영되는 구조 확보',
+        strong: false,
+      },
+      {
+        description:
+          '**밸런스 수치 111개를 엑셀 표로 관리** — 저장하면 실행 중인 게임에 즉시 반영되어, 게임을 끄지 않고 값을 바꿔 가며 조정하는 구조 구축',
+        strong: false,
       },
       {
         description:
@@ -36,12 +44,12 @@ export const activities = [
     achievements: [
       {
         description:
-          "공통 소재 '2026년'을 자산 광풍으로 화폐가 무너진 해로 해석하는 아이디어 제안 — 세 소재(2026년·감각·수집)를 한 줄로 잇는 세계관의 출발점",
-        strong: true,
+          "**공통 소재 '2026년'을 자산 광풍으로 화폐가 무너진 해로 해석하는 아이디어 제안** — 세 소재(2026년·감각·수집)를 한 줄로 잇는 세계관의 출발점",
+        strong: false,
       },
       {
         description:
-          "'숫자는 게임이, 말은 서버가' 경계 설계 — 가격·거짓말 판정·평판은 게임이, 대사·흥정 판단·기분 변화는 LLM이 맡게 해 밸런스를 측정할 수 있는 구조 확보",
+          "**'숫자는 게임이, 말은 서버가' 경계 설계** — 가격·거짓말 판정·평판은 게임이, 대사·흥정 판단·기분 변화는 LLM이 맡게 해 밸런스를 측정할 수 있는 구조 확보",
         strong: false,
       },
       {
@@ -60,8 +68,8 @@ export const activities = [
     techStack: [],
     achievements: [
       {
-        description: '본선 진출 아이디어를 발전시켜 사내 직무발명으로 특허 출원 진행 중',
-        strong: true,
+        description: '본선 진출 아이디어를 발전시켜 **사내 직무발명으로 특허 출원** 진행 중',
+        strong: false,
       },
     ],
   },
