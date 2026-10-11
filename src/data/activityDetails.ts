@@ -95,7 +95,7 @@ export const activityDetails: ActivityDetail[] = [
     strip: 8,
     flow: {
       title: '한 사이클',
-      lead: '목표를 말하고 직접 플레이하는 것은 내가 했고, 나머지 단계는 단계마다 모델을 정해 둔 AI 에이전트가 맡았다.',
+      lead: '목표를 말하고 직접 플레이하는 것은 내가 했고, 기획부터 배포까지는 단계마다 모델을 정해 둔 AI 에이전트가 맡았다.',
       legend: { me: '내가 하는 단계', ai: '에이전트가 하는 단계' },
       stages: [
         { name: '목표', owner: '나', byUser: true, line: '이번에 만들 것을 내가 말하면 문서 맨 위에 그대로 적힌다.' },
@@ -151,7 +151,6 @@ export const activityDetails: ActivityDetail[] = [
           image: '/activities/keros/c00.jpg',
         },
         { label: '사이클 01', name: '진짜 모습', line: '디자인 컨셉을 잡고, 블록이던 갑판에 입혔다.', image: '/activities/keros/c01.jpg' },
-        { label: '사이클 03', name: '움직임', line: '부관이 선원을 안아 들어 앞에 내려놓을 수 있게 했다.', image: '/activities/keros/c03.jpg' },
         { label: '사이클 05', name: '바다 괴물', line: '촉수에 휘감긴 선원을 부관이 풀러 가게 했다.', image: '/activities/keros/c05.jpg' },
         {
           label: '사이클 06',
@@ -159,6 +158,7 @@ export const activityDetails: ActivityDetail[] = [
           line: '소용돌이를 만들고, 구간 사이에 재화로 선원을 보충하고 밧줄과 밀랍을 보강하는 정비를 넣었다.',
           image: '/activities/keros/c06b.jpg',
         },
+        { label: '사이클 07', name: '저장과 엔딩', line: '저장과 이어하기를 넣고, 컷신 셋과 엔딩을 붙였다.', image: '/activities/keros/c07.jpg' },
         {
           label: '사이클 08',
           name: '출시',
