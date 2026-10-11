@@ -1,6 +1,7 @@
 import InfoItem from '../common/InfoItem';
 import StrongComponent from '../common/StrongComponent';
 import Badge from '../common/Badge';
+import { withBasePath } from '@/utils';
 
 export interface Achievement {
   description: string;
@@ -8,9 +9,11 @@ export interface Achievement {
 }
 
 // 운영 PDF 환경에는 이모지 폰트가 없으므로 label에 이모지를 쓰지 않는다.
+// href가 '/'로 시작하면 이력서 안의 상세 페이지다. webOnly 링크는 PDF에 넣지 않는다.
 export interface ProjectLink {
   label: string;
   href: string;
+  webOnly?: boolean;
 }
 
 export interface Project {
@@ -45,17 +48,20 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
       />
       {project.links && project.links.length > 0 && (
         <div className="mt-1 flex flex-wrap gap-x-3 text-sm">
-          {project.links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 underline underline-offset-2"
-            >
-              {link.label}
-            </a>
-          ))}
+          {project.links.map((link) => {
+            const internal = link.href.startsWith('/');
+            return (
+              <a
+                key={link.href}
+                href={internal ? withBasePath(link.href) : link.href}
+                target={internal ? undefined : '_blank'}
+                rel={internal ? undefined : 'noopener noreferrer'}
+                className={`text-blue-600 underline underline-offset-2${link.webOnly ? ' no-pdf' : ''}`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
       )}
     </div>

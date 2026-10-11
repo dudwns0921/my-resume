@@ -1,0 +1,771 @@
+/* 액티비티 상세 페이지. gamedev-kit 현황판(항해도)의 색과 카드 모양을 따른다. */
+.detail {
+  --bg: #08080c;
+  --card: #14141c;
+  --card2: #1b1b26;
+  --line: #262632;
+  --line2: #35354a;
+  --gold: #e6bd3c;
+  --gold2: #ffe08a;
+  --sea: #2fd6c8;
+  --red: #e10600;
+  --red2: #ff4a3d;
+  --tx: #f0f1f5;
+  --tx2: #a9afba;
+  --tx3: #8a909c;
+  --mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  min-height: 100dvh;
+  container-type: inline-size;
+  color: var(--tx);
+  font-size: 16px;
+  line-height: 1.65;
+  word-break: keep-all;
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(230, 189, 60, 0.16), transparent 60%),
+    radial-gradient(900px 600px at 95% 110%, rgba(47, 214, 200, 0.13), transparent 60%),
+    radial-gradient(circle at 1px 1px, #1c1c26 1px, transparent 1.2px) 0 0 / 16px 16px,
+    var(--bg);
+  background-attachment: fixed;
+}
+.detail-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 28px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+.detail a {
+  color: inherit;
+  text-decoration: none;
+}
+.detail .lab {
+  font: 11px/1.4 var(--mono);
+  letter-spacing: 0.1em;
+  color: var(--tx3);
+  text-transform: uppercase;
+}
+/* 닫기 단추가 든 위쪽 띠. 내용이 그 밑으로 지나간다. */
+.detail .bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: -22px -28px 0;
+  padding: 10px 28px;
+  /* 단독 페이지에서는 가운데 단을 넘어 화면 양끝까지 띠를 넓힌다. 패널 안에서는 위 값과 같아진다. */
+  margin-inline: calc(50% - 50cqw);
+  padding-inline: calc(50cqw - 50%);
+  background: rgba(8, 8, 12, 0.82);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.detail .back {
+  font: 12px var(--mono);
+  color: var(--tx2);
+  background: rgba(20, 20, 28, 0.9);
+  border: 1px solid var(--line2);
+  padding: 5px 12px;
+  cursor: pointer;
+}
+.detail .back:hover {
+  color: var(--gold2);
+  border-color: var(--gold);
+}
+
+/* 머리 */
+.detail .head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  margin-top: -14px;
+}
+.detail h1 {
+  margin: 4px 0 0;
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.detail h1::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 18px var(--gold);
+}
+.detail h1 span {
+  font-weight: 300;
+  color: var(--tx3);
+}
+.detail .sub {
+  color: var(--tx2);
+  margin: 14px 0 0;
+}
+.detail .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.detail .links a {
+  font-size: 13px;
+  border: 1px solid var(--gold);
+  color: var(--gold2);
+  padding: 5px 12px;
+  background: rgba(230, 189, 60, 0.08);
+}
+.detail .links a:hover {
+  background: rgba(230, 189, 60, 0.22);
+}
+.detail .media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--gold);
+  background: #000;
+  box-shadow:
+    0 0 0 1px rgba(230, 189, 60, 0.25),
+    0 18px 60px rgba(230, 189, 60, 0.22);
+}
+.detail .media::before,
+.detail .media::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--gold2);
+  pointer-events: none;
+}
+.detail .media::before {
+  left: -6px;
+  top: -6px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.detail .media::after {
+  right: -6px;
+  bottom: -6px;
+  border-left: 0;
+  border-top: 0;
+}
+.detail .media iframe,
+.detail .media img {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+}
+
+.detail .tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: -20px;
+}
+.detail .tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(180deg, var(--card2), var(--card));
+  border: 1px solid var(--line2);
+  padding: 9px 14px 10px;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+.detail .tile b {
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+/* 숫자 타일은 0에서 세어 올라간다. 움직임을 줄인 환경에서는 처음부터 끝 값이다. */
+@property --detail-n {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+.detail .tile b.count {
+  --detail-n: var(--to);
+  counter-reset: detail-n var(--detail-n);
+  animation: detail-count 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+}
+.detail .tile b.count span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.detail .tile b.count::after {
+  content: counter(detail-n) attr(data-suffix);
+  /* 세는 숫자는 장식이라 읽히지 않게 빈 대체 글자를 준다. 윗줄은 이 문법을 모르는 브라우저용이다. */
+  content: counter(detail-n) attr(data-suffix) / '';
+}
+@keyframes detail-count {
+  from {
+    --detail-n: 0;
+  }
+}
+.detail .tile.gold {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(230, 189, 60, 0.22), var(--card));
+}
+.detail .tile.gold .lab {
+  color: var(--tx2);
+}
+.detail .tile.gold b {
+  color: var(--gold2);
+  text-shadow: 0 0 16px rgba(230, 189, 60, 0.7);
+}
+.detail .tile.sea {
+  border-color: rgba(47, 214, 200, 0.6);
+}
+.detail .tile.sea b {
+  color: var(--sea);
+}
+
+/* 사이클 여덟 번을 한 줄로 */
+.detail .strip {
+  display: flex;
+  gap: 4px;
+  height: 10px;
+  margin-top: -30px;
+}
+.detail .strip div {
+  flex: 1;
+  background: #1b1b25;
+  position: relative;
+  overflow: hidden;
+}
+.detail .strip i {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  box-shadow: 0 0 14px var(--gold);
+  transform-origin: left;
+  animation: detail-grow 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 110ms + 300ms);
+}
+.detail .strip i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.75) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: detail-sheen 3.2s 1.6s infinite;
+}
+@keyframes detail-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes detail-sheen {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+/* 절 */
+.detail section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.detail h2::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+  transform: rotate(45deg) translateY(-3px);
+  box-shadow: 0 0 12px var(--gold);
+  flex: none;
+}
+.detail h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.detail h2 span {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--tx3);
+}
+.detail .lead {
+  margin: 0;
+  color: var(--tx2);
+  max-width: 76ch;
+}
+.detail h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.detail ol,
+.detail ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.detail code {
+  font: 600 13px var(--mono);
+  color: var(--gold2);
+}
+
+/* 사이클의 여덟 단계 */
+.detail .flow {
+  --g: 22px;
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  gap: var(--g);
+  margin-top: 6px;
+}
+.detail .slot {
+  position: relative;
+  display: flex;
+  transition: filter 0.2s;
+  animation: detail-rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+.detail .slot::after {
+  content: '';
+  position: absolute;
+  right: calc(var(--g) * -1);
+  top: 40px;
+  width: var(--g);
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold) 0 40%, transparent 40% 60%, var(--gold) 60%) 0 0 / 14px 2px;
+  animation: detail-run 0.7s linear infinite;
+  filter: drop-shadow(0 0 4px var(--gold));
+}
+.detail .slot:last-child::after,
+.detail .flow[data-cols='4'] .slot:nth-child(4n)::after,
+.detail .flow[data-cols='3'] .slot:nth-child(3n)::after {
+  display: none;
+}
+@keyframes detail-run {
+  to {
+    background-position: 14px 0;
+  }
+}
+.detail .slot:hover {
+  z-index: 2;
+  filter: drop-shadow(0 12px 26px rgba(230, 189, 60, 0.28));
+}
+.detail .node {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 16px 14px;
+  background: var(--card);
+  border: 1px solid var(--line2);
+  border-left: 3px solid var(--gold);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.detail .slot:hover .node {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+}
+.detail .node.me {
+  border-left-color: var(--sea);
+  background: linear-gradient(180deg, rgba(47, 214, 200, 0.1), var(--card) 55%);
+}
+@keyframes detail-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+.detail .node .ghost {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  font: 800 54px/1 var(--mono);
+  color: rgba(255, 255, 255, 0.045);
+  pointer-events: none;
+}
+.detail .node .lab em {
+  font-style: normal;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border: 1px solid var(--line2);
+  color: var(--gold2);
+}
+.detail .node.me .lab {
+  color: var(--sea);
+}
+.detail .node p {
+  margin: 0;
+  color: var(--tx2);
+  font-size: 15px;
+}
+.detail .legend {
+  display: flex;
+  gap: 18px;
+  font-size: 12px;
+  color: var(--tx2);
+}
+.detail .legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+}
+.detail .k-me {
+  background: var(--sea);
+}
+.detail .k-ai {
+  background: var(--gold);
+}
+
+/* 결정 */
+.detail .decisions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 6px;
+}
+.detail .decisions li {
+  background: var(--card);
+  border: 1px solid var(--line2);
+  padding: 14px 16px;
+}
+.detail .was {
+  color: var(--tx3);
+  font-size: 14px;
+  text-decoration: line-through;
+  text-decoration-color: rgba(225, 6, 0, 0.7);
+}
+.detail .now {
+  margin-top: 4px;
+  font-weight: 700;
+}
+.detail .now::before {
+  content: '→ ';
+  color: var(--gold);
+}
+.detail .why {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line2);
+  font-size: 14px;
+  color: var(--tx2);
+}
+
+/* 도구 */
+.detail .skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.detail .skills li {
+  background: var(--card);
+  border: 1px solid var(--line2);
+  border-top: 2px solid var(--gold);
+  padding: 12px 16px 14px;
+}
+.detail .skills p {
+  margin: 6px 0 0;
+  font-size: 15px;
+  color: var(--tx2);
+}
+.detail .board {
+  margin: 6px 0 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--gold);
+  padding: 14px;
+}
+.detail .board img {
+  width: 100%;
+  border: 1px solid var(--line2);
+}
+.detail .board figcaption p {
+  margin: 8px 0 12px;
+  color: var(--tx2);
+  font-size: 15px;
+}
+.detail .board figcaption a {
+  font-size: 13px;
+  color: var(--sea);
+  border-bottom: 1px solid rgba(47, 214, 200, 0.5);
+}
+
+/* 사이클 기록 */
+.detail .cycles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.detail .cycles li {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--line2);
+  border-left: 3px solid var(--gold);
+  overflow: hidden;
+}
+.detail .cycles li,
+.detail .skills li,
+.detail .decisions li {
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.detail .cycles li:hover,
+.detail .skills li:hover,
+.detail .decisions li:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 26px rgba(230, 189, 60, 0.2);
+}
+.detail .cycles img {
+  transition: transform 0.5s;
+}
+.detail .cycles li:hover img {
+  transform: scale(1.06);
+}
+.detail .cycles img,
+.detail .cycles .noimg {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.detail .cycles .noimg {
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(135deg, #12121a 0 10px, #15151e 10px 20px);
+  font: 800 64px/1 var(--mono);
+  color: rgba(255, 255, 255, 0.07);
+}
+.detail .cycles .body {
+  padding: 12px 16px 14px;
+}
+.detail .cycles p {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: var(--tx2);
+}
+
+/* 되돌아간 것 */
+.detail .reverts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+.detail .reverts li {
+  border: 1px solid #5a1712;
+  border-top: 2px solid var(--red);
+  background: linear-gradient(180deg, rgba(225, 6, 0, 0.14), rgba(20, 10, 12, 0.9));
+  padding: 12px 16px 14px;
+  clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 0 100%);
+}
+.detail .reverts p {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: var(--tx2);
+}
+
+.detail .outro {
+  margin: 0;
+  max-width: 76ch;
+  padding: 14px 18px;
+  border-left: 2px solid var(--sea);
+  background: rgba(47, 214, 200, 0.06);
+}
+
+@container (max-width: 900px) {
+  .detail .head,
+  .detail .board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail .flow,
+  .detail .cycles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .detail .decisions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* 두 칸에서는 왼쪽 카드에서만 다음 카드로 선을 잇는다. */
+  .detail .flow[data-cols] .slot:nth-child(n)::after {
+    display: block;
+  }
+  .detail .flow[data-cols] .slot:nth-child(2n)::after,
+  .detail .flow[data-cols] .slot:last-child::after {
+    display: none;
+  }
+}
+@container (max-width: 560px) {
+  .detail-page {
+    padding: 16px 16px 32px;
+  }
+  .detail .bar {
+    margin: -16px -16px 0;
+    padding: 8px 16px;
+  }
+  .detail h1 {
+    font-size: 34px;
+  }
+  .detail .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .detail .flow,
+  .detail .cycles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail .flow[data-cols] .slot:nth-child(n)::after {
+    display: none;
+  }
+}
+
+/* 이력서에서 액티비티를 누르면 오른쪽에서 밀려 나오는 패널 */
+.detail-trigger {
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* 누를 수 있다는 것은 색을 칠하지 않고 움직임으로만 알린다: 왼쪽에 가는 선이 자라고, 카드가 살짝 밀리고, 링크의 화살표가 나아간다. */
+@media screen {
+  .detail-trigger {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .detail-trigger::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    border-radius: 1px;
+    background: #111827;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .detail-trigger a.no-pdf::after {
+    content: '→';
+    display: inline-block;
+    margin-left: 4px;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @media (hover: hover) {
+    .detail-trigger:hover {
+      transform: translateX(6px);
+    }
+    .detail-trigger:hover::before {
+      transform: scaleY(1);
+    }
+    .detail-trigger:hover a.no-pdf::after {
+      transform: translateX(4px);
+    }
+  }
+  /* 누르는 동안(터치 포함)과 키보드 초점에도 같은 선이 보인다. */
+  .detail-trigger:active {
+    transform: translateX(9px);
+  }
+  .detail-trigger:active::before,
+  .detail-trigger:has(a:focus-visible)::before {
+    transform: scaleY(1);
+  }
+}
+.detail-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: clip;
+}
+/* 닫히는 동안에는 투명해지는 배경이 뒤의 이력서 클릭을 삼키지 않게 한다. */
+.detail-drawer:not(.open) {
+  pointer-events: none;
+}
+.detail-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 12, 0.6);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.detail-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(1180px, 94vw);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #08080c;
+  border-left: 1px solid #e6bd3c;
+  box-shadow: -30px 0 80px rgba(230, 189, 60, 0.18);
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* 좁은 화면에서는 패널이 화면을 다 덮는다. */
+@media (max-width: 640px) {
+  .detail-panel {
+    width: 100vw;
+    border-left: 0;
+  }
+}
+/* 열릴 때 초점은 패널 자체가 받는다. 단추가 아니므로 초점 테두리는 그리지 않는다. */
+.detail-panel:focus {
+  outline: none;
+}
+.detail-drawer.open .detail-backdrop {
+  opacity: 1;
+}
+.detail-drawer.open .detail-panel {
+  transform: translateX(0);
+}
+.detail-panel .detail {
+  background-attachment: scroll;
+}
+
+/* 움직임 줄이기. 위의 규칙들을 이기도록 파일 맨 끝에, 같은 선택자로 둔다. */
+@media (prefers-reduced-motion: reduce) {
+  .detail .tile b.count,
+  .detail .slot,
+  .detail .strip i,
+  .detail .strip i::after,
+  .detail .slot::after {
+    animation: none;
+  }
+  .detail-panel,
+  .detail-trigger,
+  .detail-trigger::before,
+  .detail-trigger a.no-pdf::after {
+    transition: none;
+  }
+  .detail-trigger:hover,
+  .detail-trigger:active {
+    transform: none;
+  }
+}
