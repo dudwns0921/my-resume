@@ -28,19 +28,13 @@ const ResumeHeader = () => (
         메일 초안 검수, 학습 기록 정리처럼 매일 하는 일도 AI로 자동화해 일상 업무 흐름에 자연스럽게 자리 잡게 했습니다.
       </p>
       <p>
-        이 밖에도 NAN 2026 Game X AI 해커톤에서 지원 588팀 중 본선 10팀에 올라{' '}
-        <StrongComponent>3위로 우수상</StrongComponent>을 받았고, 그 이후 『오디세이아』를 바탕으로 1인 개발한 게임
-        「Outis」와 후속작 「Keros」를 itch.io에 출시했습니다. 지금도 AI를 활용해 게임을 만들며, 그 과정을{' '}
-        <a
-          href="https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 underline underline-offset-2"
-        >
-          Threads
-        </a>
-        에 공유합니다. CODEGATE 2026 AI 스타트업 해커톤 본선 진출 아이디어로는 사내 특허 출원을 진행하고
-        있습니다.
+        <StrongComponent>해커톤에 적극 참가하며 AI 역량을 쌓아 갑니다</StrongComponent>. NAN 2026 Game X AI 해커톤에서는 지원
+        588팀 중 본선 10팀에 올라 <StrongComponent>3위로 우수상</StrongComponent>을 받았고, CODEGATE 2026 AI 스타트업 해커톤
+        본선 진출 아이디어로는 사내 특허 출원을 진행하고 있습니다. Push to Prod SEOUL 해커톤 본선에는 팀장으로 나갔습니다.
+      </p>
+      <p>
+        <StrongComponent>게임을 즐겨 만들며 AI 역량을 심화합니다</StrongComponent>. 1인 개발한 「Outis」와 후속작 「Keros」를
+        itch.io에 출시했고, 나만의 워크플로우를 Claude Code 플러그인으로 구현해 게임을 제작하고 있습니다.
       </p>
     </div>
   </section>
