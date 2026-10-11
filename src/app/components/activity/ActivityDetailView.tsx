@@ -1,4 +1,4 @@
-import type { ActivityDetail } from '@/data/activityDetails';
+import type { ActivityDetail, DetailLink, FlowSection } from '@/data/activityDetails';
 import { withBasePath } from '@/utils';
 import './detail.css';
 
@@ -6,17 +6,53 @@ interface ActivityDetailViewProps {
   detail: ActivityDetail;
   // 슬라이드 패널 안에서는 닫기 버튼을, 단독 페이지에서는 이력서로 돌아가는 링크를 둔다.
   onClose?: () => void;
+  // 다른 상세 페이지로 가는 링크를 눌렀을 때. 패널 안에서는 내용만 바꾸고, 없으면 주소로 이동한다.
+  onNavigate?: (href: string) => void;
 }
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
-const SectionHead = ({ title, sub, lead }: { title: string; sub?: string; lead?: string }) => (
+interface SectionHeadProps {
+  title: string;
+  sub?: string;
+  lead?: string;
+  link?: DetailLink;
+  onNavigate?: (href: string) => void;
+}
+
+const SectionHead = ({ title, sub, lead, link, onNavigate }: SectionHeadProps) => (
   <>
     <h2>
       {title}
       {sub && <span>{sub}</span>}
     </h2>
-    {lead && <p className="lead">{lead}</p>}
+    {lead && (
+      <p className="lead">
+        {lead}
+        {link &&
+          (link.href.startsWith('/') ? (
+            <a
+              className="more"
+              href={withBasePath(link.href)}
+              onClick={
+                onNavigate &&
+                ((e) => {
+                  // 새 탭으로 여는 클릭은 그대로 둔다.
+                  if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+                  e.preventDefault();
+                  onNavigate(link.href);
+                })
+              }
+            >
+              {link.label} →
+            </a>
+          ) : (
+            <a className="more" href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label} →
+            </a>
+          ))}
+      </p>
+    )}
   </>
 );
 
@@ -31,10 +67,84 @@ const TileValue = ({ value }: { value: string }) => {
   );
 };
 
-const ActivityDetailView = ({ detail, onClose }: ActivityDetailViewProps) => {
-  // 단계가 여섯 이하면 세 칸, 그보다 많으면 네 칸으로 놓는다.
-  const flowCols = detail.flow.stages.length <= 6 ? 3 : 4;
+// 번호가 붙은 단계 카드가 선으로 이어지는 절.
+const FlowBlock = ({ section, onNavigate }: { section: FlowSection; onNavigate?: (href: string) => void }) => {
+  // 단계가 넷이거나 일곱 이상이면 네 칸, 다섯 · 여섯이면 세 칸으로 놓는다.
+  const count = section.stages.length;
+  const cols = count === 5 || count === 6 ? 3 : 4;
 
+  return (
+    <section>
+      <SectionHead {...section} onNavigate={onNavigate} />
+      <ol className="flow" data-cols={cols} style={{ '--cols': cols } as React.CSSProperties}>
+        {section.stages.map((stage, i) => (
+          <li key={stage.name} className="slot" style={{ '--i': i } as React.CSSProperties}>
+            <div className={`node ${stage.byUser ? 'me' : ''}`}>
+              <div className="ghost" aria-hidden="true">
+                {pad(i + 1)}
+              </div>
+              <div className="lab">
+                {pad(i + 1)} · {stage.owner}
+                {stage.model && <em>{stage.model}</em>}
+              </div>
+              <h3>{stage.name}</h3>
+              <p>{stage.line}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      {section.after && (
+        // 매번 돌지 않는 단계는 줄에서 빼 아래에 따로 둔다.
+        <div className="after">
+          <div className="node">
+            <div className="lab">
+              {section.after.when} · {section.after.owner}
+              {section.after.model && <em>{section.after.model}</em>}
+            </div>
+            <h3>{section.after.name}</h3>
+            <p>{section.after.line}</p>
+          </div>
+        </div>
+      )}
+      {section.legend && (
+        <div className="legend">
+          <span>
+            <i className="k-me" />
+            {section.legend.me}
+          </span>
+          <span>
+            <i className="k-ai" />
+            {section.legend.ai}
+          </span>
+        </div>
+      )}
+    </section>
+  );
+};
+
+// 이름과 한 줄 설명이 든 카드 묶음. 꼬리표(모델 등)가 있으면 이름 옆에 붙인다.
+const CardBlock = ({
+  section,
+  onNavigate,
+}: {
+  section: NonNullable<ActivityDetail['agents']>;
+  onNavigate?: (href: string) => void;
+}) => (
+  <section>
+    <SectionHead {...section} onNavigate={onNavigate} />
+    <ul className="skills">
+      {section.items.map((item) => (
+        <li key={item.name}>
+          <b>{item.name}</b>
+          {item.tag && <em className="tag">{item.tag}</em>}
+          <p>{item.line}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+);
+
+const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewProps) => {
   return (
     <div className="detail">
       <div className="detail-page">
@@ -55,7 +165,7 @@ const ActivityDetailView = ({ detail, onClose }: ActivityDetailViewProps) => {
           <div className="head-text">
             <div className="lab">{detail.kicker}</div>
             <h1>
-              {detail.title} <span>제작 과정</span>
+              {detail.title} <span>{detail.heading}</span>
             </h1>
             <p className="sub">{detail.summary}</p>
             <div className="links">
@@ -77,7 +187,7 @@ const ActivityDetailView = ({ detail, onClose }: ActivityDetailViewProps) => {
               />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={withBasePath(detail.banner)} alt={`${detail.title} 배너`} />
+              <img src={withBasePath(detail.banner)} alt={detail.bannerAlt ?? `${detail.title} 배너`} />
             )}
           </div>
         </header>
@@ -99,79 +209,44 @@ const ActivityDetailView = ({ detail, onClose }: ActivityDetailViewProps) => {
           ))}
         </div>
 
-        <section>
-          <SectionHead {...detail.flow} />
-          <ol className="flow" data-cols={flowCols} style={{ '--cols': flowCols } as React.CSSProperties}>
-            {detail.flow.stages.map((stage, i) => (
-              <li key={stage.name} className="slot" style={{ '--i': i } as React.CSSProperties}>
-                <div className={`node ${stage.byUser ? 'me' : ''}`}>
-                  <div className="ghost" aria-hidden="true">
-                    {pad(i + 1)}
-                  </div>
-                  <div className="lab">
-                    {pad(i + 1)} · {stage.owner}
-                    {stage.model && <em>{stage.model}</em>}
-                  </div>
-                  <h3>{stage.name}</h3>
-                  <p>{stage.line}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <div className="legend">
-            <span>
-              <i className="k-me" />
-              {detail.flow.legend.me}
-            </span>
-            <span>
-              <i className="k-ai" />
-              {detail.flow.legend.ai}
-            </span>
-          </div>
-        </section>
+        {detail.flow && <FlowBlock section={detail.flow} onNavigate={onNavigate} />}
+        {detail.agents && <CardBlock section={detail.agents} onNavigate={onNavigate} />}
+        {detail.assetFlow && <FlowBlock section={detail.assetFlow} onNavigate={onNavigate} />}
+        {detail.assetCards && <CardBlock section={detail.assetCards} onNavigate={onNavigate} />}
+
+        {detail.tools && (
+          <section>
+            <SectionHead {...detail.tools} onNavigate={onNavigate} />
+            <ul className="skills">
+              {detail.tools.items.map((tool) => (
+                <li key={tool.name}>
+                  <code>{tool.name}</code>
+                  <p>{tool.line}</p>
+                </li>
+              ))}
+            </ul>
+            {detail.tools.figure && (
+              <figure className="board">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={withBasePath(detail.tools.figure.image)} alt={detail.tools.figure.alt} loading="lazy" />
+                <figcaption>
+                  <code>{detail.tools.figure.tag}</code>
+                  <p>{detail.tools.figure.caption}</p>
+                  {detail.tools.figure.link && (
+                    <a href={detail.tools.figure.link.href} target="_blank" rel="noopener noreferrer">
+                      {detail.tools.figure.link.label} →
+                    </a>
+                  )}
+                </figcaption>
+              </figure>
+            )}
+          </section>
+        )}
+
+        {detail.growth && <CardBlock section={detail.growth} onNavigate={onNavigate} />}
 
         <section>
-          <SectionHead {...detail.decisions} />
-          <ul className="decisions">
-            {detail.decisions.items.map((d) => (
-              <li key={d.before}>
-                <div className="was">{d.before}</div>
-                <div className="now">{d.after}</div>
-                {d.why && <div className="why">{d.why}</div>}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section>
-          <SectionHead {...detail.tools} />
-          <ul className="skills">
-            {detail.tools.items.map((tool) => (
-              <li key={tool.name}>
-                <code>{tool.name}</code>
-                <p>{tool.line}</p>
-              </li>
-            ))}
-          </ul>
-          {detail.tools.figure && (
-            <figure className="board">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={withBasePath(detail.tools.figure.image)} alt={detail.tools.figure.alt} loading="lazy" />
-              <figcaption>
-                <code>{detail.tools.figure.tag}</code>
-                <p>{detail.tools.figure.caption}</p>
-                {detail.tools.figure.link && (
-                  <a href={detail.tools.figure.link.href} target="_blank" rel="noopener noreferrer">
-                    {detail.tools.figure.link.label} →
-                  </a>
-                )}
-              </figcaption>
-            </figure>
-          )}
-        </section>
-
-        <section>
-          <SectionHead {...detail.timeline} />
+          <SectionHead {...detail.timeline} onNavigate={onNavigate} />
           <ol className="cycles">
             {detail.timeline.items.map((card) => (
               <li key={card.label}>
@@ -192,25 +267,6 @@ const ActivityDetailView = ({ detail, onClose }: ActivityDetailViewProps) => {
             ))}
           </ol>
         </section>
-
-        <section>
-          <SectionHead {...detail.reverts} />
-          <ul className="reverts">
-            {detail.reverts.items.map((r) => (
-              <li key={r.title}>
-                <b>{r.title}</b>
-                <p>{r.body}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {detail.outro && (
-          <section>
-            <SectionHead title={detail.outro.title} sub={detail.outro.sub} />
-            <p className="outro">{detail.outro.text}</p>
-          </section>
-        )}
 
       </div>
     </div>

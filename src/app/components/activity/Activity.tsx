@@ -4,7 +4,7 @@ import TitleComponent from '../common/TitleComponent';
 import ProjectInfo, { Project } from '../workExprience/ProjectInfo';
 import ActivityCard from './ActivityCard';
 
-// 상세 페이지 링크('/activities/<slug>')가 걸린 액티비티는 누르면 상세 패널이 열린다.
+// 상세 페이지 링크('/activities/<slug>')가 걸린 액티비티는 그 링크를 누르면 상세 패널이 열린다.
 const findDetail = (project: Project) =>
   activityDetails.find((detail) => project.links?.some((link) => link.href === `/activities/${detail.slug}`));
 

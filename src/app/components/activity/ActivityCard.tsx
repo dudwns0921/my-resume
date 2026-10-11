@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import type { ActivityDetail } from '@/data/activityDetails';
+import { activityDetails, type ActivityDetail } from '@/data/activityDetails';
 import ActivityDetailView from './ActivityDetailView';
 
 interface ActivityCardProps {
@@ -14,12 +14,14 @@ interface ActivityCardProps {
 // 패널이 밀려 나가는 시간. detail.css 의 .detail-panel transition 과 맞춘다.
 const SLIDE_MS = 500;
 
-// 상세 내용이 있는 액티비티. 누르면 오른쪽에서 상세 패널이 밀려 나온다 (웹에서만 — PDF에는 카드만 찍힌다).
-// 키보드와 스크린 리더는 카드 안의 '제작 과정 보기' 링크로 같은 패널을 연다.
+// 상세 내용이 있는 액티비티. 카드 안의 상세 페이지 링크('제작 과정 보기')를 누르면 오른쪽에서 상세 패널이 밀려 나온다
+// (웹에서만 — PDF에는 카드만 찍힌다). 카드의 다른 곳은 눌러도 아무 일도 없다.
 const ActivityCard = ({ detail, children }: ActivityCardProps) => {
   const [open, setOpen] = useState(false);
   // 닫히는 동안에도 밀려 나가는 모습이 보이게, 패널은 애니메이션이 끝난 뒤에 걷는다.
   const [mounted, setMounted] = useState(false);
+  // 패널 안에서 다른 상세 페이지(예: gamedev-kit 소개)로 넘어가면 내용만 바꾼다.
+  const [shown, setShown] = useState(detail);
   const drawerRef = useRef<HTMLDivElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -68,17 +70,14 @@ const ActivityCard = ({ detail, children }: ActivityCardProps) => {
     };
   }, [open]);
 
-  const onCardClick = (e: React.MouseEvent) => {
+  // 링크는 서버에서 그린 카드 안에 있으므로, 감싼 칸에서 그 클릭만 받아 패널로 바꿔 연다.
+  const onLinkClick = (e: React.MouseEvent) => {
     const anchor = (e.target as HTMLElement).closest('a');
-    if (anchor) {
-      // 바깥으로 나가는 링크와 새 탭으로 여는 클릭은 그대로 두고, 상세 페이지 링크만 패널로 바꿔 연다.
-      if (anchor.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
-      e.preventDefault();
-    } else if (window.getSelection()?.toString()) {
-      // 글자를 끌어 고르는 중이면 열지 않는다.
-      return;
-    }
-    returnFocusRef.current = anchor ?? null;
+    // 바깥으로 나가는 링크와 새 탭으로 여는 클릭은 그대로 둔다.
+    if (!anchor || anchor.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    returnFocusRef.current = anchor;
+    setShown(detail);
     clearTimeout(closeTimerRef.current);
     // 걷는 타이머가 막 돌아 아직 반영되지 않은 틈에 눌려도 패널이 걷히지 않게, 열 때는 늘 다시 올린다.
     setMounted(true);
@@ -88,22 +87,33 @@ const ActivityCard = ({ detail, children }: ActivityCardProps) => {
 
   return (
     <>
-      <div className="detail-trigger" onClick={onCardClick}>
-        {children}
-      </div>
+      <div onClick={onLinkClick}>{children}</div>
       {mounted &&
         createPortal(
           <div ref={drawerRef} className={`detail-drawer no-pdf${open ? ' open' : ''}`}>
-            {/* 카드를 더블클릭해 연 경우 둘째 클릭이 여기 떨어지므로, 한 번 누른 클릭만 닫는다. */}
+            {/* 링크를 더블클릭해 연 경우 둘째 클릭이 여기 떨어지므로, 한 번 누른 클릭만 닫는다. */}
             <div className="detail-backdrop" onClick={(e) => e.detail < 2 && setOpen(false)} />
             <aside
               className="detail-panel"
               tabIndex={-1}
               role="dialog"
               aria-modal="true"
-              aria-label={`${detail.title} 제작 과정`}
+              aria-label={`${shown.title} ${shown.heading}`}
             >
-              <ActivityDetailView detail={detail} onClose={() => setOpen(false)} />
+              <ActivityDetailView
+                key={shown.slug}
+                detail={shown}
+                onClose={() => setOpen(false)}
+                onNavigate={(href) => {
+                  const next = activityDetails.find((d) => `/activities/${d.slug}` === href);
+                  if (!next) return;
+                  setShown(next);
+                  // 내용이 바뀌면 맨 위로 올리고, 초점이 사라지지 않게 패널에 다시 준다.
+                  const panel = drawerRef.current?.querySelector<HTMLElement>('.detail-panel');
+                  panel?.scrollTo(0, 0);
+                  panel?.focus({ preventScroll: true });
+                }}
+              />
             </aside>
           </div>,
           document.body,

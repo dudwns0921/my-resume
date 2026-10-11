@@ -14,7 +14,7 @@ export const generateStaticParams = () => activityDetails.map(({ slug }) => ({ s
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const detail = activityDetails.find((d) => d.slug === slug);
-  return detail ? { title: `${detail.title} 제작 과정 | 정영준`, description: detail.summary } : {};
+  return detail ? { title: `${detail.title} ${detail.heading} | 정영준`, description: detail.summary } : {};
 }
 
 // 이력서에서는 슬라이드 패널로 열리고, 주소로 바로 들어오면 이 페이지가 같은 내용을 보여 준다.
