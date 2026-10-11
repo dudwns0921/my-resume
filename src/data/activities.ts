@@ -1,5 +1,30 @@
 export const activities = [
   {
+    title: 'Claude Code 플러그인 — 「gamedev-kit」',
+    period: '2026.10 - 진행 중',
+    role: '1인 개발 · 워크플로우 설계 · AI 디렉팅(구현)',
+    links: [
+      { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
+      { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
+      { label: '소개 보기', href: '/activities/gamedev-kit', webOnly: true },
+    ],
+    description:
+      '기획서(GDD)를 기반으로 게임 개발을 하나의 일관된 사이클로 진행하는 Claude Code 플러그인.',
+    techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Meshy AI', 'ElevenLabs', 'Blender'],
+    achievements: [
+      {
+        description:
+          '**목표부터 회고까지 여덟 단계를 문서 하나로 잇는 게임 개발 사이클 설계** — 역할마다 에이전트를 두고 앞 단계가 쓴 문서를 뒤 단계가 이어받는 [gstack](https://github.com/garrytan/gstack)의 틀을 게임 제작에 맞춰, 에이전트가 선택지와 권고를 내면 결정은 직접 내리는 구조',
+        strong: false,
+      },
+      {
+        description:
+          '**GDD를 읽어 진행 상황을 플레이 순서대로 그리는 현황판 스킬 제작** — 새 계정으로 Threads에 소개한 글이 조회 6,959회 · 반응 80건 기록',
+        strong: false,
+      },
+    ],
+  },
+  {
     title: '개인 게임 프로젝트 — 「Keros」',
     period: '2026.10',
     role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·영상)',
@@ -13,22 +38,12 @@ export const activities = [
     achievements: [
       {
         description:
-          '**세이렌에 홀린 선원을 붙잡는 행동 하나에서 출발한 기획** — 플레이어를 오디세우스가 아닌 부관으로 두고, 노 젓기와 무기 조준을 빼 선원을 지키는 일에만 집중',
+          '세이렌에 홀린 선원을 붙잡는 행동 하나에서 출발한 기획 — 플레이어를 오디세우스가 아닌 부관으로 두고, 노 젓기와 무기 조준을 빼 선원을 지키는 일에만 집중',
         strong: false,
       },
       {
         description:
-          '바다 괴물을 보스가 아니라 구간마다 주기적으로 오는 위협으로 바꾸고, 구간 사이 정비에서 재화로 선원을 보충하고 밧줄·밀랍을 보강하며 나아가는 흐름 구성',
-        strong: false,
-      },
-      {
-        description:
-          '**목표부터 회고까지 여덟 단계를 문서 하나로 잇는 개발 사이클 설계** — Claude Code 플러그인(gamedev-kit)으로 만들어, 역할별 에이전트가 선택지와 권고를 내면 방향이 갈리는 결정은 직접 내리고 사이클 8회의 결정 129건을 답과 함께 기록',
-        strong: false,
-      },
-      {
-        description:
-          'GDD·에셋 기록·플레이테스트 문서를 읽어 플레이 순서대로 완성도를 그리는 현황판 스킬 제작 — 기획서가 길어져도 어디까지 만들었는지 한눈에 확인',
+          '**직접 만든 Claude Code 플러그인(gamedev-kit)의 개발 사이클 8회로 제작** — 방향이 갈리는 결정은 직접 내리고 나머지는 권고대로 위임',
         strong: false,
       },
     ],
@@ -39,7 +54,6 @@ export const activities = [
     role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·컷신)',
     links: [
       { label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' },
-      { label: '제작기', href: 'https://dudwns0921.github.io/2026/09/28/Outis-Devlog/' },
       { label: '제작 과정 보기', href: '/activities/outis', webOnly: true },
     ],
     description:
@@ -48,7 +62,7 @@ export const activities = [
     achievements: [
       {
         description:
-          '**거인의 눈을 말뚝으로 찌르는 행동 하나에서 출발한 기획** — 말뚝을 잘라 다듬고 달궈 찌르기까지의 준비를, 잠든 거인 곁에서 들키지 않고 해내는 구조로 확장',
+          '거인의 눈을 말뚝으로 찌르는 행동 하나에서 출발한 기획 — 말뚝을 잘라 다듬고 달궈 찌르기까지의 준비를, 잠든 거인 곁에서 들키지 않고 해내는 구조로 확장',
         strong: false,
       },
       {
@@ -58,17 +72,7 @@ export const activities = [
       },
       {
         description:
-          '밸런스 수치 111개를 엑셀 표로 관리 — 저장하면 실행 중인 게임에 즉시 반영되어, 게임을 끄지 않고 값을 바꿔 가며 조정하는 구조 구축',
-        strong: false,
-      },
-      {
-        description:
-          "원작의 '아무도 아니다' 장면을 진짜 이름을 외칠지 고르는 선택 엔딩으로 재해석",
-        strong: false,
-      },
-      {
-        description:
-          '3D 에셋은 Meshy AI, 사운드는 ElevenLabs, 흑화식 도기 스타일 컷신은 Claude로 뽑은 프롬프트를 ChatGPT 이미지로 제작 — 구현은 Claude Code가 Godot 에디터를 직접 조작하게 해 기획에 집중',
+          '**밸런스 수치를 엑셀 표로 관리하는 스킬 설계** — 수치 111개를 표 하나로 빼, 저장하면 실행 중인 게임에 즉시 반영되어 게임을 끄지 않고 값을 바꿔 가며 조정하는 구조 구축',
         strong: false,
       },
     ],

@@ -30,11 +30,29 @@ interface ProjectInfoProps {
   project: Project;
 }
 
+// '[글자](주소)'는 바깥 링크로 그린다.
+const renderLinks = (text: string, keyPrefix: string) =>
+  text.split(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/).map((part, i, parts) => {
+    if (i % 3 === 0) return part;
+    if (i % 3 === 2) return null;
+    return (
+      <a
+        key={`${keyPrefix}-${i}`}
+        href={parts[i + 1]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 underline underline-offset-2"
+      >
+        {part}
+      </a>
+    );
+  });
+
 // '**단어**'로 감싼 부분만 강조한다.
 const renderHighlights = (text: string) =>
   text
     .split(/\*\*(.+?)\*\*/)
-    .map((part, i) => (i % 2 === 1 ? <StrongComponent key={i}>{part}</StrongComponent> : part));
+    .map((part, i) => (i % 2 === 1 ? <StrongComponent key={i}>{part}</StrongComponent> : renderLinks(part, String(i))));
 
 const ProjectInfo = ({ project }: ProjectInfoProps) => (
   <div className="relative flex flex-col gap-4">
