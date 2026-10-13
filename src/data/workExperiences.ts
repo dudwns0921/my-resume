@@ -11,7 +11,7 @@ export const workExperiences = [
         period: '2026.10 - 진행 중',
         role: 'Android Developer',
         description:
-          '라디오·팟캐스트·오디오 뉴스·음악을 골라 들려주는 차량용 오디오 큐레이션 서비스의 Android Automotive OS(AAOS) 앱 개발.',
+          '르노·볼보·폴스타·현대 차량에 출시된 오디오 큐레이션 서비스 「Pickle」의 Android Automotive OS(AAOS) 앱 개발. 라디오·팟캐스트·오디오 뉴스·음악 콘텐츠를 골라 들려주는 서비스.',
         techStack: ['Kotlin', 'Android Automotive OS', 'Media3', 'Coroutines', 'Retrofit', 'Claude Code'],
         achievements: [
           {
