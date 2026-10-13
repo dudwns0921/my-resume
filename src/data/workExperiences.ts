@@ -2,10 +2,29 @@ export const workExperiences = [
   {
     title: '오비고',
     subInfo: '2022.03 - 현재',
-    subInfo2: 'Frontend Developer',
+    subInfo2: 'Frontend · Android Developer',
     description:
       '차량용 인포테인먼트 플랫폼과 서비스를 만드는 모빌리티 소프트웨어 기업. 차량 AVN 웹앱, 차량 연동 모바일 앱, 생성형 AI 서비스를 개발합니다.',
     projects: [
+      {
+        title: 'Pickle - 차량용 오디오 큐레이션 서비스',
+        period: '2026.10 - 진행 중',
+        role: 'Android Developer',
+        description:
+          '라디오·팟캐스트·오디오 뉴스·음악을 골라 들려주는 차량용 오디오 큐레이션 서비스의 Android Automotive OS(AAOS) 앱 개발.',
+        techStack: ['Kotlin', 'Android Automotive OS', 'Media3', 'Coroutines', 'Retrofit', 'Claude Code'],
+        achievements: [
+          {
+            description:
+              '**도메인 문서를 쌓고 읽으며 일하는 Claude Code 플러그인(obigo-dev-kit) 설계** — 플랜·승인·구현·확인 순서는 플러그인에, 팀 컨벤션과 프로젝트별 도메인 지식은 따로 두어 다른 프로젝트에도 그대로 쓰는 구조',
+            strong: false,
+          },
+          {
+            description: '유지보수 시 수정의 통일성과 팀 컨벤션을 유지하도록, 이미 수정된 이슈의 원인을 수정 전 코드에서 먼저 예측하고 실제 수정과 비교하는 이슈 분석 스킬 제작',
+            strong: false,
+          },
+        ],
+      },
       {
         title: 'KGM Music - 차량용 뮤직 스트리밍 서비스',
         period: '2025.12 - 진행 중',
