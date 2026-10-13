@@ -22,8 +22,9 @@ const ResumeHeader = () => (
         <StrongComponent>4년 연속 전사 상위 2% 인사평가 최고 등급</StrongComponent>을 받았습니다.
       </p>
       <p>
-        코드를 짜는 일을 넘어, <StrongComponent>일하는 모든 과정에 AI를 깊이 녹여 냅니다</StrongComponent>. 프로젝트의 백엔드
-        API·네이티브 브릿지·음성발화·차량 제어 규격을 Claude Code 스킬로 만들어 AI가 도메인 맥락을 바로 이해하도록 했습니다. JIRA
+        코드를 짜는 일을 넘어, <StrongComponent>일하는 모든 과정에 AI를 깊이 녹여 냅니다</StrongComponent>. 프로젝트 규격을
+        Claude Code 스킬로 옮기던 방식을 발전시켜, 도메인 문서를 쌓고 그 문서를 읽으며 플랜·구현·확인을 진행하는 Claude Code
+        플러그인을 설계했습니다. JIRA
         워크로그를 분석해 근무일지를 자동으로 쓰는 솔루션으로 사내 AI 챌린지 1위와 전사 도입을 이끌었습니다. 아침 JIRA 브리핑,
         메일 초안 검수, 학습 기록 정리처럼 매일 하는 일도 AI로 자동화해 일상 업무 흐름에 자연스럽게 자리 잡게 했습니다.
       </p>
