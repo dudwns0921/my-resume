@@ -174,7 +174,7 @@ const FeatureArt = ({ item }: { item: FeatureBanner }) => {
     );
   }
   if (item.compounds) {
-    const { carried, voice, rules, games } = item.compounds;
+    const { carried, voice, rules, example, games } = item.compounds;
     return (
       <div className="art compounds" role="img" aria-label={item.alt}>
         <ol>
@@ -198,6 +198,7 @@ const FeatureArt = ({ item }: { item: FeatureBanner }) => {
             {rules}
           </span>
         </div>
+        {example && <p className="example">{example}</p>}
       </div>
     );
   }

@@ -1187,6 +1187,16 @@
   margin-top: 16px;
   flex-wrap: wrap;
 }
+/* 쌓이는 규칙이 어떤 것인지 보여 주는 한 줄. 규칙의 색(노랑) 점선으로 두른다. */
+.detail.kit .compounds .example {
+  margin: 14px 0 0;
+  padding: 12px 18px;
+  border: 2px dashed rgba(255, 210, 74, 0.7);
+  border-radius: 18px;
+  background: rgba(255, 210, 74, 0.06);
+  font-size: 15px;
+  color: var(--tx2);
+}
 .detail.kit .skills li {
   border-top-width: 1px;
   border-radius: 18px;

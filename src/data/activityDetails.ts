@@ -79,7 +79,7 @@ export interface FeatureBanner {
   line: string;
   alt: string;
   sync?: { gddLabel: string; codeLabel: string; missing: string; rows: SyncRow[] };
-  compounds?: { carried: string; voice: string; rules: string; games: CompoundGame[] };
+  compounds?: { carried: string; voice: string; rules: string; example?: string; games: CompoundGame[] };
   image?: string;
 }
 
@@ -277,12 +277,13 @@ export const activityDetails: ActivityDetail[] = [
         },
         {
           name: '게임을 만들수록 나아진다',
-          line: '갈리는 결정에서 내가 고른 쪽(보이스)과 걸려 넘어진 함정(규칙)이 따로 쌓여, 다음 게임이 그것을 가지고 시작하게 했다.',
+          line: '에이전트가 결정을 물을 때마다 내 답에서 선택 기준을 뽑아 쌓고 작업이 막힐 때마다 그 원인을 한 줄 규칙으로 적어 두어, 다음 게임은 이 둘을 불러온 채로 시작하게 했다.',
           alt: '게임 세 개가 나란히 있고, 보이스와 규칙이 앞 게임의 것을 이어받으며 쌓인다',
           compounds: {
             carried: '이어받는다',
-            voice: '보이스 — 갈리는 결정에서 내가 고른 쪽',
-            rules: '규칙 — 걸려 넘어진 함정',
+            voice: '보이스 — 결정할 때마다 내 답에서 뽑은 선택 기준',
+            rules: '규칙 — 게임을 만들다 막혔던 원인을 한 줄씩 적은 것',
+            example: '규칙의 예 — 웹 빌드는 화면을 1배율로 그린다. 고해상도 화면에서 2배율로 그리면 초당 4~5프레임밖에 나오지 않는다.',
             games: [
               { name: '게임 1', voice: 1, rules: 1 },
               { name: '게임 2', voice: 2, rules: 3 },
