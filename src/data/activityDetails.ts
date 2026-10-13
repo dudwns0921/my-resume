@@ -54,6 +54,33 @@ export interface ToolFigure {
   link?: DetailLink;
 }
 
+// GDD 표의 한 줄과 그 값을 정의하는 코드의 짝. code 가 없으면 아직 만들지 않은 항목이다.
+export interface SyncRow {
+  id: string;
+  gdd: string;
+  state: '일치' | '불일치' | '없음';
+  code?: string;
+  // 코드 줄에서 값이 적힌 부분 (불일치일 때 눈에 띄게 칠한다)
+  codeValue?: string;
+}
+
+// 게임 하나를 끝냈을 때 쌓여 있는 보이스와 규칙의 수. 앞 게임까지의 몫은 흐리게 그린다.
+export interface CompoundGame {
+  name: string;
+  voice: number;
+  rules: number;
+}
+
+// 제목과 한 문장에 그림 하나가 붙는 칸. 그림은 셋 중 하나다 — 동기화 표, 쌓이는 막대, 화면 사진.
+export interface FeatureBanner {
+  name: string;
+  line: string;
+  alt: string;
+  sync?: { gddLabel: string; codeLabel: string; missing: string; rows: SyncRow[] };
+  compounds?: { carried: string; voice: string; rules: string; games: CompoundGame[] };
+  image?: string;
+}
+
 export interface TimelineCard {
   label: string;
   name: string;
@@ -68,9 +95,11 @@ export interface ActivityDetail {
   // 제목 옆에 붙는 말. 게임은 '제작 과정', 플러그인은 '소개'처럼 쓴다.
   heading: string;
   summary: string;
-  banner: string;
+  banner?: string;
   // 배너 그림이 그 페이지의 것이 아닐 때 대체 글자를 따로 적는다.
   bannerAlt?: string;
+  // 페이지의 모양. 'kit'은 gamedev-kit 배너의 모양(민트 · 핑크 그라데이션, 알약 단계)을 따르고, 머리에 그림 대신 글만 둔다.
+  theme?: 'kit';
   videoId?: string;
   links: DetailLink[];
   tiles: DetailTile[];
@@ -82,7 +111,9 @@ export interface ActivityDetail {
   assetFlow?: FlowSection;
   assetCards?: SectionHead & { items: ToolCard[] };
   tools?: SectionHead & { items: ToolCard[]; figure?: ToolFigure };
-  // 쓸수록 나아지게 한 장치 (플러그인 페이지)
+  // 제목과 한 문장에 그림 하나가 붙는 절 (플러그인 페이지)
+  features?: SectionHead & { items: FeatureBanner[] };
+  // 쓸수록 나아지게 한 장치
   growth?: SectionHead & { items: ToolCard[] };
   timeline: SectionHead & { items: TimelineCard[] };
 }
@@ -187,100 +218,77 @@ export const activityDetails: ActivityDetail[] = [
     heading: '소개',
     summary:
       '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표를 정하는 것과 직접 플레이하는 것은 내가 한다.',
-    banner: '/activities/keros/board.jpg',
-    bannerAlt: 'Keros 현황판',
+    theme: 'kit',
     links: [
       { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
     ],
     tiles: [
-      { label: '스킬', value: '12', tone: 'gold' },
-      { label: '에이전트', value: '6' },
+      { label: '스킬', value: '13', tone: 'gold' },
+      { label: '에이전트', value: '5' },
       { label: '사이클 단계', value: '6' },
       { label: 'Threads 글 조회', value: '6,959', tone: 'sea' },
     ],
-    strip: 8,
+    strip: 6,
     flow: {
       title: '사이클',
       lead: 'AI로 만들다 보면 그때그때 생각나는 대로 진행하게 돼서, 목표 하나마다 아래 단계를 한 바퀴 돌게 했다.',
       legend: { me: '내가 하는 단계', ai: 'AI 에이전트가 하는 단계' },
       stages: [
         { name: '목표', owner: '나', byUser: true, line: '이번에 무엇을 만들지 내가 정해서 말한다.' },
-        { name: '기획', owner: 'AI', model: 'Fable', line: '플레이어가 무엇을 하면 어떻게 되는지를 규칙과 숫자로 쓴다.' },
-        { name: '디자인', owner: 'AI', model: 'Fable', line: '그 규칙이 게임에서 어떻게 보이고 들릴지를 정리한다.' },
-        { name: '계획', owner: 'AI', model: 'Opus', line: '앞에서 쓴 내용을 작업 여러 개로 나누고 만들 순서를 짠다.' },
-        { name: '구현', owner: 'AI', model: 'Sonnet', line: '겹치지 않는 작업은 여러 AI가 하나씩 맡아 동시에 만든다.' },
+        { name: '기획', owner: 'systems-designer', model: 'Opus', line: '플레이어가 무엇을 하면 어떻게 되는지를 규칙과 숫자로 쓴다.' },
+        { name: '디자인', owner: 'designer', model: 'Opus', line: '그 규칙이 게임에서 어떻게 보이고 들릴지를 정리한다.' },
+        { name: '계획', owner: 'developer', model: 'Opus', line: '앞에서 쓴 내용을 작업 여러 개로 나누고 만들 순서를 짠다.' },
+        { name: '구현', owner: 'developer', model: 'Sonnet', line: '겹치지 않는 작업은 여러 AI가 하나씩 맡아 동시에 만든다.' },
         { name: '플레이', owner: '나', byUser: true, line: '만들어진 게임을 내가 직접 해 보면서 고칠 점을 적는다.' },
       ],
       after: {
-        when: '여러 사이클에 한 번',
-        name: '배포',
-        owner: 'AI',
-        model: 'Sonnet',
-        line: '사이클마다 하지 않고 여러 번 돌린 뒤에, 저장해 둔 스크립트의 순서대로만 빌드하고 올린다.',
+        when: '플레이한 뒤',
+        name: '고치기',
+        owner: 'playtest-analyst',
+        model: 'Opus',
+        line: '플레이하며 적은 문제의 원인을 찾아 작업으로 나눠 고치고, 다시 플레이하는 것을 될 때까지 되풀이한다.',
       },
     },
-    agents: {
-      title: '에이전트',
-      lead: '에이전트는 한 가지 역할만 맡는 AI이고, 정할 것이 생기면 선택지와 추천을 적어 나에게 묻는다.',
-      items: [
-        { name: '기획', tag: 'Fable', line: '내가 말한 목표를 게임의 규칙과 숫자로 풀어 쓴다.' },
-        { name: '디자인', tag: 'Fable', line: '화면과 소리를 맡아, 필요한 에셋의 목록까지 적는다.' },
-        { name: '개발', tag: 'Opus · Sonnet', line: '할 일을 작업으로 나눈 뒤 하나씩 코드로 만든다.' },
-        { name: '플레이테스트 분석', tag: 'Fable', line: '내가 플레이하며 적은 문제의 원인을 찾는 일이라 고성능 모델에 맡겼다.' },
-        { name: '배포', tag: 'Sonnet', line: '저장해 둔 스크립트대로만 하면 되는 일이라 저가 모델에 맡겼다.' },
-        { name: '개발 일지', tag: 'Sonnet', line: '이번에 만든 것을 읽고 소개하는 글의 초안을 쓴다.' },
-      ],
-    },
-    assetFlow: {
-      title: '3D 에셋 플로우',
-      lead: '만들고 싶은 형태를 레퍼런스 사진으로 보여 주면 AI가 그림을 거쳐 3D 모델로 옮겨 주는, 단순한 흐름이다.',
-      link: { label: 'Threads에 쓴 글', href: 'https://www.threads.com/@glowingjung/post/DeUYRJbDDch?hl=ko' },
-      legend: { me: '내가 하는 단계', ai: 'AI가 하는 단계' },
-      stages: [
-        { name: '설명', owner: '나', byUser: true, line: '레퍼런스 사진과 짧은 설명을 주면 화풍 문단이 자동으로 붙고, 이 문단은 에셋을 만들수록 다듬어진다.' },
-        { name: '이미지 생성', owner: 'AI', model: 'GPT 이미지', line: '원하는 그림이 나올 때까지 GPT 이미지로 몇 번이고 다시 뽑는다.' },
-        { name: '승인', owner: '나', byUser: true, line: '마음에 드는 그림을 내가 고르면 그 그림만 다음으로 넘어간다.' },
-        { name: '3D 메시', owner: 'AI', model: 'Meshy AI', line: '고른 그림을 Meshy AI가 3D 모델로 만든다.' },
-        { name: '다듬기', owner: 'AI', model: 'Blender', line: '크기와 원점은 스크립트가 맞추고, 더 손볼 곳은 AI가 Blender에 연결해 고친다.' },
-      ],
-    },
-    assetCards: {
-      title: '그 밖의 에셋',
-      items: [
-        { name: 'Ludo', line: '2D 스프라이트는 설명을 주면 Ludo로 그림과 움직이는 시트를 만든다.' },
-        { name: 'ElevenLabs', line: '효과음과 배경음, 음악은 설명을 주면 ElevenLabs로 만든다.' },
-        { name: 'Higgsfield', line: 'Keros의 엔딩 영상은 Higgsfield로 만들었다.' },
-      ],
-    },
-    tools: {
-      title: '스킬',
-      items: [
-        { name: 'start', line: '빈 폴더에서 기획서와 컨셉을 잡고 첫 사이클의 목표를 정하는 데까지 이끈다.' },
-        { name: 'gdd-sync', line: '기획서와 코드에 같은 ID를 붙여 두고, 값이 서로 다른 곳을 찾아 한쪽에 맞춘다.' },
-        { name: 'balance-table', line: '밸런스 값을 엑셀 표에서 고치면 켜 둔 게임이 다시 읽어서 반영한다.' },
-        { name: 'playtest', line: '플레이하며 적은 문제를 원인부터 분석해 작업으로 나누고, 하나씩 고친다.' },
-        { name: 'handoff', line: '대화가 길어지면 하던 일을 짧은 메모로 남겨 새 대화에서 이어 가게 해 준다.' },
-      ],
-      figure: {
-        tag: 'board',
-        image: '/activities/gamedev-kit/stage.jpg',
-        alt: 'Keros 현황판의 단계 페이지',
-        caption:
-          'GDD가 길어지니 읽기도 힘들었고, 어디까지 만들었는지 헷갈릴 때가 자주 있었다. 그래서 진행 상황을 한눈에 보여 주는 현황판 스킬을 추가했다.',
-      },
-    },
-    growth: {
-      title: '개선',
-      lead: '쓸수록 플러그인이 나아지도록, 게임을 만들면서 생긴 문제와 내가 내린 결정을 따로 남기게 했다.',
+    features: {
+      title: '세 가지 장치',
+      lead: '몇 주에 걸쳐 만들다 보면 기획서와 코드가 어긋나고, 얼마나 만들었는지 모르게 되고, 지난 게임에서 배운 것이 사라져서 이 셋을 중심에 뒀다.',
       items: [
         {
-          name: '키트 피드백',
-          line: 'Outis와 Keros에서 겪은 문제를 AI가 지킬 규칙으로 플러그인에 넣었고, 지금도 다른 게임에서 겪을 만한 문제는 한 줄씩 적어 두게 했다.',
+          name: '기획서와 코드가 어긋나지 않는다',
+          line: 'GDD의 숫자와 규칙마다 ID를 붙이고 코드에 같은 ID를 표시해 두어, 값이 다른 곳과 아직 만들지 않은 곳을 찾아 한쪽에 맞추게 했다.',
+          alt: 'GDD 동기화 표와 코드 — 한 줄은 일치, 한 줄은 값이 다르고, 한 줄은 아직 코드에 없다',
+          sync: {
+            gddLabel: 'GDD · 동기화 표',
+            codeLabel: '코드',
+            missing: '아직 표시가 없다 — 만들지 않았다',
+            rows: [
+              { id: 'BAL.COIN.VALUE', gdd: '5', state: '일치', code: 'const COIN_VALUE := ', codeValue: '5' },
+              { id: 'BAL.EEL.DAMAGE', gdd: '8', state: '불일치', code: 'const DAMAGE := ', codeValue: '10' },
+              { id: 'RULE.END.WRECK', gdd: '—', state: '없음' },
+            ],
+          },
         },
         {
-          name: '보이스',
-          line: '내 결정에서 뽑은 선택 기준이 문서에 쌓일수록 AI가 나와 같은 판단을 하도록 만들었고, 자동 모드에서는 묻지 않고 그 기준으로 개발을 진행한다.',
+          name: '어디까지 만들었는지 항상 보인다',
+          line: '플레이어가 만나는 순서대로 단계마다 카드를 그려, 된 것 · 임시인 것 · 안 만든 것 · 문제인 것과 아직 정하지 않은 것을 보여 주게 했다.',
+          alt: '예시 게임의 현황판 — 플레이 순서대로 놓인 단계 카드와 아직 정하지 않은 질문',
+          image: '/activities/gamedev-kit/board.png',
+        },
+        {
+          name: '게임을 만들수록 나아진다',
+          line: '갈리는 결정에서 내가 고른 쪽(보이스)과 걸려 넘어진 함정(규칙)이 따로 쌓여, 다음 게임이 그것을 가지고 시작하게 했다.',
+          alt: '게임 세 개가 나란히 있고, 보이스와 규칙이 앞 게임의 것을 이어받으며 쌓인다',
+          compounds: {
+            carried: '이어받는다',
+            voice: '보이스 — 갈리는 결정에서 내가 고른 쪽',
+            rules: '규칙 — 걸려 넘어진 함정',
+            games: [
+              { name: '게임 1', voice: 1, rules: 1 },
+              { name: '게임 2', voice: 2, rules: 3 },
+              { name: '게임 3', voice: 3, rules: 5 },
+            ],
+          },
         },
       ],
     },

@@ -1,4 +1,4 @@
-import type { ActivityDetail, DetailLink, FlowSection } from '@/data/activityDetails';
+import type { ActivityDetail, DetailLink, FeatureBanner, FlowSection } from '@/data/activityDetails';
 import { withBasePath } from '@/utils';
 import './detail.css';
 
@@ -122,6 +122,91 @@ const FlowBlock = ({ section, onNavigate }: { section: FlowSection; onNavigate?:
   );
 };
 
+// 막대 n개. 앞 게임에서 이어받은 몫(carried)은 흐리게 그린다.
+const Bars = ({ kind, count, carried }: { kind: 'voice' | 'rules'; count: number; carried: number }) => (
+  <div className="bars">
+    {Array.from({ length: count }, (_, i) => (
+      <i key={i} className={`${kind} ${i < carried ? 'old' : ''}`} />
+    ))}
+  </div>
+);
+
+// 제목과 한 문장 아래에 붙는 그림. 사이클의 알약과 같은 모양으로 그린다.
+const FeatureArt = ({ item }: { item: FeatureBanner }) => {
+  if (item.sync) {
+    const { gddLabel, codeLabel, missing, rows } = item.sync;
+    return (
+      <div className="art sync" role="img" aria-label={item.alt}>
+        <div className="row labels">
+          <span className="lab">{gddLabel}</span>
+          <span />
+          <span className="lab">{codeLabel}</span>
+        </div>
+        {rows.map((row) => (
+          <div key={row.id} className="row" data-state={row.state}>
+            <div className="cell">
+              <code>{row.id}</code>
+              <b>{row.gdd}</b>
+              <em>{row.state}</em>
+            </div>
+            <span className="link" />
+            <div className="cell code">
+              {row.code ? (
+                <>
+                  <code>
+                    {row.code}
+                    <b>{row.codeValue}</b>
+                  </code>
+                  <code className="mark"># GDD: {row.id}</code>
+                </>
+              ) : (
+                <span>{missing}</span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (item.compounds) {
+    const { carried, voice, rules, games } = item.compounds;
+    return (
+      <div className="art compounds" role="img" aria-label={item.alt}>
+        <ol>
+          {games.map((game, i) => (
+            <li key={game.name} data-carried={carried}>
+              <div className="stacks">
+                <Bars kind="voice" count={game.voice} carried={i ? games[i - 1].voice : 0} />
+                <Bars kind="rules" count={game.rules} carried={i ? games[i - 1].rules : 0} />
+              </div>
+              <b>{game.name}</b>
+            </li>
+          ))}
+        </ol>
+        <div className="legend">
+          <span>
+            <i className="k-voice" />
+            {voice}
+          </span>
+          <span>
+            <i className="k-rules" />
+            {rules}
+          </span>
+        </div>
+      </div>
+    );
+  }
+  if (item.image) {
+    return (
+      <div className="art shot">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={withBasePath(item.image)} alt={item.alt} loading="lazy" />
+      </div>
+    );
+  }
+  return null;
+};
+
 // 이름과 한 줄 설명이 든 카드 묶음. 꼬리표(모델 등)가 있으면 이름 옆에 붙인다.
 const CardBlock = ({
   section,
@@ -146,7 +231,7 @@ const CardBlock = ({
 
 const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewProps) => {
   return (
-    <div className="detail">
+    <div className={`detail ${detail.theme ?? ''}`}>
       <div className="detail-page">
         <div className="bar">
           {onClose ? (
@@ -162,6 +247,14 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
         </div>
 
         <header className="head">
+          {detail.theme === 'kit' && (
+            // 배너의 반짝이는 별. 자리와 색은 CSS가 정한다.
+            <div className="stars" aria-hidden="true">
+              {Array.from({ length: 12 }, (_, i) => (
+                <i key={i} />
+              ))}
+            </div>
+          )}
           <div className="head-text">
             <div className="lab">{detail.kicker}</div>
             <h1>
@@ -176,20 +269,24 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
               ))}
             </div>
           </div>
-          <div className="media">
-            {detail.videoId ? (
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${detail.videoId}`}
-                title={`${detail.title} 영상`}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={withBasePath(detail.banner)} alt={detail.bannerAlt ?? `${detail.title} 배너`} />
-            )}
-          </div>
+          {(detail.videoId || detail.banner) && (
+            <div className="media">
+              {detail.videoId ? (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${detail.videoId}`}
+                  title={`${detail.title} 영상`}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                detail.banner && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={withBasePath(detail.banner)} alt={detail.bannerAlt ?? `${detail.title} 배너`} />
+                )
+              )}
+            </div>
+          )}
         </header>
 
         <div className="tiles">
@@ -210,6 +307,20 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
         </div>
 
         {detail.flow && <FlowBlock section={detail.flow} onNavigate={onNavigate} />}
+        {detail.features && (
+          <section>
+            <SectionHead {...detail.features} onNavigate={onNavigate} />
+            <ul className="banners">
+              {detail.features.items.map((item) => (
+                <li key={item.name}>
+                  <h3>{item.name}</h3>
+                  <p>{item.line}</p>
+                  <FeatureArt item={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         {detail.agents && <CardBlock section={detail.agents} onNavigate={onNavigate} />}
         {detail.assetFlow && <FlowBlock section={detail.assetFlow} onNavigate={onNavigate} />}
         {detail.assetCards && <CardBlock section={detail.assetCards} onNavigate={onNavigate} />}
