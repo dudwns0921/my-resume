@@ -10,11 +10,11 @@ export const activities = [
     ],
     description:
       '기획서(GDD)를 기반으로 게임 개발을 하나의 일관된 사이클로 진행하는 Claude Code 플러그인.',
-    techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Meshy AI', 'ElevenLabs', 'Blender'],
+    techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Unity', 'Meshy AI', 'ElevenLabs', 'Blender'],
     achievements: [
       {
         description:
-          '**목표부터 회고까지 여덟 단계를 문서 하나로 잇는 게임 개발 사이클 설계** — 역할마다 에이전트를 두고 앞 단계가 쓴 문서를 뒤 단계가 이어받는 [gstack](https://github.com/garrytan/gstack)의 틀을 게임 제작에 맞춰, 에이전트가 선택지와 권고를 내면 결정은 직접 내리는 구조',
+          '**목표부터 플레이까지 여섯 단계를 문서 하나로 잇는 게임 개발 사이클 설계** — 역할마다 에이전트를 두고 앞 단계가 쓴 문서를 뒤 단계가 이어받는 [gstack](https://github.com/garrytan/gstack)의 틀을 게임 제작에 맞춰, 에이전트가 선택지와 권고를 내면 결정은 직접 내리는 구조',
         strong: false,
       },
       {

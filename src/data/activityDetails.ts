@@ -186,7 +186,7 @@ export const activityDetails: ActivityDetail[] = [
     kicker: 'Claude Code 플러그인',
     heading: '소개',
     summary:
-      '기획서(GDD)를 기반으로 기획부터 구현, 플레이, 회고까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표를 정하는 것과 직접 플레이하는 것은 내가 한다.',
+      '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표를 정하는 것과 직접 플레이하는 것은 내가 한다.',
     banner: '/activities/keros/board.jpg',
     bannerAlt: 'Keros 현황판',
     links: [
@@ -194,9 +194,9 @@ export const activityDetails: ActivityDetail[] = [
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
     ],
     tiles: [
-      { label: '스킬', value: '11', tone: 'gold' },
+      { label: '스킬', value: '12', tone: 'gold' },
       { label: '에이전트', value: '6' },
-      { label: '사이클 단계', value: '8' },
+      { label: '사이클 단계', value: '6' },
       { label: 'Threads 글 조회', value: '6,959', tone: 'sea' },
     ],
     strip: 8,
@@ -209,9 +209,8 @@ export const activityDetails: ActivityDetail[] = [
         { name: '기획', owner: 'AI', model: 'Fable', line: '플레이어가 무엇을 하면 어떻게 되는지를 규칙과 숫자로 쓴다.' },
         { name: '디자인', owner: 'AI', model: 'Fable', line: '그 규칙이 게임에서 어떻게 보이고 들릴지를 정리한다.' },
         { name: '계획', owner: 'AI', model: 'Opus', line: '앞에서 쓴 내용을 작업 여러 개로 나누고 만들 순서를 짠다.' },
-        { name: '구현', owner: 'AI', model: 'Opus', line: '겹치지 않는 작업은 여러 AI가 하나씩 맡아 동시에 만든다.' },
+        { name: '구현', owner: 'AI', model: 'Sonnet', line: '겹치지 않는 작업은 여러 AI가 하나씩 맡아 동시에 만든다.' },
         { name: '플레이', owner: '나', byUser: true, line: '만들어진 게임을 내가 직접 해 보면서 고칠 점을 적는다.' },
-        { name: '회고', owner: 'AI', line: '된 것과 안 된 것을 AI가 적으면 내가 고치고 다음 목표를 잡는다.' },
       ],
       after: {
         when: '여러 사이클에 한 번',
@@ -227,10 +226,10 @@ export const activityDetails: ActivityDetail[] = [
       items: [
         { name: '기획', tag: 'Fable', line: '내가 말한 목표를 게임의 규칙과 숫자로 풀어 쓴다.' },
         { name: '디자인', tag: 'Fable', line: '화면과 소리를 맡아, 필요한 에셋의 목록까지 적는다.' },
-        { name: '개발', tag: 'Opus', line: '할 일을 작업으로 나눈 뒤 하나씩 코드로 만든다.' },
+        { name: '개발', tag: 'Opus · Sonnet', line: '할 일을 작업으로 나눈 뒤 하나씩 코드로 만든다.' },
         { name: '플레이테스트 분석', tag: 'Fable', line: '내가 플레이하며 적은 문제의 원인을 찾는 일이라 고성능 모델에 맡겼다.' },
         { name: '배포', tag: 'Sonnet', line: '저장해 둔 스크립트대로만 하면 되는 일이라 저가 모델에 맡겼다.' },
-        { name: '개발 일지', tag: 'Opus', line: '이번에 만든 것을 읽고 소개하는 글의 초안을 쓴다.' },
+        { name: '개발 일지', tag: 'Sonnet', line: '이번에 만든 것을 읽고 소개하는 글의 초안을 쓴다.' },
       ],
     },
     assetFlow: {
@@ -247,8 +246,9 @@ export const activityDetails: ActivityDetail[] = [
       ],
     },
     assetCards: {
-      title: '소리와 영상',
+      title: '그 밖의 에셋',
       items: [
+        { name: 'Ludo', line: '2D 스프라이트는 설명을 주면 Ludo로 그림과 움직이는 시트를 만든다.' },
         { name: 'ElevenLabs', line: '효과음과 배경음, 음악은 설명을 주면 ElevenLabs로 만든다.' },
         { name: 'Higgsfield', line: 'Keros의 엔딩 영상은 Higgsfield로 만들었다.' },
       ],
@@ -256,6 +256,7 @@ export const activityDetails: ActivityDetail[] = [
     tools: {
       title: '스킬',
       items: [
+        { name: 'start', line: '빈 폴더에서 기획서와 컨셉을 잡고 첫 사이클의 목표를 정하는 데까지 이끈다.' },
         { name: 'gdd-sync', line: '기획서와 코드에 같은 ID를 붙여 두고, 값이 서로 다른 곳을 찾아 한쪽에 맞춘다.' },
         { name: 'balance-table', line: '밸런스 값을 엑셀 표에서 고치면 켜 둔 게임이 다시 읽어서 반영한다.' },
         { name: 'playtest', line: '플레이하며 적은 문제를 원인부터 분석해 작업으로 나누고, 하나씩 고친다.' },
