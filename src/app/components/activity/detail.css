@@ -1,4 +1,4 @@
-/* 액티비티 상세 페이지. gamedev-kit 현황판(항해도)의 색과 카드 모양을 따른다. */
+/* 액티비티 상세 페이지. 앞쪽은 뼈대이고, 색과 모양은 뒤쪽의 `.detail.kit` — gamedev-kit 배너와 현황판의 모양 — 이 입힌다. */
 .detail {
   --bg: #08080c;
   --card: #14141c;
@@ -621,7 +621,7 @@
   }
 }
 
-/* gamedev-kit 소개 페이지. 키트 배너의 모양을 따른다 — 짙은 초록에서 보라로 가는 바탕, 민트 · 노랑 · 핑크 그라데이션, 알약 단계, 별. */
+/* 세 페이지가 모두 쓰는 모양. 키트 배너의 모양을 따른다 — 짙은 초록에서 보라로 가는 바탕, 민트 · 노랑 · 핑크 그라데이션, 알약 단계, 별. */
 .detail.kit {
   --bg: #07110e;
   --card: #0d1b22;
@@ -693,6 +693,30 @@
 .detail.kit .head-text {
   position: relative;
 }
+/* 영상이나 그림이 있는 머리(게임 페이지)는 카드 안을 두 칸으로 나눈다. */
+.detail.kit .head:has(.media) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.detail.kit .head:has(.media) h1 {
+  font-size: 50px;
+}
+.detail.kit .head:has(.media) .sub {
+  font-size: 16px;
+}
+.detail.kit .media {
+  z-index: 1;
+  overflow: hidden;
+  border: 2px solid rgba(138, 216, 255, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 0 22px rgba(138, 216, 255, 0.3);
+}
+.detail.kit .media::before,
+.detail.kit .media::after {
+  display: none;
+}
 .detail.kit h1 {
   font-size: 68px;
   font-weight: 900;
@@ -726,6 +750,12 @@
 }
 .detail.kit .links a:hover {
   background: rgba(61, 255, 176, 0.22);
+}
+/* 별을 담는 칸은 카드 전체에 깔아, 머리의 칸 나눔에 끼어들지 않게 한다. */
+.detail.kit .stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 .detail.kit .stars i {
   position: absolute;
@@ -801,14 +831,14 @@
 /* 사이클: 배너처럼 알약을 화살표로 잇는다. 내가 하는 단계는 민트로 채우고, 에이전트의 단계는 하늘색 테두리다. */
 .detail.kit .flow {
   --g: 30px;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
   gap: 6px var(--g);
   margin-top: 10px;
 }
-/* 플레이에서 구현으로 돌아가는 고리 (배너의 fix what you found). 여섯 칸 가운데 다섯째 · 여섯째 알약의 한가운데를 잇는다. */
-.detail.kit .flow::before {
-  content: '찾은 것을 고친다';
-  grid-area: 1 / 5 / 2 / 7;
+/* 마지막 단계에서 그 앞 단계로 돌아가는 고리 (배너의 fix what you found). 끝의 두 알약의 한가운데를 잇는다. */
+.detail.kit .flow[data-loop]::before {
+  content: attr(data-loop);
+  grid-area: 1 / -3 / 2 / -1;
   margin: 0 calc((100% - var(--g)) / 4);
   height: 46px;
   display: grid;
@@ -821,9 +851,9 @@
   color: #ffc4e8;
   filter: drop-shadow(0 0 6px rgba(255, 138, 209, 0.6));
 }
-.detail.kit .flow::after {
+.detail.kit .flow[data-loop]::after {
   content: '';
-  grid-area: 1 / 5 / 2 / 6;
+  grid-area: 1 / -3 / 2 / -2;
   place-self: end center;
   width: 16px;
   height: 10px;
@@ -831,7 +861,7 @@
   background: var(--pink);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
-.detail.kit .slot {
+.detail.kit .flow[data-loop] .slot {
   grid-row: 2;
 }
 .detail.kit .slot:hover {
@@ -1157,6 +1187,30 @@
   margin-top: 16px;
   flex-wrap: wrap;
 }
+.detail.kit .skills li {
+  border-top-width: 1px;
+  border-radius: 18px;
+  padding: 14px 18px 16px;
+}
+.detail.kit .skills li:hover {
+  box-shadow: 0 12px 26px rgba(61, 255, 176, 0.2);
+}
+.detail.kit .skills code {
+  color: var(--gold2);
+}
+.detail.kit .skills .tag {
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+.detail.kit .board {
+  border: 2px solid rgba(138, 216, 255, 0.85);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 0 18px rgba(138, 216, 255, 0.22);
+}
+.detail.kit .board img {
+  border-radius: 12px;
+}
 .detail.kit .cycles li {
   border-left-width: 1px;
   border-radius: 18px;
@@ -1179,12 +1233,15 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 26px;
   }
-  .detail.kit .flow::before,
-  .detail.kit .flow::after {
+  .detail.kit .flow[data-loop]::before,
+  .detail.kit .flow[data-loop]::after {
     display: none;
   }
-  .detail.kit .slot {
+  .detail.kit .flow[data-loop] .slot {
     grid-row: auto;
+  }
+  .detail.kit .head:has(.media) {
+    grid-template-columns: minmax(0, 1fr);
   }
   .detail.kit .flow[data-cols] .slot:nth-child(3n)::after {
     display: none;
@@ -1330,7 +1387,7 @@
 .detail-panel .detail {
   background-attachment: scroll;
 }
-.detail-panel:has(.detail.kit) {
+.detail-panel {
   background: #07110e;
   border-left-color: #3dffb0;
   box-shadow: -30px 0 80px rgba(61, 255, 176, 0.16);

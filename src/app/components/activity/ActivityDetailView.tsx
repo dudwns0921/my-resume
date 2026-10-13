@@ -76,7 +76,12 @@ const FlowBlock = ({ section, onNavigate }: { section: FlowSection; onNavigate?:
   return (
     <section>
       <SectionHead {...section} onNavigate={onNavigate} />
-      <ol className="flow" data-cols={cols} style={{ '--cols': cols } as React.CSSProperties}>
+      <ol
+        className="flow"
+        data-cols={cols}
+        data-loop={section.loop}
+        style={{ '--cols': cols, '--n': count } as React.CSSProperties}
+      >
         {section.stages.map((stage, i) => (
           <li key={stage.name} className="slot" style={{ '--i': i } as React.CSSProperties}>
             <div className={`node ${stage.byUser ? 'me' : ''}`}>
@@ -231,7 +236,7 @@ const CardBlock = ({
 
 const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewProps) => {
   return (
-    <div className={`detail ${detail.theme ?? ''}`}>
+    <div className="detail kit">
       <div className="detail-page">
         <div className="bar">
           {onClose ? (
@@ -247,14 +252,12 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
         </div>
 
         <header className="head">
-          {detail.theme === 'kit' && (
-            // 배너의 반짝이는 별. 자리와 색은 CSS가 정한다.
-            <div className="stars" aria-hidden="true">
-              {Array.from({ length: 12 }, (_, i) => (
-                <i key={i} />
-              ))}
-            </div>
-          )}
+          {/* 배너의 반짝이는 별. 자리와 색은 CSS가 정한다. */}
+          <div className="stars" aria-hidden="true">
+            {Array.from({ length: 12 }, (_, i) => (
+              <i key={i} />
+            ))}
+          </div>
           <div className="head-text">
             <div className="lab">{detail.kicker}</div>
             <h1>

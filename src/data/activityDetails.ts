@@ -35,6 +35,8 @@ export interface FlowStage {
 // after 는 매번 돌지 않아 줄 밖에 따로 두는 단계다 (when 에 언제 하는지를 적는다).
 export type FlowSection = SectionHead & {
   legend?: { me: string; ai: string };
+  // 마지막 단계에서 그 앞 단계로 돌아가는 고리에 적는 말 (없으면 고리를 그리지 않는다)
+  loop?: string;
   stages: FlowStage[];
   after?: FlowStage & { when: string };
 };
@@ -98,8 +100,6 @@ export interface ActivityDetail {
   banner?: string;
   // 배너 그림이 그 페이지의 것이 아닐 때 대체 글자를 따로 적는다.
   bannerAlt?: string;
-  // 페이지의 모양. 'kit'은 gamedev-kit 배너의 모양(민트 · 핑크 그라데이션, 알약 단계)을 따르고, 머리에 그림 대신 글만 둔다.
-  theme?: 'kit';
   videoId?: string;
   links: DetailLink[];
   tiles: DetailTile[];
@@ -218,7 +218,6 @@ export const activityDetails: ActivityDetail[] = [
     heading: '소개',
     summary:
       '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표를 정하는 것과 직접 플레이하는 것은 내가 한다.',
-    theme: 'kit',
     links: [
       { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
@@ -234,6 +233,7 @@ export const activityDetails: ActivityDetail[] = [
       title: '사이클',
       lead: 'AI로 만들다 보면 그때그때 생각나는 대로 진행하게 돼서, 목표 하나마다 아래 단계를 한 바퀴 돌게 했다.',
       legend: { me: '내가 하는 단계', ai: 'AI 에이전트가 하는 단계' },
+      loop: '찾은 것을 고친다',
       stages: [
         { name: '목표', owner: '나', byUser: true, line: '이번에 무엇을 만들지 내가 정해서 말한다.' },
         { name: '기획', owner: 'systems-designer', model: 'Opus', line: '플레이어가 무엇을 하면 어떻게 되는지를 규칙과 숫자로 쓴다.' },
