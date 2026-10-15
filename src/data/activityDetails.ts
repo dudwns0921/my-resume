@@ -66,10 +66,10 @@ export interface SyncRow {
   codeValue?: string;
 }
 
-// 게임 하나를 끝냈을 때 쌓여 있는 보이스와 규칙의 수. 앞 게임까지의 몫은 흐리게 그린다.
+// 게임 하나를 끝냈을 때 쌓여 있는 규칙의 수(보이스는 있을 때만). 앞 게임까지의 몫은 흐리게 그린다.
 export interface CompoundGame {
   name: string;
-  voice: number;
+  voice?: number;
   rules: number;
 }
 
@@ -79,7 +79,7 @@ export interface FeatureBanner {
   line: string;
   alt: string;
   sync?: { gddLabel: string; codeLabel: string; missing: string; rows: SyncRow[] };
-  compounds?: { carried: string; voice: string; rules: string; example?: string; games: CompoundGame[] };
+  compounds?: { carried: string; voice?: string; rules: string; example?: string; games: CompoundGame[] };
   image?: string;
 }
 
@@ -217,13 +217,13 @@ export const activityDetails: ActivityDetail[] = [
     kicker: 'Claude Code 플러그인',
     heading: '소개',
     summary:
-      '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표를 정하는 것과 직접 플레이하는 것은 내가 한다.',
+      '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표와 결정, 직접 플레이하는 것은 내가 한다.',
     links: [
       { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
     ],
     tiles: [
-      { label: '스킬', value: '13', tone: 'gold' },
+      { label: '스킬', value: '11', tone: 'gold' },
       { label: '에이전트', value: '5' },
       { label: '사이클 단계', value: '6' },
       { label: 'Threads 글 조회', value: '6,959', tone: 'sea' },
@@ -252,7 +252,7 @@ export const activityDetails: ActivityDetail[] = [
     },
     features: {
       title: '세 가지 장치',
-      lead: '몇 주에 걸쳐 만들다 보면 기획서와 코드가 어긋나고, 얼마나 만들었는지 모르게 되고, 지난 게임에서 배운 것이 사라져서 이 셋을 중심에 뒀다.',
+      lead: '몇 주에 걸쳐 만들다 보면 기획서와 코드가 어긋나고, 얼마나 만들었는지와 무엇을 정해야 하는지 모르게 되고, 지난 게임에서 배운 것이 사라져서 이 셋을 중심에 뒀다.',
       items: [
         {
           name: '기획서와 코드가 어긋나지 않는다',
@@ -270,24 +270,23 @@ export const activityDetails: ActivityDetail[] = [
           },
         },
         {
-          name: '어디까지 만들었는지 항상 보인다',
-          line: '플레이어가 만나는 순서대로 단계마다 카드를 그려, 된 것 · 임시인 것 · 안 만든 것 · 문제인 것과 아직 정하지 않은 것을 보여 주게 했다.',
-          alt: '예시 게임의 현황판 — 플레이 순서대로 놓인 단계 카드와 아직 정하지 않은 질문',
-          image: '/activities/gamedev-kit/board.png',
+          name: '어디까지 왔는지 보고, 거기서 정한다',
+          line: '내 컴퓨터에서 도는 대시보드가 모든 게임을 플레이 순서대로 그리고, 세션이 묻는 것은 볼 그림이 붙은 결정 카드로 올라와 거기서 답하면 세션이 이어받게 했다. 대시보드는 신호만 보내고, 일은 Claude 세션이 한다.',
+          alt: '예시 게임의 대시보드 — 플레이 순서대로 놓인 단계 카드, 아직 정하지 않은 것, 지금까지의 사이클',
+          image: '/activities/gamedev-kit/dashboard.png',
         },
         {
           name: '게임을 만들수록 나아진다',
-          line: '에이전트가 결정을 물을 때마다 내 답에서 선택 기준을 뽑아 쌓고 작업이 막힐 때마다 그 원인을 한 줄 규칙으로 적어 두어, 다음 게임은 이 둘을 불러온 채로 시작하게 했다.',
-          alt: '게임 세 개가 나란히 있고, 보이스와 규칙이 앞 게임의 것을 이어받으며 쌓인다',
+          line: '작업이 막힐 때마다 그 원인을 한 줄 규칙으로 적어 두어 다음 게임은 그 규칙을 불러온 채 시작하게 하고, 누구에게나 통하는 규칙은 키트에 이슈로 보내 다음 버전에 들어가게 했다.',
+          alt: '게임 세 개가 나란히 있고, 규칙이 앞 게임의 것을 이어받으며 쌓인다',
           compounds: {
             carried: '이어받는다',
-            voice: '보이스 — 결정할 때마다 내 답에서 뽑은 선택 기준',
-            rules: '규칙 — 게임을 만들다 막혔던 원인을 한 줄씩 적은 것',
+            rules: '규칙 — 게임을 만들다 막혔던 원인을 한 줄씩 적은 것. 누구에게나 통하는 것은 키트로 돌아간다',
             example: '규칙의 예 — 웹 빌드는 화면을 1배율로 그린다. 고해상도 화면에서 2배율로 그리면 초당 4~5프레임밖에 나오지 않는다.',
             games: [
-              { name: '게임 1', voice: 1, rules: 1 },
-              { name: '게임 2', voice: 2, rules: 3 },
-              { name: '게임 3', voice: 3, rules: 5 },
+              { name: '게임 1', rules: 1 },
+              { name: '게임 2', rules: 3 },
+              { name: '게임 3', rules: 5 },
             ],
           },
         },

@@ -181,7 +181,7 @@ const FeatureArt = ({ item }: { item: FeatureBanner }) => {
           {games.map((game, i) => (
             <li key={game.name} data-carried={carried}>
               <div className="stacks">
-                <Bars kind="voice" count={game.voice} carried={i ? games[i - 1].voice : 0} />
+                {voice && <Bars kind="voice" count={game.voice ?? 0} carried={i ? games[i - 1].voice ?? 0 : 0} />}
                 <Bars kind="rules" count={game.rules} carried={i ? games[i - 1].rules : 0} />
               </div>
               <b>{game.name}</b>
@@ -189,10 +189,12 @@ const FeatureArt = ({ item }: { item: FeatureBanner }) => {
           ))}
         </ol>
         <div className="legend">
-          <span>
-            <i className="k-voice" />
-            {voice}
-          </span>
+          {voice && (
+            <span>
+              <i className="k-voice" />
+              {voice}
+            </span>
+          )}
           <span>
             <i className="k-rules" />
             {rules}
