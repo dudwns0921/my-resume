@@ -4,9 +4,9 @@ export const activities = [
     period: '2026.10 - 진행 중',
     role: '1인 개발 · 워크플로우 설계 · AI 디렉팅(구현)',
     links: [
+      { label: '소개 사이트', href: 'https://gamedev-kit-site.vercel.app/ko' },
       { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
-      { label: '소개 보기', href: '/activities/gamedev-kit', webOnly: true },
     ],
     description:
       '게임을 만드는 동안 어디까지 왔는지와 내가 정할 것을 한눈에 보며 끝까지 만들게 하는 Claude Code 플러그인.',

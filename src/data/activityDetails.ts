@@ -81,25 +81,6 @@ export interface FeatureBanner {
   sync?: { gddLabel: string; codeLabel: string; missing: string; rows: SyncRow[] };
   compounds?: { carried: string; voice?: string; rules: string; example?: string; games: CompoundGame[] };
   image?: string;
-  // 옆으로 넘겨 보는 화면 여러 장 (대시보드처럼 한 장으로는 다 못 보여 줄 때)
-  shots?: { image: string; title: string; caption: string; alt: string }[];
-  // 아래 둘과 problem 은 소개 사이트의 '쓰는 이유'와 같은 모양으로 그릴 때 쓴다 (KitWhy).
-  problem?: string;
-  syncPanel?: {
-    gdd: string;
-    code: string;
-    none: string;
-    foot: string;
-    rows: { id: string; gdd: string; state: 'synced' | 'mismatch' | 'missing'; code?: string }[];
-  };
-  ruleStack?: { games: string[]; list: string[]; fresh: string; carried: string };
-}
-
-// 소개 사이트의 '쓰는 이유' — 머리글(eyebrow)과 제목, 이유마다 문제 · 해결 · 그림
-export interface KitWhy {
-  eyebrow: string;
-  title: string;
-  items: FeatureBanner[];
 }
 
 export interface TimelineCard {
@@ -124,10 +105,6 @@ export interface ActivityDetail {
   tiles: DetailTile[];
   // 머리 아래 금색 띠의 칸 수 (사이클처럼 그 게임을 나눈 마디의 수). 0이면 띠를 두지 않는다.
   strip: number;
-  // 있으면 머리를 소개 사이트의 첫 화면처럼 그린다 — 두 줄 제목(둘째 줄은 그라데이션), 별과 카드 테두리 없이.
-  hero?: { title: string; accent: string };
-  // 있으면 features 대신 소개 사이트의 '쓰는 이유' 모양으로 그린다.
-  why?: KitWhy;
   flow?: FlowSection;
   // 아래 넷은 있을 때만, 적힌 순서대로 그린다 (플러그인 페이지: 에이전트 → 3D 에셋 플로우 → 소리와 영상 → 스킬).
   agents?: SectionHead & { items: ToolCard[] };
@@ -163,7 +140,7 @@ export const activityDetails: ActivityDetail[] = [
     timeline: {
       title: '만든 순서',
       lead: '직접 개발한 플러그인 gamedev-kit의 사이클을 여덟 번 돌려 만들었다.',
-      link: { label: 'gamedev-kit 소개', href: '/activities/gamedev-kit' },
+      link: { label: 'gamedev-kit 소개', href: 'https://gamedev-kit-site.vercel.app/ko' },
       items: [
         { label: '01', name: '프로토타입', line: '임시 블록으로 시스템부터 만들었다.', image: '/activities/keros/c00.jpg' },
         { label: '02', name: '아트 적용', line: '디자인 컨셉을 잡고 임시 블록을 3D 모델로 바꿨다.', image: '/activities/keros/c01.jpg' },
@@ -209,7 +186,7 @@ export const activityDetails: ActivityDetail[] = [
     tools: {
       title: '도구',
       lead: '이때 만든 동기화 스킬과 밸런스 표 스킬이 지금의 gamedev-kit 플러그인이 됐다.',
-      link: { label: 'gamedev-kit 소개', href: '/activities/gamedev-kit' },
+      link: { label: 'gamedev-kit 소개', href: 'https://gamedev-kit-site.vercel.app/ko' },
       items: [
         { name: 'gdd-sync', line: 'GDD와 코드가 어긋나지 않게 맞추는 스킬로, 게임 코드보다 먼저 만들었다.' },
         { name: 'balance-table', line: '개발 중인 게임이 0.5초마다 엑셀 표를 보고 바뀐 값을 다시 읽는다.' },
@@ -231,109 +208,6 @@ export const activityDetails: ActivityDetail[] = [
         { label: '04', name: '밸런스 조정', line: '값을 바꾸고 플레이해 보는 일을 반복하면서 재미를 느낄 수 있는 수치를 찾았다.', image: '/activities/outis/danger.jpg' },
         { label: '05', name: '에셋 제작', line: 'Claude로 프롬프트를 만들어 GPT 이미지로 그림을 뽑고, 그 그림을 Meshy AI에 수동으로 넣어 3D 모델을 만들었다.', image: '/activities/outis/concept.jpg' },
         { label: '06', name: '출시', line: 'Windows와 macOS 빌드에 이어 웹 빌드까지 itch.io에 올렸다.', image: '/activities/outis/banner.jpg' },
-      ],
-    },
-  },
-  {
-    slug: 'gamedev-kit',
-    title: 'gamedev-kit',
-    kicker: '게임을 만드는 Claude Code 플러그인',
-    heading: '소개',
-    hero: { title: 'AI로 게임 만들기, 시작은 쉽다.', accent: '끝까지 가는 게 어렵다.' },
-    summary:
-      '몇 주째 만들다 보면 어디까지 했는지 흐려지고, 기획서와 코드는 따로 놀고, 지난 게임에서 겪은 실수를 또 반복한다. gamedev-kit은 이 모든 걸 눈으로 확인하면서 만들게 해 준다.',
-    links: [
-      { label: '소개 사이트', href: 'https://gamedev-kit-site.vercel.app/ko' },
-      { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
-      { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
-    ],
-    tiles: [],
-    strip: 0,
-    why: {
-      eyebrow: '쓰는 이유',
-      title: '게임을 끝까지 만들게 하는 세 가지',
-      items: [
-        {
-          problem: '어디까지 했는지 흐려진다',
-          name: '한눈에 보고, 그 자리에서 결정한다',
-          line: '모든 게임의 진행 상황이 대시보드 한 화면에 모인다. 단계마다 기능 · 아트 · 사운드 · 검증이 어디까지 됐는지 보이고, 에이전트의 질문은 비교할 그림과 함께 카드로 도착한다. 고르기만 하면 Claude가 이어서 작업한다.',
-          alt: '대시보드 화면 여섯 장',
-          shots: [
-            {
-              image: '/activities/gamedev-kit/board-games.png',
-              title: '모든 게임을 한 화면에',
-              caption: '게임마다 남은 결정과 진행률을 한눈에 확인한다.',
-              alt: '대시보드 첫 화면 — 게임 세 개, 게임마다 나를 기다리는 것과 진행 정도',
-            },
-            {
-              image: '/activities/gamedev-kit/board-overview.png',
-              title: '단계별 진행 현황',
-              caption: '플레이어가 만나는 순서대로, 단계마다 기능 · 아트 · 사운드 · 검증이 얼마나 됐는지 보여 준다.',
-              alt: '한 게임의 개요 — 아트 썸네일이 붙은 단계 카드가 플레이 순서대로 놓이고, 옆에 지금 사이클과 아직 정하지 않은 것',
-            },
-            {
-              image: '/activities/gamedev-kit/board-stage.png',
-              title: '단계를 열면',
-              caption: '그 단계에 들어간 기획 항목과 그림, 사운드를 바로 보고 들어 본다.',
-              alt: '단계 하나를 연 화면 — 기획 항목, 그림 세 장, 재생할 수 있는 사운드 하나',
-            },
-            {
-              image: '/activities/gamedev-kit/board-assets.png',
-              title: '에셋을 나란히',
-              caption: '만든 그림과 소리를 한데 놓고 톤이 맞는지 살핀다.',
-              alt: '에셋 탭 — 종이 공예 스타일 그림 네 장과 사운드 세 개',
-            },
-            {
-              image: '/activities/gamedev-kit/board-review.png',
-              title: '에이전트의 질문에 답하기',
-              caption: '에이전트의 질문에 비교할 그림을 붙이고, 추천하는 방향을 함께 띄운다.',
-              alt: '리뷰 탭 — 컨셉 그림 세 장을 비교하며 고르는 결정, 추천 답이 붙은 결정',
-            },
-            {
-              image: '/activities/gamedev-kit/board-checks.png',
-              title: '플레이해 보고 체크',
-              caption: '직접 해 봐야 아는 것은 체크 항목으로 올라온다.',
-              alt: '플레이해서 확인할 항목 — 항목마다 OK · 문제 버튼과 본 것을 적는 칸',
-            },
-          ],
-        },
-        {
-          problem: '기획서와 코드가 따로 논다',
-          name: '기획서와 코드가 늘 일치한다',
-          line: '기획서의 숫자와 규칙마다 ID가 붙고, 코드에도 같은 ID가 남는다. 둘이 달라지거나 아직 구현되지 않은 항목이 생기면 키트가 바로 찾아내고, 어느 쪽이 맞는지만 정하면 나머지를 맞춰 준다. 밸런스 수치는 엑셀 한 장으로 보고 고칠 수 있다.',
-          alt: '기획서 동기화 표와 코드 — 한 줄은 일치, 한 줄은 불일치, 한 줄은 아직 구현 안 됨',
-          syncPanel: {
-            gdd: '기획서 · 동기화 표',
-            code: '코드',
-            none: '아직 구현 안 됨',
-            foot: 'gdd-sync가 어긋난 곳을 찾아 맞춘다.',
-            rows: [
-              { id: 'BAL.BAG.CAPACITY', gdd: '3~5', state: 'synced', code: 'BAG_CAPACITY = 4' },
-              { id: 'BAL.FALL.PENALTY', gdd: '4', state: 'mismatch', code: 'FALL_PENALTY = 6' },
-              { id: 'RULE.CLIFF', gdd: '—', state: 'missing' },
-            ],
-          },
-        },
-        {
-          problem: '같은 실수를 또 한다',
-          name: '한 번 겪은 건 다음 게임이 기억한다',
-          line: '게임을 만들며 겪은 문제와 그 해결법이 짧은 규칙으로 정리되어, 다음 게임부터 자동으로 적용된다. 원하면 그 규칙을 키트로 보낼 수 있고, 많은 사람들이 동일하게 겪은 문제는 모든 사용자의 기본값이 된다.',
-          alt: '이어지는 게임 세 개, 게임마다 내 규칙이 쌓여 간다',
-          ruleStack: {
-            games: ['첫 게임', '두 번째', '세 번째'],
-            list: ['터치는 실기기에서 확인', '밸런스 수치는 파일 하나에', 'HUD 글자는 32px 이상', '소리는 첫 터치 뒤에', '씬 전환 전에 저장', '올리기 전에 빌드 용량 확인'],
-            fresh: '이번 게임에서 배운 것',
-            carried: '이전 게임에서 이어받은 것',
-          },
-        },
-      ],
-    },
-    timeline: {
-      title: '게임',
-      items: [
-        { label: '3인칭 어드벤처', name: 'Outis', line: '여기서 만든 동기화 스킬과 밸런스 표 스킬이 플러그인의 첫 버전이 됐다.', image: '/activities/outis/cutscene-intro.jpg' },
-        { label: '3인칭 디펜스', name: 'Keros', line: '처음부터 이 플러그인으로 시작해 사이클 여덟 번에 걸쳐 만들었다.', image: '/activities/keros/c08.jpg' },
-        { label: '진행 중', name: '다음 게임', line: '지금도 이 플러그인으로 만들고 있다.' },
       ],
     },
   },

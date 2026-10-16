@@ -20,7 +20,7 @@ const ActivityCard = ({ detail, children }: ActivityCardProps) => {
   const [open, setOpen] = useState(false);
   // 닫히는 동안에도 밀려 나가는 모습이 보이게, 패널은 애니메이션이 끝난 뒤에 걷는다.
   const [mounted, setMounted] = useState(false);
-  // 패널 안에서 다른 상세 페이지(예: gamedev-kit 소개)로 넘어가면 내용만 바꾼다.
+  // 패널 안에서 다른 상세 페이지로 넘어가면 내용만 바꾼다.
   const [shown, setShown] = useState(detail);
   const drawerRef = useRef<HTMLDivElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
