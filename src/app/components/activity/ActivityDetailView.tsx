@@ -205,18 +205,18 @@ const FeatureArt = ({ item }: { item: FeatureBanner }) => {
     );
   }
   if (item.shots) {
-    // 옆으로 넘겨 보는 띠. 다음 화면이 오른쪽에 걸쳐 보여 넘길 수 있다는 걸 알린다.
+    // 화면 여러 장을 한 줄에 나란히 둔다. 좁은 화면에서는 옆으로 넘겨 본다.
     return (
       <div className="art shots" role="group" aria-label={item.alt}>
         {item.shots.map((shot, i) => (
           <figure key={shot.image}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={withBasePath(shot.image)} alt={shot.alt} loading="lazy" draggable={false} />
             <figcaption>
               <span>{String(i + 1).padStart(2, '0')}</span>
               <b>{shot.title}</b>
               <em>{shot.caption}</em>
             </figcaption>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={withBasePath(shot.image)} alt={shot.alt} loading="lazy" draggable={false} />
           </figure>
         ))}
       </div>
@@ -313,14 +313,16 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
           )}
         </header>
 
-        <div className="tiles" style={{ '--n': detail.tiles.length } as React.CSSProperties}>
-          {detail.tiles.map((tile) => (
-            <div key={tile.label} className={`tile ${tile.tone ?? ''}`}>
-              <span className="lab">{tile.label}</span>
-              <TileValue value={tile.value} />
-            </div>
-          ))}
-        </div>
+        {detail.tiles.length > 0 && (
+          <div className="tiles" style={{ '--n': detail.tiles.length } as React.CSSProperties}>
+            {detail.tiles.map((tile) => (
+              <div key={tile.label} className={`tile ${tile.tone ?? ''}`}>
+                <span className="lab">{tile.label}</span>
+                <TileValue value={tile.value} />
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="strip" aria-hidden="true">
           {Array.from({ length: detail.strip }, (_, i) => (

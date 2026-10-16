@@ -1118,49 +1118,67 @@
   box-shadow: 0 0 18px rgba(138, 216, 255, 0.22);
 }
 .detail.kit .shots {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  padding-bottom: 4px;
-}
-.detail.kit .shots::-webkit-scrollbar {
-  display: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 .detail.kit .shots figure {
-  flex: 0 0 86%;
   margin: 0;
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-.detail.kit .shots figcaption {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 8px;
-}
-.detail.kit .shots figcaption span {
-  font: 700 12px var(--mono, ui-monospace, monospace);
-  color: var(--gold);
-}
-.detail.kit .shots figcaption em {
-  font-style: normal;
-  color: var(--tx2);
-  font-size: 14px;
+  gap: 12px;
+  padding: 12px 12px 16px;
+  border: 1px solid var(--line2);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(61, 255, 176, 0.06), transparent 60%);
 }
 .detail.kit .shots img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: top;
+  object-position: top left;
   display: block;
   border: 2px solid rgba(138, 216, 255, 0.85);
-  border-radius: 18px;
-  box-shadow: 0 0 18px rgba(138, 216, 255, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(138, 216, 255, 0.18);
+}
+.detail.kit .shots figcaption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 8px;
+  row-gap: 4px;
+  align-items: baseline;
+  padding: 0 4px;
+}
+.detail.kit .shots figcaption span {
+  font: 700 12px var(--mono);
+  color: var(--gold);
+}
+.detail.kit .shots figcaption b {
+  font-size: 16px;
+}
+.detail.kit .shots figcaption em {
+  grid-column: 2;
+  font-style: normal;
+  color: var(--tx2);
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+@media (max-width: 720px) {
+  .detail.kit .shots {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .detail.kit .shots::-webkit-scrollbar {
+    display: none;
+  }
+  .detail.kit .shots figure {
+    flex: 0 0 82%;
+    scroll-snap-align: start;
+  }
 }
 .detail.kit .compounds ol {
   --g: 110px;
