@@ -965,11 +965,19 @@
   background: var(--sea);
 }
 /* 세 가지 장치: 제목 · 한 문장 · 그림. 그림은 사이클과 같은 알약 · 화살표 · 점선으로 그린다. */
+/* 절과 절 사이는 넓게, 한 절 안의 칸과 칸 사이는 그보다 좁게 — 칸은 가는 선으로 나눈다. */
+.detail.kit .detail-page > section {
+  margin-top: 36px;
+}
 .detail.kit .banners {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-top: 6px;
+  margin-top: 10px;
+}
+.detail.kit .banners > li + li {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line2);
 }
 .detail.kit .banners li > h3 {
   display: flex;
@@ -1385,8 +1393,12 @@
   .detail.kit .after .node {
     padding: 18px 20px;
   }
-  .detail.kit .banners {
-    gap: 48px;
+  .detail.kit .banners > li + li {
+    margin-top: 32px;
+    padding-top: 32px;
+  }
+  .detail.kit .detail-page > section {
+    margin-top: 24px;
   }
   .detail.kit .flow[data-cols] .slot:nth-child(n)::after {
     display: none;
