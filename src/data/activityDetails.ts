@@ -218,8 +218,6 @@ export const activityDetails: ActivityDetail[] = [
     title: 'gamedev-kit',
     kicker: 'Claude Code 플러그인',
     heading: '소개',
-    banner: '/activities/gamedev-kit/banner.jpg',
-    bannerAlt: '여우가 기획서를 펴 놓고 게임기를 누르고, 그 둘레를 기획 · 디자인 · 에셋 · 밸런스 표 · 사운드가 화살표로 돌아가는 그림',
     summary:
       '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표와 결정, 직접 플레이하는 것은 내가 한다.',
     links: [
