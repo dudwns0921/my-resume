@@ -80,7 +80,7 @@ export const workExperiences = [
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Jenkins'],
         achievements: [
           {
-            description: '보일러플레이트부터 폴더 구조·UI 컴포넌트 구조까지 프로젝트 초기 설계 주도',
+            description: '프로젝트 기본 뼈대 코드부터 폴더 구조·UI 컴포넌트 구조까지 초기 설계 주도',
             strong: true,
           },
           {
