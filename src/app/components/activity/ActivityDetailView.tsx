@@ -1,5 +1,6 @@
 import type { ActivityDetail, DetailLink, FeatureBanner, FlowSection } from '@/data/activityDetails';
 import { withBasePath } from '@/utils';
+import KitShots from './KitShots';
 import './detail.css';
 
 interface ActivityDetailViewProps {
@@ -205,22 +206,7 @@ const FeatureArt = ({ item }: { item: FeatureBanner }) => {
     );
   }
   if (item.shots) {
-    // 화면 여러 장을 한 줄에 나란히 둔다. 좁은 화면에서는 옆으로 넘겨 본다.
-    return (
-      <div className="art shots" role="group" aria-label={item.alt}>
-        {item.shots.map((shot, i) => (
-          <figure key={shot.image}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={withBasePath(shot.image)} alt={shot.alt} loading="lazy" draggable={false} />
-            <figcaption>
-              <span>{String(i + 1).padStart(2, '0')}</span>
-              <b>{shot.title}</b>
-              <em>{shot.caption}</em>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    );
+    return <KitShots shots={item.shots} label={item.alt} />;
   }
   if (item.image) {
     return (
