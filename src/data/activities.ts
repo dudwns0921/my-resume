@@ -13,16 +13,6 @@ export const activities = [
     techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Unity', 'Meshy AI', 'ElevenLabs', 'Blender'],
     achievements: [
       {
-        description:
-          '**모든 게임의 진행 상황과 기다리는 결정을 한 화면에 모으는 대시보드 설계** — 에이전트의 질문이 비교할 그림과 권고가 붙은 카드로 올라오고, 답을 고르면 Claude 세션이 이어서 작업하는 구조',
-        strong: false,
-      },
-      {
-        description:
-          '**게임을 만들며 겪은 문제와 해결법을 다음 게임으로 잇는 규칙 구조 설계** — 많은 사용자가 똑같이 겪은 문제는 키트로 모아 모든 사용자의 기본값으로 반영',
-        strong: false,
-      },
-      {
         description: '새 계정으로 Threads에 소개한 글이 조회 6,959회 · 반응 80건 기록',
         strong: false,
       },
