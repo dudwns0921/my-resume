@@ -226,7 +226,6 @@ export const activityDetails: ActivityDetail[] = [
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
     ],
     tiles: [
-      { label: '사이클 단계', value: '6', tone: 'gold' },
       { label: 'Threads 글 조회', value: '6,959', tone: 'sea' },
     ],
     strip: 6,
