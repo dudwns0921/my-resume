@@ -83,6 +83,23 @@ export interface FeatureBanner {
   image?: string;
   // 옆으로 넘겨 보는 화면 여러 장 (대시보드처럼 한 장으로는 다 못 보여 줄 때)
   shots?: { image: string; title: string; caption: string; alt: string }[];
+  // 아래 둘과 problem 은 소개 사이트의 '쓰는 이유'와 같은 모양으로 그릴 때 쓴다 (KitWhy).
+  problem?: string;
+  syncPanel?: {
+    gdd: string;
+    code: string;
+    none: string;
+    foot: string;
+    rows: { id: string; gdd: string; state: 'synced' | 'mismatch' | 'missing'; code?: string }[];
+  };
+  ruleStack?: { games: string[]; list: string[]; fresh: string; carried: string };
+}
+
+// 소개 사이트의 '쓰는 이유' — 머리글(eyebrow)과 제목, 이유마다 문제 · 해결 · 그림
+export interface KitWhy {
+  eyebrow: string;
+  title: string;
+  items: FeatureBanner[];
 }
 
 export interface TimelineCard {
@@ -105,8 +122,12 @@ export interface ActivityDetail {
   videoId?: string;
   links: DetailLink[];
   tiles: DetailTile[];
-  // 머리 아래 금색 띠의 칸 수 (사이클처럼 그 게임을 나눈 마디의 수)
+  // 머리 아래 금색 띠의 칸 수 (사이클처럼 그 게임을 나눈 마디의 수). 0이면 띠를 두지 않는다.
   strip: number;
+  // 있으면 머리를 소개 사이트의 첫 화면처럼 그린다 — 두 줄 제목(둘째 줄은 그라데이션), 별과 카드 테두리 없이.
+  hero?: { title: string; accent: string };
+  // 있으면 features 대신 소개 사이트의 '쓰는 이유' 모양으로 그린다.
+  why?: KitWhy;
   flow?: FlowSection;
   // 아래 넷은 있을 때만, 적힌 순서대로 그린다 (플러그인 페이지: 에이전트 → 3D 에셋 플로우 → 소리와 영상 → 스킬).
   agents?: SectionHead & { items: ToolCard[] };
@@ -216,17 +237,18 @@ export const activityDetails: ActivityDetail[] = [
   {
     slug: 'gamedev-kit',
     title: 'gamedev-kit',
-    kicker: 'Claude Code 플러그인',
+    kicker: '게임을 만드는 Claude Code 플러그인',
     heading: '소개',
+    hero: { title: 'AI로 게임 만들기, 시작은 쉽다.', accent: '끝까지 가는 게 어렵다.' },
     summary:
-      '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표와 결정, 직접 플레이하는 것은 내가 한다.',
+      '몇 주째 만들다 보면 어디까지 했는지 흐려지고, 기획서와 코드는 따로 놀고, 지난 게임에서 겪은 실수를 또 반복한다. gamedev-kit은 이 모든 걸 눈으로 확인하면서 만들게 해 준다.',
     links: [
       { label: '소개 사이트', href: 'https://gamedev-kit-site.vercel.app/ko' },
       { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
     ],
     tiles: [],
-    strip: 6,
+    strip: 0,
     flow: {
       title: '사이클',
       lead: 'AI로 만들다 보면 그때그때 생각나는 대로 진행하게 돼서, 목표 하나마다 아래 단계를 한 바퀴 돌게 했다.',
@@ -248,13 +270,14 @@ export const activityDetails: ActivityDetail[] = [
         line: '플레이하며 적은 문제의 원인을 찾아 작업으로 나눠 고치고, 다시 플레이하는 것을 될 때까지 되풀이한다.',
       },
     },
-    features: {
-      title: '세 가지 장치',
-      lead: 'AI로 게임을 시작하기는 쉽지만 몇 주에 걸쳐 만들다 보면 어디까지 했는지 흐려지고, 기획서와 코드가 따로 놀고, 지난 게임에서 겪은 실수를 또 반복해서 이 셋을 중심에 뒀다.',
+    why: {
+      eyebrow: '쓰는 이유',
+      title: '게임을 끝까지 만들게 하는 세 가지',
       items: [
         {
+          problem: '어디까지 했는지 흐려진다',
           name: '한눈에 보고, 그 자리에서 결정한다',
-          line: '모든 게임의 진행 상황을 대시보드 한 화면에 모으고, 에이전트의 질문은 비교할 그림과 추천하는 방향이 붙은 카드로 올라와 거기서 고르면 Claude 세션이 이어서 작업하게 했다.',
+          line: '모든 게임의 진행 상황이 대시보드 한 화면에 모인다. 단계마다 기능 · 아트 · 사운드 · 검증이 어디까지 됐는지 보이고, 에이전트의 질문은 비교할 그림과 함께 카드로 도착한다. 고르기만 하면 Claude가 이어서 작업한다.',
           alt: '대시보드 화면 여섯 장',
           shots: [
             {
@@ -296,33 +319,32 @@ export const activityDetails: ActivityDetail[] = [
           ],
         },
         {
+          problem: '기획서와 코드가 따로 논다',
           name: '기획서와 코드가 늘 일치한다',
-          line: 'GDD의 숫자와 규칙마다 ID를 붙이고 코드에 같은 ID를 표시해 두어, 값이 다른 곳과 아직 만들지 않은 곳을 찾아 한쪽에 맞추게 했다.',
-          alt: 'GDD 동기화 표와 코드 — 한 줄은 일치, 한 줄은 값이 다르고, 한 줄은 아직 코드에 없다',
-          sync: {
-            gddLabel: 'GDD · 동기화 표',
-            codeLabel: '코드',
-            missing: '아직 표시가 없다 — 만들지 않았다',
+          line: '기획서의 숫자와 규칙마다 ID가 붙고, 코드에도 같은 ID가 남는다. 둘이 달라지거나 아직 구현되지 않은 항목이 생기면 키트가 바로 찾아내고, 어느 쪽이 맞는지만 정하면 나머지를 맞춰 준다. 밸런스 수치는 엑셀 한 장으로 보고 고칠 수 있다.',
+          alt: '기획서 동기화 표와 코드 — 한 줄은 일치, 한 줄은 불일치, 한 줄은 아직 구현 안 됨',
+          syncPanel: {
+            gdd: '기획서 · 동기화 표',
+            code: '코드',
+            none: '아직 구현 안 됨',
+            foot: 'gdd-sync가 어긋난 곳을 찾아 맞춘다.',
             rows: [
-              { id: 'BAL.COIN.VALUE', gdd: '5', state: '일치', code: 'const COIN_VALUE := ', codeValue: '5' },
-              { id: 'BAL.EEL.DAMAGE', gdd: '8', state: '불일치', code: 'const DAMAGE := ', codeValue: '10' },
-              { id: 'RULE.END.WRECK', gdd: '—', state: '없음' },
+              { id: 'BAL.BAG.CAPACITY', gdd: '3~5', state: 'synced', code: 'BAG_CAPACITY = 4' },
+              { id: 'BAL.FALL.PENALTY', gdd: '4', state: 'mismatch', code: 'FALL_PENALTY = 6' },
+              { id: 'RULE.CLIFF', gdd: '—', state: 'missing' },
             ],
           },
         },
         {
+          problem: '같은 실수를 또 한다',
           name: '한 번 겪은 건 다음 게임이 기억한다',
-          line: '게임을 만들며 겪은 문제와 그 해결법을 짧은 규칙으로 정리해 다음 게임부터 자동으로 적용되게 했고, 많은 사람이 똑같이 겪은 문제는 키트로 보내 모든 사용자의 기본값이 되게 했다.',
-          alt: '게임 세 개가 나란히 있고, 규칙이 앞 게임의 것을 이어받으며 쌓인다',
-          compounds: {
-            carried: '이어받는다',
-            rules: '규칙 — 게임을 만들며 겪은 문제와 그 해결법을 한 줄씩 적은 것',
-            example: '규칙의 예 — 웹 빌드는 화면을 1배율로 그린다. 고해상도 화면에서 2배율로 그리면 초당 4~5프레임밖에 나오지 않는다.',
-            games: [
-              { name: '게임 1', rules: 1 },
-              { name: '게임 2', rules: 3 },
-              { name: '게임 3', rules: 5 },
-            ],
+          line: '게임을 만들며 겪은 문제와 그 해결법이 짧은 규칙으로 정리되어, 다음 게임부터 자동으로 적용된다. 원하면 그 규칙을 키트로 보낼 수 있고, 많은 사람들이 동일하게 겪은 문제는 모든 사용자의 기본값이 된다.',
+          alt: '이어지는 게임 세 개, 게임마다 내 규칙이 쌓여 간다',
+          ruleStack: {
+            games: ['첫 게임', '두 번째', '세 번째'],
+            list: ['터치는 실기기에서 확인', '밸런스 수치는 파일 하나에', 'HUD 글자는 32px 이상', '소리는 첫 터치 뒤에', '씬 전환 전에 저장', '올리기 전에 빌드 용량 확인'],
+            fresh: '이번 게임에서 배운 것',
+            carried: '이전 게임에서 이어받은 것',
           },
         },
       ],

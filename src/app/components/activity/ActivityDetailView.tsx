@@ -1,6 +1,7 @@
 import type { ActivityDetail, DetailLink, FeatureBanner, FlowSection } from '@/data/activityDetails';
 import { withBasePath } from '@/utils';
 import KitShots from './KitShots';
+import KitWhy from './KitWhy';
 import './detail.css';
 
 interface ActivityDetailViewProps {
@@ -258,18 +259,28 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
           <span className="lab">{detail.title}</span>
         </div>
 
-        <header className="head">
-          {/* 배너의 반짝이는 별. 자리와 색은 CSS가 정한다. */}
-          <div className="stars" aria-hidden="true">
-            {Array.from({ length: 12 }, (_, i) => (
-              <i key={i} />
-            ))}
-          </div>
+        <header className={detail.hero ? 'head hero' : 'head'}>
+          {/* 배너의 반짝이는 별. 자리와 색은 CSS가 정한다. 소개 사이트처럼 그리는 머리에는 두지 않는다. */}
+          {!detail.hero && (
+            <div className="stars" aria-hidden="true">
+              {Array.from({ length: 12 }, (_, i) => (
+                <i key={i} />
+              ))}
+            </div>
+          )}
           <div className="head-text">
-            <div className="lab">{detail.kicker}</div>
-            <h1>
-              {detail.title} <span>{detail.heading}</span>
-            </h1>
+            <div className="lab">{detail.hero ? `${detail.title} · ${detail.kicker}` : detail.kicker}</div>
+            {detail.hero ? (
+              <h1>
+                {detail.hero.title}
+                <br />
+                <span className="grad">{detail.hero.accent}</span>
+              </h1>
+            ) : (
+              <h1>
+                {detail.title} <span>{detail.heading}</span>
+              </h1>
+            )}
             <p className="sub">{detail.summary}</p>
             <div className="links">
               {detail.links.map((link) => (
@@ -310,14 +321,17 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
           </div>
         )}
 
-        <div className="strip" aria-hidden="true">
-          {Array.from({ length: detail.strip }, (_, i) => (
-            <div key={i} style={{ '--i': i } as React.CSSProperties}>
-              <i />
-            </div>
-          ))}
-        </div>
+        {detail.strip > 0 && (
+          <div className="strip" aria-hidden="true">
+            {Array.from({ length: detail.strip }, (_, i) => (
+              <div key={i} style={{ '--i': i } as React.CSSProperties}>
+                <i />
+              </div>
+            ))}
+          </div>
+        )}
 
+        {detail.why && <KitWhy section={detail.why} />}
         {detail.flow && <FlowBlock section={detail.flow} onNavigate={onNavigate} />}
         {detail.features && (
           <section>
