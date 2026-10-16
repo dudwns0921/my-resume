@@ -23,7 +23,7 @@ export const workExperiences = [
       },
       {
         title: 'KGM Music - 차량용 뮤직 스트리밍 서비스',
-        period: '2025.12 - 진행 중',
+        period: '2025.12 - 2026.10',
         role: 'Frontend Developer',
         description: 'KGM 차량 AVN에 탑재되는 뮤직 스트리밍 클라이언트 개발. 개발 전 과정에 Claude Code를 통합해 운영.',
         techStack: ['React 19', 'TypeScript', 'TanStack Query', 'Tailwind CSS v4', 'Vite', 'React Router v7'],
@@ -70,7 +70,7 @@ export const workExperiences = [
       },
       {
         title: 'Toyota 차량관리용 모바일 앱',
-        period: '2024.11 - 진행 중',
+        period: '2024.11 - 2026.10',
         role: 'Frontend Developer',
         links: [
           { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.lguplus.tmctccssapp&hl=ko' },
@@ -80,7 +80,7 @@ export const workExperiences = [
         techStack: ['Vue.js', 'TypeScript', 'Vite', 'Jenkins'],
         achievements: [
           {
-            description: '프로젝트 초기 인프라 및 환경 설정 주도',
+            description: '보일러플레이트부터 폴더 구조·UI 컴포넌트 구조까지 프로젝트 초기 설계 주도',
             strong: true,
           },
           {
@@ -124,7 +124,7 @@ export const workExperiences = [
       },
       {
         title: 'Toyota 차량용 인포테인먼트 서비스',
-        period: '2023.06 - 진행 중',
+        period: '2023.06 - 2026.10',
         role: 'Frontend Developer',
         links: [{ label: '서비스 소개', href: 'https://www.toyota.co.kr/toyota-connect/infotainment/drive-home/' }],
         description: '편의·엔터테인먼트 기능을 제공하는 차량용 하이브리드 인포테인먼트 서비스 개발.',
@@ -146,7 +146,7 @@ export const workExperiences = [
       },
       {
         title: 'KGM 차량용 인포테인먼트 서비스',
-        period: '2023.06 - 진행 중',
+        period: '2023.06 - 2026.10',
         role: 'Frontend Developer',
         links: [{ label: '서비스 소개 (홈 IoT 항목부터)', href: 'https://kgmlink.kg-mobility.com/service-static/service-convenience.do#convenience5' }],
         description: 'KGM(쌍용) 차량용 하이브리드 인포테인먼트 서비스 개발.',

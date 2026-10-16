@@ -10,7 +10,7 @@ export const activities = [
     ],
     description:
       '게임을 만드는 동안 어디까지 왔는지와 내가 정할 것을 한눈에 보며 끝까지 만들게 하는 Claude Code 플러그인.',
-    techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Unity', 'Meshy AI', 'ElevenLabs', 'Blender'],
+    techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Unity'],
     achievements: [
       {
         description: '새 계정으로 Threads에 소개한 글이 조회 6,959회 · 반응 80건 기록',
