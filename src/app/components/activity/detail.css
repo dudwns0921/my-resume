@@ -168,7 +168,7 @@
 
 .detail .tiles {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr));
   gap: 8px;
   margin-top: -20px;
 }
@@ -1115,6 +1115,51 @@
   display: block;
   border: 2px solid rgba(138, 216, 255, 0.85);
   border-radius: 22px;
+  box-shadow: 0 0 18px rgba(138, 216, 255, 0.22);
+}
+.detail.kit .shots {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.detail.kit .shots::-webkit-scrollbar {
+  display: none;
+}
+.detail.kit .shots figure {
+  flex: 0 0 86%;
+  margin: 0;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.detail.kit .shots figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 8px;
+}
+.detail.kit .shots figcaption span {
+  font: 700 12px var(--mono, ui-monospace, monospace);
+  color: var(--gold);
+}
+.detail.kit .shots figcaption em {
+  font-style: normal;
+  color: var(--tx2);
+  font-size: 14px;
+}
+.detail.kit .shots img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  border: 2px solid rgba(138, 216, 255, 0.85);
+  border-radius: 18px;
   box-shadow: 0 0 18px rgba(138, 216, 255, 0.22);
 }
 .detail.kit .compounds ol {

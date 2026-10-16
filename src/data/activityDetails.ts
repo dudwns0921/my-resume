@@ -81,6 +81,8 @@ export interface FeatureBanner {
   sync?: { gddLabel: string; codeLabel: string; missing: string; rows: SyncRow[] };
   compounds?: { carried: string; voice?: string; rules: string; example?: string; games: CompoundGame[] };
   image?: string;
+  // 옆으로 넘겨 보는 화면 여러 장 (대시보드처럼 한 장으로는 다 못 보여 줄 때)
+  shots?: { image: string; title: string; caption: string; alt: string }[];
 }
 
 export interface TimelineCard {
@@ -219,13 +221,12 @@ export const activityDetails: ActivityDetail[] = [
     summary:
       '기획서(GDD)를 기반으로 기획부터 구현, 플레이까지를 하나의 일관된 사이클로 진행하는 게임 개발 워크플로우다. 단계마다 역할을 나눠 맡은 AI 에이전트가 일하고, 목표와 결정, 직접 플레이하는 것은 내가 한다.',
     links: [
+      { label: '소개 사이트', href: 'https://gamedev-kit-site.vercel.app/ko' },
       { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
     ],
     tiles: [
-      { label: '스킬', value: '11', tone: 'gold' },
-      { label: '에이전트', value: '5' },
-      { label: '사이클 단계', value: '6' },
+      { label: '사이클 단계', value: '6', tone: 'gold' },
       { label: 'Threads 글 조회', value: '6,959', tone: 'sea' },
     ],
     strip: 6,
@@ -252,10 +253,35 @@ export const activityDetails: ActivityDetail[] = [
     },
     features: {
       title: '세 가지 장치',
-      lead: '몇 주에 걸쳐 만들다 보면 기획서와 코드가 어긋나고, 얼마나 만들었는지와 무엇을 정해야 하는지 모르게 되고, 지난 게임에서 배운 것이 사라져서 이 셋을 중심에 뒀다.',
+      lead: 'AI로 게임을 시작하기는 쉽지만 몇 주에 걸쳐 만들다 보면 어디까지 했는지 흐려지고, 기획서와 코드가 따로 놀고, 지난 게임에서 겪은 실수를 또 반복해서 이 셋을 중심에 뒀다.',
       items: [
         {
-          name: '기획서와 코드가 어긋나지 않는다',
+          name: '한눈에 보고, 그 자리에서 결정한다',
+          line: '모든 게임의 진행 상황을 대시보드 한 화면에 모으고, 에이전트의 질문은 비교할 그림과 추천하는 방향이 붙은 카드로 올라와 거기서 고르면 Claude 세션이 이어서 작업하게 했다.',
+          alt: '대시보드 화면 석 장',
+          shots: [
+            {
+              image: '/activities/gamedev-kit/board-overview.png',
+              title: '단계별 진행 현황',
+              caption: '플레이 순서대로 단계마다 기능 · 아트 · 사운드 · 검증이 얼마나 됐는지',
+              alt: '예시 게임의 대시보드 — 아트 썸네일이 붙은 단계 카드가 플레이 순서대로 놓이고, 옆에 지금 사이클과 아직 정하지 않은 것',
+            },
+            {
+              image: '/activities/gamedev-kit/board-stage.png',
+              title: '단계 안쪽',
+              caption: '그 단계에 들어간 기획 항목과 그림 · 사운드',
+              alt: '단계 하나를 연 화면 — 기획 항목, 그림 세 장, 재생할 수 있는 사운드 하나',
+            },
+            {
+              image: '/activities/gamedev-kit/board-review.png',
+              title: '에이전트의 질문',
+              caption: '비교할 그림과 추천하는 방향이 붙은 결정 카드',
+              alt: '리뷰 탭 — 컨셉 그림 세 장을 비교하며 고르는 결정, 추천 답이 붙은 결정',
+            },
+          ],
+        },
+        {
+          name: '기획서와 코드가 늘 일치한다',
           line: 'GDD의 숫자와 규칙마다 ID를 붙이고 코드에 같은 ID를 표시해 두어, 값이 다른 곳과 아직 만들지 않은 곳을 찾아 한쪽에 맞추게 했다.',
           alt: 'GDD 동기화 표와 코드 — 한 줄은 일치, 한 줄은 값이 다르고, 한 줄은 아직 코드에 없다',
           sync: {
@@ -270,18 +296,12 @@ export const activityDetails: ActivityDetail[] = [
           },
         },
         {
-          name: '어디까지 왔는지 보고, 거기서 정한다',
-          line: '내 컴퓨터에서 도는 대시보드가 모든 게임을 플레이 순서대로 그리고, 세션이 묻는 것은 볼 그림이 붙은 결정 카드로 올라와 거기서 답하면 세션이 이어받게 했다. 대시보드는 신호만 보내고, 일은 Claude 세션이 한다.',
-          alt: '예시 게임의 대시보드 — 플레이 순서대로 놓인 단계 카드, 아직 정하지 않은 것, 지금까지의 사이클',
-          image: '/activities/gamedev-kit/dashboard.png',
-        },
-        {
-          name: '게임을 만들수록 나아진다',
-          line: '작업이 막힐 때마다 그 원인을 한 줄 규칙으로 적어 두어 다음 게임은 그 규칙을 불러온 채 시작하게 하고, 누구에게나 통하는 규칙은 키트에 이슈로 보내 다음 버전에 들어가게 했다.',
+          name: '한 번 겪은 건 다음 게임이 기억한다',
+          line: '게임을 만들며 겪은 문제와 그 해결법을 짧은 규칙으로 정리해 다음 게임부터 자동으로 적용되게 했고, 많은 사람이 똑같이 겪은 문제는 키트로 보내 모든 사용자의 기본값이 되게 했다.',
           alt: '게임 세 개가 나란히 있고, 규칙이 앞 게임의 것을 이어받으며 쌓인다',
           compounds: {
             carried: '이어받는다',
-            rules: '규칙 — 게임을 만들다 막혔던 원인을 한 줄씩 적은 것. 누구에게나 통하는 것은 키트로 돌아간다',
+            rules: '규칙 — 게임을 만들며 겪은 문제와 그 해결법을 한 줄씩 적은 것',
             example: '규칙의 예 — 웹 빌드는 화면을 1배율로 그린다. 고해상도 화면에서 2배율로 그리면 초당 4~5프레임밖에 나오지 않는다.',
             games: [
               { name: '게임 1', rules: 1 },
