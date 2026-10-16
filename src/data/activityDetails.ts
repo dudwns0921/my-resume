@@ -249,27 +249,6 @@ export const activityDetails: ActivityDetail[] = [
     ],
     tiles: [],
     strip: 0,
-    flow: {
-      title: '사이클',
-      lead: 'AI로 만들다 보면 그때그때 생각나는 대로 진행하게 돼서, 목표 하나마다 아래 단계를 한 바퀴 돌게 했다.',
-      legend: { me: '내가 하는 단계', ai: 'AI 에이전트가 하는 단계' },
-      loop: '찾은 것을 고친다',
-      stages: [
-        { name: '목표', owner: '나', byUser: true, line: '이번에 무엇을 만들지 내가 정해서 말한다.' },
-        { name: '기획', owner: 'systems-designer', model: 'Opus', line: '플레이어가 무엇을 하면 어떻게 되는지를 규칙과 숫자로 쓴다.' },
-        { name: '디자인', owner: 'designer', model: 'Opus', line: '그 규칙이 게임에서 어떻게 보이고 들릴지를 정리한다.' },
-        { name: '계획', owner: 'developer', model: 'Opus', line: '앞에서 쓴 내용을 작업 여러 개로 나누고 만들 순서를 짠다.' },
-        { name: '구현', owner: 'developer', model: 'Sonnet', line: '겹치지 않는 작업은 여러 AI가 하나씩 맡아 동시에 만든다.' },
-        { name: '플레이', owner: '나', byUser: true, line: '만들어진 게임을 내가 직접 해 보면서 고칠 점을 적는다.' },
-      ],
-      after: {
-        when: '플레이한 뒤',
-        name: '고치기',
-        owner: 'playtest-analyst',
-        model: 'Opus',
-        line: '플레이하며 적은 문제의 원인을 찾아 작업으로 나눠 고치고, 다시 플레이하는 것을 될 때까지 되풀이한다.',
-      },
-    },
     why: {
       eyebrow: '쓰는 이유',
       title: '게임을 끝까지 만들게 하는 세 가지',

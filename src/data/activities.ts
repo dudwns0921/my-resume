@@ -4,23 +4,26 @@ export const activities = [
     period: '2026.10 - 진행 중',
     role: '1인 개발 · 워크플로우 설계 · AI 디렉팅(구현)',
     links: [
-      { label: '소개 사이트', href: 'https://gamedev-kit-site.vercel.app/ko' },
       { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
       { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
       { label: '소개 보기', href: '/activities/gamedev-kit', webOnly: true },
     ],
     description:
-      '기획서(GDD)를 기반으로 게임 개발을 하나의 일관된 사이클로 진행하는 Claude Code 플러그인.',
+      '게임을 만드는 동안 어디까지 왔는지와 내가 정할 것을 한눈에 보며 끝까지 만들게 하는 Claude Code 플러그인.',
     techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Unity', 'Meshy AI', 'ElevenLabs', 'Blender'],
     achievements: [
       {
         description:
-          '**목표부터 플레이까지 여섯 단계를 문서 하나로 잇는 게임 개발 사이클 설계** — 역할마다 에이전트를 두고 앞 단계가 쓴 문서를 뒤 단계가 이어받는 [gstack](https://github.com/garrytan/gstack)의 틀을 게임 제작에 맞춰, 에이전트가 선택지와 권고를 내면 결정은 직접 내리는 구조',
+          '**모든 게임의 진행 상황과 기다리는 결정을 한 화면에 모으는 대시보드 설계** — 에이전트의 질문이 비교할 그림과 권고가 붙은 카드로 올라오고, 답을 고르면 Claude 세션이 이어서 작업하는 구조',
         strong: false,
       },
       {
         description:
-          '**GDD를 읽어 진행 상황을 플레이 순서대로 그리는 현황판 스킬 제작** — 새 계정으로 Threads에 소개한 글이 조회 6,959회 · 반응 80건 기록',
+          '**게임을 만들며 겪은 문제와 해결법을 다음 게임으로 잇는 규칙 구조 설계** — 많은 사용자가 똑같이 겪은 문제는 키트로 모아 모든 사용자의 기본값으로 반영',
+        strong: false,
+      },
+      {
+        description: '새 계정으로 Threads에 소개한 글이 조회 6,959회 · 반응 80건 기록',
         strong: false,
       },
     ],
