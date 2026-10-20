@@ -34,8 +34,8 @@ const ResumeHeader = () => (
         본선 진출 아이디어로는 사내 특허 출원을 진행하고 있습니다. Push to Prod SEOUL 해커톤 본선에는 팀장으로 나갔습니다.
       </p>
       <p>
-        <StrongComponent>게임을 즐겨 만들며 AI 역량을 심화합니다</StrongComponent>. 1인 개발한 「Outis」와 후속작 「Keros」를
-        itch.io에 출시했고, 나만의 워크플로우를 Claude Code 플러그인으로 구현해 게임을 제작하고 있습니다.
+        <StrongComponent>게임을 즐겨 만들며 AI 역량을 심화합니다</StrongComponent>. 1인 개발한 오디세이 3부작 「Outis」 ·
+        「Keros」 · 「Nostos」를 itch.io에 출시했고, 나만의 워크플로우를 Claude Code 플러그인으로 구현해 게임을 제작하고 있습니다.
       </p>
     </div>
   </section>

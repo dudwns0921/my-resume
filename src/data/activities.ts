@@ -19,6 +19,27 @@ export const activities = [
     ],
   },
   {
+    title: '개인 게임 프로젝트 — 「Nostos」',
+    period: '2026.10',
+    role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드)',
+    links: [{ label: 'itch.io', href: 'https://dudwns0921.itch.io/nostos' }],
+    description:
+      '스무 해 만에 거지 차림으로 집에 돌아온 오디세우스가 되어, 큰 방에서 잔치를 벌이는 구혼자들을 활 하나와 모자란 화살로 쓰러뜨리는 1인칭 3D 활 싸움. 「Outis」 · 「Keros」에 이은 3부작의 마지막 작품으로 『오디세이아』 21~22권의 활 시합 에피소드를 바탕으로 만들어, 브라우저에서 바로 플레이할 수 있게 itch.io에 출시.',
+    techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'gamedev-kit', 'Meshy AI', 'ElevenLabs', 'Blender'],
+    achievements: [
+      {
+        description:
+          '활을 당기는 행동 하나에서 출발한 기획 — 무기를 활 하나로 두고, 치기 · 구르기 · 화살 줍기를 다음 한 발을 쏠 자리를 만드는 동작으로 설계',
+        strong: false,
+      },
+      {
+        description:
+          '**활을 당기는 느낌을 기준으로 제작 우선순위 설계** — 오디세우스의 팔 · 활 · 동작과 소리를 먼저 다듬고, 예산이 모자라면 구혼자와 방부터 줄이도록 기획서에 순서를 고정',
+        strong: false,
+      },
+    ],
+  },
+  {
     title: '개인 게임 프로젝트 — 「Keros」',
     period: '2026.10',
     role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·영상)',
