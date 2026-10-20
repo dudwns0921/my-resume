@@ -19,74 +19,61 @@ export const activities = [
     ],
   },
   {
-    title: '개인 게임 프로젝트 — 「Nostos」',
-    period: '2026.10',
-    role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드)',
-    links: [
-      { label: 'itch.io', href: 'https://dudwns0921.itch.io/nostos' },
-      { label: '제작 과정 보기', href: '/activities/nostos', webOnly: true },
-    ],
-    description:
-      '스무 해 만에 집에 돌아온 오디세우스가 되어, 잔치를 벌이는 구혼자들을 오직 활 하나로 쓰러뜨리는 1인칭 3D 활 싸움. 「Outis」 · 「Keros」에 이은 3부작의 마지막 작품으로 『오디세이아』 21~22권의 활 시합과 구혼자 처단 에피소드를 바탕으로 만들어, 브라우저에서 바로 플레이할 수 있게 itch.io에 출시.',
-    techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'gamedev-kit', 'Meshy AI', 'ElevenLabs', 'Blender'],
-    achievements: [
-      {
-        description:
-          '**시그니처 동작인 시위 걸기를 장전과 연결한 기획** — 원전의 활 시합처럼 시위를 걸며 판을 열고, 4발마다 시위가 끊어져 다시 걸게 해 한 동작이 싸움 내내 긴장의 리듬으로 되풀이되도록 설계',
-        strong: false,
-      },
-    ],
-  },
-  {
-    title: '개인 게임 프로젝트 — 「Keros」',
-    period: '2026.10',
+    // 시리즈: 소제목(제목 · 기간 · 역할 · 설명 · 기술 스택) 아래에 게임마다 작은 카드를 둔다.
+    title: '개인 게임 프로젝트 — 오디세이 3부작',
+    period: '2026.09 - 2026.10',
     role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·영상)',
-    links: [
-      { label: 'itch.io', href: 'https://dudwns0921.itch.io/keros' },
-      { label: '제작 과정 보기', href: '/activities/keros', webOnly: true },
-    ],
     description:
-      '세이렌의 바다를 지나는 오디세우스의 배에서 부관이 되어, 선원의 귀를 밀랍으로 막고 홀린 선원을 붙잡아 이타카까지 버티는 3인칭 3D 디펜스. 「Outis」의 후속작으로 『오디세이아』의 세이렌 에피소드를 바탕으로 만들어, 브라우저에서 바로 플레이할 수 있게 itch.io에 출시.',
-    techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'gamedev-kit', 'Meshy AI', 'ElevenLabs', 'Blender', 'Higgsfield'],
-    achievements: [
+      '호메로스 『오디세이아』의 세 에피소드를 하나씩 게임으로 옮긴 3부작. 기획부터 출시까지 1인으로 진행해 모두 itch.io에 출시.',
+    techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'gamedev-kit', 'Meshy AI', 'ElevenLabs', 'Blender', 'Higgsfield', 'ChatGPT'],
+    games: [
       {
+        title: '「Nostos」',
+        period: '2026.10',
+        links: [
+          { label: 'itch.io', href: 'https://dudwns0921.itch.io/nostos' },
+          { label: '제작 과정 보기', href: '/activities/nostos', webOnly: true },
+        ],
         description:
-          '세이렌에 홀린 선원을 붙잡는 행동 하나에서 출발한 기획 — 플레이어를 오디세우스가 아닌 부관으로 두고, 노 젓기와 무기 조준을 빼 선원을 지키는 일에만 집중',
-        strong: false,
+          '스무 해 만에 집에 돌아온 오디세우스가 되어, 잔치를 벌이는 구혼자들을 오직 활 하나로 쓰러뜨리는 1인칭 3D 활 싸움. 21~22권의 활 시합과 구혼자 처단 에피소드를 바탕으로 제작.',
+        achievements: [
+          {
+            description:
+              '**시그니처 동작인 시위 걸기를 장전과 연결한 기획** — 원전의 활 시합처럼 시위를 걸며 판을 열고, 4발마다 시위가 끊어져 다시 걸게 해 한 동작이 싸움 내내 긴장의 리듬으로 되풀이되도록 설계',
+          },
+        ],
       },
       {
+        title: '「Keros」',
+        period: '2026.10',
+        links: [
+          { label: 'itch.io', href: 'https://dudwns0921.itch.io/keros' },
+          { label: '제작 과정 보기', href: '/activities/keros', webOnly: true },
+        ],
         description:
-          '**직접 만든 Claude Code 플러그인(gamedev-kit)의 개발 사이클 8회로 제작** — 방향이 갈리는 결정은 직접 내리고 나머지는 권고대로 위임',
-        strong: false,
-      },
-    ],
-  },
-  {
-    title: '개인 게임 프로젝트 — 「Outis」',
-    period: '2026.09',
-    role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드·컷신)',
-    links: [
-      { label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' },
-      { label: '제작 과정 보기', href: '/activities/outis', webOnly: true },
-    ],
-    description:
-      '외눈박이 거인의 동굴에 갇힌 오디세우스가 잠든 거인 곁을 몰래 오가며 무기를 만들고 선원들과 탈출하는 3인칭 3D 어드벤처. 호메로스 『오디세이아』의 키클롭스 에피소드를 바탕으로 기획부터 출시까지 전 과정을 1인으로 진행해, itch.io에 출시.',
-    techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'Godot MCP Pro', 'Meshy AI', 'ElevenLabs', 'ChatGPT'],
-    achievements: [
-      {
-        description:
-          '거인의 눈을 말뚝으로 찌르는 행동 하나에서 출발한 기획 — 말뚝을 잘라 다듬고 달궈 찌르기까지의 준비를, 잠든 거인 곁에서 들키지 않고 해내는 구조로 확장',
-        strong: false,
+          '세이렌의 바다를 지나는 오디세우스의 배에서 부관이 되어, 홀린 선원을 붙잡아 이타카까지 버티는 3인칭 3D 디펜스. 세이렌 에피소드를 바탕으로 제작.',
+        achievements: [
+          {
+            description:
+              '**직접 만든 Claude Code 플러그인(gamedev-kit)의 개발 사이클 8회로 제작** — 방향이 갈리는 결정은 직접 내리고 나머지는 권고대로 위임',
+          },
+        ],
       },
       {
+        title: '「Outis」',
+        period: '2026.09',
+        links: [
+          { label: 'itch.io', href: 'https://dudwns0921.itch.io/outis' },
+          { label: '제작 과정 보기', href: '/activities/outis', webOnly: true },
+        ],
         description:
-          '**기획서(GDD)와 코드를 양방향으로 맞추는 동기화 스킬 설계** — 수치·규칙·입력·HUD 항목에 ID를 붙여, 어느 한쪽을 바꿔도 다른 쪽에 곧바로 반영되는 구조 확보',
-        strong: false,
-      },
-      {
-        description:
-          '**밸런스 수치를 엑셀 표로 관리하는 스킬 설계** — 수치 111개를 표 하나로 빼, 저장하면 실행 중인 게임에 즉시 반영되어 게임을 끄지 않고 값을 바꿔 가며 조정하는 구조 구축',
-        strong: false,
+          '외눈박이 거인의 동굴에 갇힌 오디세우스가 잠든 거인 곁을 몰래 오가며 무기를 만들고 선원들과 탈출하는 3인칭 3D 어드벤처. 키클롭스 에피소드를 바탕으로 제작.',
+        achievements: [
+          {
+            description:
+              '**기획서(GDD)와 코드를 양방향으로 맞추는 동기화 스킬 설계** — 수치·규칙·입력·HUD 항목에 ID를 붙여, 어느 한쪽을 바꿔도 다른 쪽에 곧바로 반영되는 구조 확보',
+          },
+        ],
       },
     ],
   },
