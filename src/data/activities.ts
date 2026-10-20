@@ -30,6 +30,7 @@ export const activities = [
       {
         title: '「Nostos」',
         period: '2026.10',
+        role: 'gamedev-kit으로 제작 · 개발 사이클 18회',
         links: [
           { label: 'itch.io', href: 'https://dudwns0921.itch.io/nostos' },
           { label: '제작 과정 보기', href: '/activities/nostos', webOnly: true },
@@ -46,6 +47,7 @@ export const activities = [
       {
         title: '「Keros」',
         period: '2026.10',
+        role: 'gamedev-kit으로 제작 · 개발 사이클 8회',
         links: [
           { label: 'itch.io', href: 'https://dudwns0921.itch.io/keros' },
           { label: '제작 과정 보기', href: '/activities/keros', webOnly: true },
@@ -56,10 +58,6 @@ export const activities = [
           {
             description:
               '세이렌에 홀린 선원을 붙잡는 행동 하나에서 출발한 기획 — 플레이어를 오디세우스가 아닌 부관으로 두고, 노 젓기와 무기 조준을 빼 선원을 지키는 일에만 집중',
-          },
-          {
-            description:
-              '**직접 만든 Claude Code 플러그인(gamedev-kit)의 개발 사이클 8회로 제작** — 방향이 갈리는 결정은 직접 내리고 나머지는 권고대로 위임',
           },
         ],
       },

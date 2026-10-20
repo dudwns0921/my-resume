@@ -7,7 +7,8 @@ import ProjectInfo, { Project } from '../workExprience/ProjectInfo';
 import ActivityCard from './ActivityCard';
 
 // 시리즈로 묶은 게임 하나. 역할 · 기술 스택은 시리즈 머리에 있다.
-type Game = Pick<Project, 'title' | 'period' | 'description' | 'achievements' | 'links'>;
+// role 자리에는 그 게임을 무엇으로 만들었는지(예: gamedev-kit 사이클 횟수)를 한 줄로 쓴다. 없으면 비운다.
+type Game = Pick<Project, 'title' | 'period' | 'description' | 'achievements' | 'links'> & { role?: string };
 
 // 여러 게임을 한 소제목 아래 묶은 항목 (오디세이 3부작).
 interface Series extends Omit<Project, 'achievements' | 'links'> {
@@ -46,7 +47,7 @@ const SeriesEntry = ({ series }: { series: Series }) => (
       {series.games.map((game) => (
         <ProjectEntry
           key={game.title}
-          project={{ ...game, role: '', techStack: [] }}
+          project={{ ...game, role: game.role ?? '', techStack: [] }}
           titleSize="text-xl"
         />
       ))}
