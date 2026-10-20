@@ -120,6 +120,37 @@ export interface ActivityDetail {
 
 export const activityDetails: ActivityDetail[] = [
   {
+    slug: 'nostos',
+    title: 'Nostos',
+    kicker: '1인칭 활 싸움',
+    heading: '제작 과정',
+    summary: '영화 《오디세이》의 활 시합 장면에서 출발해, 시위를 거는 동작 하나로 구혼자들과 맞서는 게임이 됐다. 구현은 Claude Code에 맡기고, 무엇을 만들지와 큰 방향은 직접 정했다.',
+    banner: '/activities/nostos/banner.jpg',
+    links: [
+      { label: 'itch.io에서 플레이', href: 'https://dudwns0921.itch.io/nostos' },
+    ],
+    tiles: [
+      { label: '개발 사이클', value: '18', tone: 'gold' },
+      { label: '플레이테스트 문서', value: '26' },
+      { label: '코드와 연결된 GDD 항목', value: '179' },
+      { label: '엑셀 밸런스 값', value: '94', tone: 'sea' },
+    ],
+    strip: 18,
+    timeline: {
+      title: '만든 순서',
+      lead: '직접 개발한 플러그인 gamedev-kit의 사이클을 열여덟 번 돌려 만들었다.',
+      link: { label: 'gamedev-kit 소개', href: 'https://gamedev-kit-site.vercel.app/ko' },
+      items: [
+        { label: '01', name: '프로토타입', line: '활을 당겨 쏘는 동작부터 만들었다.', image: '/activities/nostos/c02.jpg' },
+        { label: '02', name: '맵 디자인', line: '구혼자들과 싸울 홀의 구조를 잡았다.', image: '/activities/nostos/c03.jpg' },
+        { label: '03', name: '아트 적용', line: '구혼자와 잔칫상을 3D 모델로 채웠다.', image: '/activities/nostos/c13.jpg' },
+        { label: '04', name: '시스템 구성', line: '4발마다 시위가 끊어져 다시 거는 장전 규칙으로 싸움을 구성했다.', image: '/activities/nostos/c15.jpg' },
+        { label: '05', name: '스토리텔링', line: '원전의 활 시합을 도입 장면으로 넣어 이야기를 열었다.', image: '/activities/nostos/c18.jpg' },
+        { label: '06', name: '출시', line: '브라우저에서 바로 할 수 있게 itch.io에 올렸다.', image: '/activities/nostos/release.jpg' },
+      ],
+    },
+  },
+  {
     slug: 'keros',
     title: 'Keros',
     kicker: '3인칭 디펜스',
