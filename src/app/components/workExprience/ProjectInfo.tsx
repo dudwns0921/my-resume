@@ -49,7 +49,7 @@ const renderLinks = (text: string, keyPrefix: string) =>
   });
 
 // '**단어**'로 감싼 부분만 강조한다.
-const renderHighlights = (text: string) =>
+export const renderHighlights = (text: string) =>
   text
     .split(/\*\*(.+?)\*\*/)
     .map((part, i) => (i % 2 === 1 ? <StrongComponent key={i}>{part}</StrongComponent> : renderLinks(part, String(i))));
