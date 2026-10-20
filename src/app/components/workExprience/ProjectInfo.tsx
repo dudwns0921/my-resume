@@ -28,6 +28,7 @@ export interface Project {
 
 interface ProjectInfoProps {
   project: Project;
+  titleSize?: string;
 }
 
 // '[글자](주소)'는 바깥 링크로 그린다.
@@ -49,12 +50,12 @@ const renderLinks = (text: string, keyPrefix: string) =>
   });
 
 // '**단어**'로 감싼 부분만 강조한다.
-export const renderHighlights = (text: string) =>
+const renderHighlights = (text: string) =>
   text
     .split(/\*\*(.+?)\*\*/)
     .map((part, i) => (i % 2 === 1 ? <StrongComponent key={i}>{part}</StrongComponent> : renderLinks(part, String(i))));
 
-const ProjectInfo = ({ project }: ProjectInfoProps) => (
+const ProjectInfo = ({ project, titleSize }: ProjectInfoProps) => (
   <div className="relative flex flex-col gap-4">
     <div>
       <InfoItem
@@ -63,6 +64,7 @@ const ProjectInfo = ({ project }: ProjectInfoProps) => (
         subInfo2={project.role}
         description={project.description}
         keepTogether={false}
+        titleSize={titleSize}
       />
       {project.links && project.links.length > 0 && (
         <div className="mt-1 flex flex-wrap gap-x-3 text-sm">
