@@ -41,12 +41,14 @@ const SeriesEntry = ({ series }: { series: Series }) => (
         <Badge key={tech} text={tech} />
       ))}
     </div>
-    {/* 게임은 다른 항목과 같은 모양으로 최신순으로 두고, 옅은 회색 줄로만 나눈다. 제목은 시리즈보다 한 단계 작다. */}
-    <div className="flex flex-col divide-y divide-gray-200 border-y border-gray-200">
+    {/* 게임은 다른 항목과 같은 모양으로 최신순으로 두고, 시리즈 아래로 들여 쓴다. 제목 앞에 '-'를 붙이고 시리즈보다 한 단계 작게 쓴다. */}
+    <div className="flex flex-col gap-6 pl-6">
       {series.games.map((game) => (
-        <div key={game.title} className="py-4">
-          <ProjectEntry project={{ ...game, role: '', techStack: [] }} titleSize="text-xl" />
-        </div>
+        <ProjectEntry
+          key={game.title}
+          project={{ ...game, title: `- ${game.title}`, role: '', techStack: [] }}
+          titleSize="text-xl"
+        />
       ))}
     </div>
   </div>
