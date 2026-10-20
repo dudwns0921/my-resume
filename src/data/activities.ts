@@ -24,7 +24,7 @@ export const activities = [
     role: '1인 개발 · 기획 · AI 디렉팅(구현·3D 에셋·사운드)',
     links: [{ label: 'itch.io', href: 'https://dudwns0921.itch.io/nostos' }],
     description:
-      '스무 해 만에 거지 차림으로 집에 돌아온 오디세우스가 되어, 큰 방에서 잔치를 벌이는 구혼자들을 활 하나와 모자란 화살로 쓰러뜨리는 1인칭 3D 활 싸움. 「Outis」 · 「Keros」에 이은 3부작의 마지막 작품으로 『오디세이아』 21~22권의 활 시합 에피소드를 바탕으로 만들어, 브라우저에서 바로 플레이할 수 있게 itch.io에 출시.',
+      '스무 해 만에 집에 돌아온 오디세우스가 되어, 잔치를 벌이는 구혼자들을 오직 활 하나로 쓰러뜨리는 1인칭 3D 활 싸움. 「Outis」 · 「Keros」에 이은 3부작의 마지막 작품으로 『오디세이아』 21~22권의 활 시합과 구혼자 처단 에피소드를 바탕으로 만들어, 브라우저에서 바로 플레이할 수 있게 itch.io에 출시.',
     techStack: ['Godot 4.7', 'GDScript', 'Claude Code', 'gamedev-kit', 'Meshy AI', 'ElevenLabs', 'Blender'],
     achievements: [
       {
