@@ -1,5 +1,6 @@
 import DotComponent from './common/DotComponent';
 import StrongComponent from './common/StrongComponent';
+import { withSiteUrl } from '@/utils';
 
 const ResumeHeader = () => (
   <section>
@@ -35,7 +36,11 @@ const ResumeHeader = () => (
       </p>
       <p>
         <StrongComponent>게임을 즐겨 만들며 AI 역량을 심화합니다</StrongComponent>. 1인 개발한 오디세이 3부작 「Outis」 ·
-        「Keros」 · 「Nostos」를 itch.io에 출시했고, 나만의 워크플로우를 Claude Code 플러그인으로 구현해 게임을 제작하고 있습니다.
+        「Keros」 · 「Nostos」를 itch.io에 출시했고, 나만의 워크플로우를 Claude Code 플러그인으로 구현해 게임을 제작하고 있습니다.{' '}
+        {/* 게임 이야기를 읽다가 바로 게임 페이지로 넘어가는 길. PDF에도 남기고, 그때는 운영 주소로 열린다. */}
+        <a href={withSiteUrl('/games')} className="whitespace-nowrap text-blue-600 underline underline-offset-2">
+          만든 게임 보러 가기 →
+        </a>
       </p>
     </div>
   </section>
