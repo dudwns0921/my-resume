@@ -1103,6 +1103,62 @@ body:has(.arcade) {
   text-shadow: 0 0 18px rgba(255, 138, 209, 0.6);
 }
 
+/* CEO → 워커 → 나: 숫자 칸과 같은 깎은 칸을 화살표로 잇는다 */
+.arcade .kit-tiles {
+  grid-template-columns: 3fr 1fr;
+}
+.arcade .kit-flow {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr 20px 1fr;
+  align-items: center;
+  gap: 6px;
+}
+.arcade .kit-flow .flow-step {
+  padding: 14px 20px 16px;
+  background: rgba(7, 17, 14, 0.85);
+  border: 1px solid var(--line2);
+  border-bottom: 3px solid var(--mint);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+.arcade .kit-flow .flow-arrow {
+  justify-self: center;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--tx3);
+  border-right: 2px solid var(--tx3);
+  transform: rotate(45deg);
+}
+.arcade .kit-flow b {
+  display: block;
+  margin-top: 4px;
+  font-size: clamp(24px, 3.4vw, 34px);
+  line-height: 1.1;
+  color: var(--mint);
+  text-shadow: 0 0 18px rgba(61, 255, 176, 0.6);
+}
+.arcade .kit-flow .flow-1 {
+  border-bottom-color: var(--sky);
+}
+.arcade .kit-flow .flow-1 b {
+  color: var(--sky);
+  text-shadow: 0 0 18px rgba(138, 216, 255, 0.6);
+}
+.arcade .kit-flow .flow-2 {
+  border-bottom-color: var(--lime);
+}
+.arcade .kit-flow .flow-2 b {
+  color: var(--lime);
+  text-shadow: 0 0 18px rgba(216, 255, 90, 0.6);
+}
+/* 남은 숫자 칸(Threads)은 핑크로 */
+.arcade .kit-tiles > .tile.tile {
+  border-bottom-color: var(--pink);
+}
+.arcade .kit-tiles > .tile.tile b {
+  color: var(--pink);
+  text-shadow: 0 0 18px rgba(255, 138, 209, 0.6);
+}
+
 /* 끝 */
 .arcade .continue {
   display: flex;
@@ -1144,6 +1200,9 @@ body:has(.arcade) {
     max-width: 380px;
     margin: 0 auto;
   }
+  .arcade .kit-tiles {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 520px) {
   .arcade .loop li span {
@@ -1158,10 +1217,13 @@ body:has(.arcade) {
     gap: 56px;
   }
   .arcade .kit-tiles {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
-  .arcade .kit-tiles .tile:last-child {
-    grid-column: 1 / -1;
+  .arcade .kit-flow {
+    grid-template-columns: 1fr;
+  }
+  .arcade .kit-flow .flow-arrow {
+    transform: rotate(135deg);
   }
 }
 

@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { games, gamedevKit, hero, trilogy, type Game } from '@/data/games';
 import { activityDetails } from '@/data/activityDetails';
 import { renderLinks } from '../workExprience/ProjectInfo';
@@ -161,7 +162,7 @@ const CycleLoop = () => {
         <b>gamedev-kit</b>
         <div className="legend">
           <span className="me">나</span>
-          <span className="ai">AI 에이전트</span>
+          <span className="ai">CEO가 조율</span>
         </div>
       </div>
     </div>
@@ -200,6 +201,18 @@ const KitSection = () => (
             </div>
           </div>
           <div className="kit-tiles">
+            {/* CEO가 조율하고 워커가 사이클을 돌리며, 나는 결정만 한다 */}
+            <div className="kit-flow">
+              {gamedevKit.flow.map((step, i) => (
+                <Fragment key={step.who}>
+                  {i > 0 && <i className="flow-arrow" aria-hidden="true" />}
+                  <div className={`flow-step flow-${i}`}>
+                    <span className="lab">{step.what}</span>
+                    <b>{step.who}</b>
+                  </div>
+                </Fragment>
+              ))}
+            </div>
             {gamedevKit.tiles.map((tile) => (
               <div key={tile.label} className="tile">
                 <span className="lab">{tile.label}</span>

@@ -112,7 +112,7 @@ export const gamedevKit = {
     { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
     { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
   ],
-  description: '게임을 만드는 동안 어디까지 왔는지와 내가 정할 것을 한눈에 보며 끝까지 만들게 하는 Claude Code 플러그인.',
+  description: 'CEO 역할의 Claude가 여러 개발 사이클을 동시에 조율하고, 나는 현황판에서 결정만 하며 게임을 끝까지 만들게 하는 Claude Code 플러그인.',
   techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Unity'],
   achievements: [{ description: '새 계정으로 Threads에 소개한 글이 조회 6,959회 · 반응 80건 기록' }],
   // 사이클 고리에 도는 여섯 단계. byUser는 내가 하는 단계다.
@@ -124,12 +124,14 @@ export const gamedevKit = {
     { name: '구현' },
     { name: '플레이', byUser: true },
   ],
-  // 저장소에서 센 값 (0.38.1 기준)
-  tiles: [
-    { label: '스킬', value: '13' },
-    { label: '에이전트', value: '5' },
-    { label: 'Threads 글 조회', value: '6,959' },
+  // 일의 흐름: 작업은 CEO가 조율하고, 나는 결정만 한다 (본인 요청, 2026-10-21).
+  flow: [
+    { who: 'CEO', what: '모든 작업 조율' },
+    { who: '워커', what: '여러 사이클을 동시에' },
+    { who: '나', what: '결정만' },
   ],
+  // 스킬 · 에이전트 수는 두지 않는다 (본인 요청, 2026-10-21).
+  tiles: [{ label: 'Threads 글 조회', value: '6,959' }],
 };
 
 // 첫 화면. 오디세이보다 gamedev-kit과 AI로 게임을 만든다는 것을 앞에 둔다 (본인 요청, 2026-10-21).
