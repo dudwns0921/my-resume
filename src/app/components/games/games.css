@@ -1,0 +1,1192 @@
+/* 게임 페이지(/games). gamedev-kit 배너 · 현황판의 모양(민트 · 라임 · 노랑 · 핑크 그라데이션, 알약, 별)을
+   게임 타이틀 화면처럼 크게 키워 꾸민다. 상세 페이지의 `.detail.kit`과 같은 색을 쓴다. */
+body:has(.arcade) {
+  background: #07110e;
+}
+
+.arcade {
+  --bg: #07110e;
+  --card: #0d1b22;
+  --card2: #10262b;
+  --line: #17332d;
+  --line2: #27504a;
+  --mint: #3dffb0;
+  --mint2: #5dffc0;
+  --lime: #d8ff5a;
+  --yellow: #ffd24a;
+  --pink: #ff8ad1;
+  --sky: #8ad8ff;
+  --violet: #b06cff;
+  --rainbow: linear-gradient(90deg, #3dffb0, #d8ff5a 45%, #ffd24a 80%, #ff8ad1);
+  --tx: #f0fff8;
+  --tx2: #b4cdc4;
+  --tx3: #7fa096;
+  --mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: clip;
+  color: var(--tx);
+  font-size: 16px;
+  line-height: 1.65;
+  word-break: keep-all;
+  isolation: isolate;
+}
+/* 바탕은 화면에 고정된 층 하나로 둔다. background-attachment: fixed는 스크롤할 때마다 페이지 전체를 다시 그린다. */
+.arcade::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 620px at 95% 60%, rgba(176, 108, 255, 0.16), transparent 60%),
+    linear-gradient(rgba(61, 255, 176, 0.045) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(61, 255, 176, 0.045) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(160deg, #07110e, #0b2a22 50%, #1a1033);
+}
+/* 화면 밖으로 나간 칸은 움직임을 멈춘다 (Reveal이 .off를 붙인다). */
+.arcade .off,
+.arcade .off *,
+.arcade .off *::before,
+.arcade .off *::after {
+  animation-play-state: paused !important;
+}
+.arcade a {
+  color: inherit;
+  text-decoration: none;
+}
+.arcade .lab {
+  font: 11px/1.4 var(--mono);
+  letter-spacing: 0.16em;
+  color: var(--tx3);
+  text-transform: uppercase;
+}
+
+/* 화면 전체에 옅은 주사선 */
+.arcade .scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+}
+
+/* 위쪽에 떠 있는 버튼. 띠 없이 모서리를 깎은 사각형만 둔다. */
+.arcade .fab {
+  position: fixed;
+  top: 14px;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: rgba(7, 17, 14, 0.9);
+  border: 2px solid var(--mint);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.arcade .fab-back {
+  left: clamp(16px, 3vw, 32px);
+  font: 700 13px/1.4 inherit;
+  color: var(--mint2);
+  transition: background 0.2s, color 0.2s;
+}
+.arcade .fab-back:hover {
+  background: var(--mint);
+  color: var(--bg);
+}
+.arcade .fab-player {
+  right: clamp(16px, 3vw, 32px);
+  border-color: var(--line2);
+}
+.arcade .fab-player b {
+  color: var(--lime);
+  font-weight: 700;
+}
+/* 끝의 '이력서로 돌아가기'는 같은 모양으로 제자리에 둔다 */
+.arcade .fab.big {
+  position: static;
+  font: 700 15px/1.4 inherit;
+  padding: 13px 28px;
+  color: var(--mint2);
+  transition: background 0.2s, color 0.2s;
+}
+.arcade .fab.big:hover {
+  background: var(--mint);
+  color: var(--bg);
+}
+
+/* 반짝이는 네 갈래 별 */
+.arcade .sparkles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.arcade .sparkles span {
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  background: var(--lime);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  opacity: 0;
+  animation: arc-twinkle 3.2s ease-in-out var(--d) infinite;
+}
+.arcade .sparkles span:nth-child(4n + 1) {
+  background: var(--mint);
+}
+.arcade .sparkles span:nth-child(4n + 2) {
+  background: var(--pink);
+}
+.arcade .sparkles span:nth-child(4n + 3) {
+  background: var(--sky);
+}
+@keyframes arc-twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+/* ───── 타이틀 화면 ───── */
+.arcade .hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(1000px 520px at 50% 64%, rgba(61, 255, 176, 0.22), transparent 65%),
+    radial-gradient(700px 500px at 6% 8%, rgba(216, 255, 90, 0.12), transparent 60%),
+    radial-gradient(700px 500px at 96% 14%, rgba(255, 138, 209, 0.18), transparent 60%);
+}
+/* 지평선의 해. 가로줄로 잘려 내려간다. 아래 끝이 시작 단추 바로 위에 오도록 글 묶음 기준으로 둔다. */
+.arcade .sun {
+  position: absolute;
+  left: 50%;
+  bottom: 136px;
+  width: min(460px, 80vw);
+  aspect-ratio: 1;
+  translate: -50% 0;
+  z-index: -2;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d8ff5a 0%, #3dffb0 35%, #ffd24a 65%, #ff8ad1 85%, #b06cff 100%);
+  mask: linear-gradient(180deg, #000 48%, transparent 48% 52%, #000 52% 60%, transparent 60% 65%, #000 65% 71%, transparent 71% 78%, #000 78% 83%, transparent 83%);
+  opacity: 0.3;
+  animation: arc-sun 6s ease-in-out infinite alternate;
+}
+@keyframes arc-sun {
+  to {
+    opacity: 0.42;
+  }
+}
+/* 끝없이 다가오는 격자 바닥 */
+.arcade .floor {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -10%;
+  height: 52%;
+  z-index: -1;
+  overflow: hidden;
+  transform: perspective(420px) rotateX(64deg);
+  transform-origin: 50% 0;
+  mask: linear-gradient(180deg, transparent, #000 35%);
+}
+/* 격자는 한 칸(64px)만큼 미끄러졌다가 제자리로 돌아온다. 다시 그리지 않고 옮기기만 한다. */
+.arcade .floor::before {
+  content: '';
+  position: absolute;
+  inset: -64px 0 0;
+  background:
+    linear-gradient(90deg, rgba(61, 255, 176, 0.6) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(0deg, rgba(61, 255, 176, 0.6) 1px, transparent 1px) 0 0 / 64px 64px;
+  animation: arc-floor 1.6s linear infinite;
+}
+@keyframes arc-floor {
+  to {
+    transform: translateY(64px);
+  }
+}
+
+.arcade .hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 100px 16px 60px;
+  text-align: center;
+}
+.arcade .hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--mint);
+  letter-spacing: 0.4em;
+}
+.arcade .hero-kicker i {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--mint));
+}
+.arcade .hero-kicker i:last-child {
+  transform: scaleX(-1);
+}
+/* 무지개가 흐르며, 가끔 핑크 · 하늘색으로 어긋나는 제목 */
+.arcade .title {
+  position: relative;
+  margin: 0;
+  font-size: clamp(76px, 19vw, 230px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.06em;
+  padding-left: 0.06em;
+  background: linear-gradient(90deg, #3dffb0, #d8ff5a, #ffd24a, #ff8ad1, #b06cff, #3dffb0) 0 0 / 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: arc-flow 6s linear infinite, arc-in 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.arcade .title::before,
+.arcade .title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  padding-left: inherit;
+  pointer-events: none;
+  opacity: 0;
+}
+.arcade .title::before {
+  color: var(--pink);
+  animation: arc-glitch-a 5s steps(1) 1.4s infinite;
+}
+.arcade .title::after {
+  color: var(--sky);
+  animation: arc-glitch-b 5s steps(1) 1.4s infinite;
+}
+@keyframes arc-flow {
+  to {
+    background-position: 300% 0;
+  }
+}
+@keyframes arc-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+}
+/* 제목 뒤의 번짐. 움직이지 않으므로 한 번만 그린다. */
+.arcade .hero-inner::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: min(900px, 110vw);
+  height: 260px;
+  translate: -50% -50%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(61, 255, 176, 0.28), rgba(255, 138, 209, 0.12) 60%, transparent);
+  pointer-events: none;
+}
+@keyframes arc-glitch-a {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+  }
+  89% {
+    opacity: 0.8;
+    transform: translate(-6px, 2px);
+    clip-path: inset(10% 0 55% 0);
+  }
+  91% {
+    opacity: 0.8;
+    transform: translate(5px, -2px);
+    clip-path: inset(60% 0 8% 0);
+  }
+  93% {
+    opacity: 0;
+  }
+}
+@keyframes arc-glitch-b {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0.8;
+    transform: translate(6px, -1px);
+    clip-path: inset(40% 0 30% 0);
+  }
+  92% {
+    opacity: 0.8;
+    transform: translate(-4px, 3px);
+    clip-path: inset(5% 0 75% 0);
+  }
+  94% {
+    opacity: 0;
+  }
+}
+.arcade .block-desc {
+  margin: 0;
+  max-width: 46em;
+  color: var(--tx2);
+}
+.arcade .hero-sub span {
+  display: block;
+}
+.arcade .hero-sub {
+  margin: 0;
+  max-width: 44em;
+  color: #fff;
+  font-weight: 600;
+  font-size: clamp(15px, 2.2vw, 18px);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  animation: arc-up 0.9s 0.5s both;
+}
+@keyframes arc-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+.arcade .start {
+  margin-top: 26px;
+  font: 800 15px var(--mono);
+  letter-spacing: 0.4em;
+  padding: 12px 22px 12px 28px;
+  color: var(--mint2);
+  border: 2px solid var(--mint);
+  background: rgba(61, 255, 176, 0.08);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  animation: arc-blink 1.1s steps(2, jump-none) infinite, arc-up 0.9s 0.9s both;
+}
+.arcade .start::after {
+  content: ' ▼';
+}
+.arcade .start:hover {
+  background: var(--mint);
+  color: var(--bg);
+  animation: none;
+}
+@keyframes arc-blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* 흘러가는 무지개 띠 */
+.arcade .marquee {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  margin: -24px 0 0;
+  padding: 12px 0;
+  background: var(--rainbow);
+  color: #07110e;
+  transform: rotate(-1.6deg) scale(1.04);
+  box-shadow: 0 0 40px rgba(61, 255, 176, 0.4);
+}
+.arcade .marquee > div {
+  display: flex;
+  width: max-content;
+  animation: arc-marquee 26s linear infinite;
+}
+.arcade .marquee span {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding-right: 26px;
+  font: 800 18px var(--mono);
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+}
+.arcade .marquee i {
+  font-style: normal;
+}
+@keyframes arc-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ───── 본문 ───── */
+.arcade-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 110px clamp(16px, 4vw, 32px) 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 130px;
+}
+.arcade .block {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  scroll-margin-top: 80px;
+}
+.arcade .block-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.arcade .block-head > .lab {
+  color: var(--mint);
+  letter-spacing: 0.4em;
+}
+.arcade .block-head h2 {
+  margin: 0;
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.arcade .block-head h2::before {
+  content: '';
+  width: 22px;
+  height: 22px;
+  flex: none;
+  background: var(--lime);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  filter: drop-shadow(0 0 10px var(--lime));
+}
+.arcade .block-head h2::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--line2), transparent);
+}
+
+/* 떠오르기. 스크립트가 켜진 뒤에만 숨긴다. */
+.arcade.reveal-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.arcade.reveal-on [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+
+/* 공통: 역할 줄 · 기술 스택 · 성과 */
+.arcade .made {
+  margin: 0;
+  font: 12px/1.6 var(--mono);
+  color: var(--tx3);
+}
+.arcade .stack {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.arcade .stack li {
+  font: 12px/1 var(--mono);
+  padding: 7px 10px;
+  color: var(--tx2);
+  background: rgba(61, 255, 176, 0.05);
+  border: 1px solid var(--line2);
+}
+.arcade .desc {
+  margin: 14px 0 0;
+  color: var(--tx2);
+}
+.arcade .quests {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.arcade .quests li {
+  position: relative;
+  padding: 12px 16px 12px 38px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0;
+  border-left: 2px solid var(--line2);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), transparent);
+  font-size: 15px;
+  color: var(--tx2);
+  transition: border-color 0.2s, background 0.2s;
+}
+.arcade .quests li::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 18px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent, var(--mint));
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+}
+.arcade .quests li:hover {
+  border-color: color-mix(in srgb, var(--accent, var(--mint)) 60%, transparent);
+  background: rgba(255, 255, 255, 0.06);
+}
+.arcade .quests mark {
+  background: none;
+  color: var(--lime);
+  font-weight: 700;
+  text-shadow: 0 0 14px rgba(216, 255, 90, 0.5);
+}
+.arcade .quests a {
+  color: var(--sky);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ───── 게임 카드 ───── */
+.arcade .games {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+.arcade .game {
+  --rx: 0deg;
+  --ry: 0deg;
+  --cut: 26px;
+  transform: perspective(1400px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out;
+}
+.arcade .game:hover {
+  will-change: transform;
+}
+/* 모서리를 깎은 틀. 테두리 빛은 틀 뒤의 큰 원판을 돌려서 만든다 (그림을 다시 그리지 않고 돌리기만 한다). */
+.arcade .game-frame {
+  position: relative;
+  padding: 3px;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+  background: var(--line2);
+}
+.arcade .game-frame::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 160%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  z-index: 0;
+  background: conic-gradient(var(--accent), #3dffb0 15%, transparent 25%, transparent 45%, #d8ff5a 50%, #ff8ad1 60%, transparent 70%, transparent 90%, var(--accent));
+  animation: arc-rot 6s linear infinite;
+}
+.arcade .game-frame::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  z-index: 1;
+  clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+  background:
+    radial-gradient(520px 300px at 85% 100%, rgba(176, 108, 255, 0.16), transparent 70%),
+    var(--card);
+}
+.arcade .game-frame > * {
+  position: relative;
+  z-index: 2;
+}
+.arcade .game-art {
+  position: relative;
+  aspect-ratio: 1600 / 686;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - var(--cut) + 1px) 0, 100% calc(var(--cut) - 1px), 100% 100%, 0 100%);
+}
+.arcade .game-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.arcade .game:hover .game-art img {
+  transform: scale(1.08);
+}
+.arcade .game-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, var(--card) 100%);
+  pointer-events: none;
+}
+.arcade .game-no {
+  position: absolute;
+  right: 26px;
+  bottom: -18px;
+  z-index: 2;
+  font: 800 clamp(70px, 14vw, 160px) / 1 var(--mono);
+  color: transparent;
+  -webkit-text-stroke: 2px color-mix(in srgb, var(--accent) 80%, white);
+  opacity: 0.6;
+  text-shadow: 0 0 30px var(--accent);
+}
+.arcade .game-tags {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.arcade .chip {
+  font: 700 11px/1 var(--mono);
+  letter-spacing: 0.06em;
+  padding: 7px 10px;
+  color: #07110e;
+  background: var(--accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.arcade .chip.dim {
+  color: var(--tx);
+  background: rgba(7, 17, 14, 0.78);
+  box-shadow: none;
+  border: 1px solid var(--line2);
+}
+.arcade .chip.live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--tx);
+  background: rgba(7, 17, 14, 0.78);
+  border: 1px solid rgba(61, 255, 176, 0.6);
+  box-shadow: none;
+}
+.arcade .chip.live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 10px var(--mint);
+  animation: arc-blink 1.4s infinite;
+}
+.arcade .game-body {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 34px;
+  padding: 10px 34px 34px;
+}
+.arcade .game-main .lab {
+  color: var(--accent);
+  letter-spacing: 0.3em;
+}
+.arcade h3 {
+  margin: 4px 0 6px;
+  font-size: clamp(38px, 6vw, 58px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  text-shadow: 0 0 34px color-mix(in srgb, var(--accent, var(--mint)) 50%, transparent);
+}
+/* gamedev-kit으로 만든 게임: 배너의 무지개 꼬리표와 제목 아래 띠 */
+.arcade .chip.kit-chip {
+  color: #07110e;
+  background: var(--rainbow);
+  box-shadow: 0 0 18px rgba(61, 255, 176, 0.5);
+}
+.arcade .made-kit {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 18px;
+  margin: 6px 0 2px;
+  padding: 9px 18px 9px 14px;
+  font-size: 15px;
+  color: var(--tx);
+  background:
+    linear-gradient(90deg, rgba(61, 255, 176, 0.18), rgba(216, 255, 90, 0.1) 50%, rgba(255, 138, 209, 0.14)),
+    rgba(7, 17, 14, 0.6);
+  border-left: 3px solid var(--mint);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+.arcade .made-kit b {
+  font-weight: 800;
+  color: transparent;
+  background: var(--rainbow);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.arcade .made-kit .cycles {
+  font: 13px var(--mono);
+  color: var(--tx2);
+}
+.arcade .made-kit .cycles b {
+  font: 800 22px/1 var(--mono);
+  margin: 0 2px;
+  color: var(--tx);
+  background: none;
+}
+
+/* 게임 카드 안의 성과는 왼쪽 막대, 단추는 모서리를 깎은 사각형으로 */
+.arcade .game .quests li {
+  border: 0;
+  border-left: 2px solid var(--line2);
+  border-radius: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), transparent);
+}
+.arcade .game .quests li:hover {
+  border-left-color: var(--accent);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent);
+}
+.arcade .game .btn {
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.arcade .game .btn.main {
+  background: linear-gradient(100deg, var(--accent), color-mix(in srgb, var(--accent) 50%, white), var(--accent)) 0 0 / 200% 100%;
+}
+.arcade .game-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.arcade .btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.arcade .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 13px var(--mono);
+  padding: 11px 20px;
+  color: var(--tx);
+  border: 2px solid var(--line2);
+  background: rgba(255, 255, 255, 0.03);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.arcade .btn:hover {
+  border-color: var(--accent, var(--mint));
+  color: var(--accent, var(--mint2));
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent, var(--mint)) 35%, transparent);
+}
+.arcade .btn.main {
+  border: 0;
+  padding: 13px 22px;
+  color: #07110e;
+  background: var(--rainbow) 0 0 / 200% 100%;
+  animation: arc-play 2.4s ease-in-out infinite;
+}
+.arcade .game-side .btn {
+  flex: 1 1 100%;
+  justify-content: center;
+}
+.arcade .game-side .btn.main {
+  font-size: 16px;
+  padding: 16px 20px;
+}
+.arcade .btn.main i {
+  font-style: normal;
+  font-size: 11px;
+}
+.arcade .btn.main:hover {
+  color: #07110e;
+  filter: brightness(1.1);
+}
+@keyframes arc-play {
+  50% {
+    background-position: 100% 0;
+  }
+}
+
+/* ───── gamedev-kit ───── */
+/* 가장 앞에 두는 칸이라 테두리를 더 두껍고 밝게 둔다 */
+.arcade .kit {
+  --cut: 34px;
+  transform: perspective(2400px) rotateX(var(--rx)) rotateY(var(--ry));
+}
+.arcade .kit .game-frame {
+  padding: 4px;
+  box-shadow: none;
+}
+.arcade .kit .game-frame::before {
+  inset: 4px;
+}
+.arcade .kit .game-frame::after {
+  background: conic-gradient(#3dffb0, #d8ff5a 12%, #ffd24a 22%, #ff8ad1 32%, transparent 42%, transparent 50%, #3dffb0 55%, #d8ff5a 65%, transparent 75%, transparent 95%, #3dffb0);
+}
+.arcade .kit-inner {
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - var(--cut) + 4px) 0, 100% calc(var(--cut) - 4px), 100% 100%, calc(var(--cut) - 4px) 100%, 0 calc(100% - var(--cut) + 4px));
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  padding: 64px 44px 44px;
+  background:
+    radial-gradient(520px 300px at 18% 20%, rgba(61, 255, 176, 0.22), transparent 70%),
+    radial-gradient(480px 300px at 90% 90%, rgba(176, 108, 255, 0.24), transparent 70%),
+    linear-gradient(rgba(61, 255, 176, 0.06) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(61, 255, 176, 0.06) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(135deg, #07110e, #0b2a22 55%, #1a1033);
+}
+.arcade .kit-inner > :not(.sparkles) {
+  position: relative;
+  z-index: 1;
+}
+.arcade .kit-tags {
+  position: absolute !important;
+  top: 18px;
+  left: 18px;
+  display: flex;
+  gap: 6px;
+}
+.arcade .kit .chip {
+  background: var(--rainbow);
+}
+.arcade .kit .chip.dim {
+  background: rgba(7, 17, 14, 0.78);
+}
+.arcade .kit-top {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: 44px;
+  align-items: center;
+}
+.arcade .kit-text > .lab {
+  color: var(--mint);
+  letter-spacing: 0.24em;
+}
+.arcade .kit h3 {
+  font-size: clamp(40px, 7vw, 76px);
+  white-space: nowrap;
+  color: transparent;
+  background: var(--rainbow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: none;
+}
+.arcade .kit .stack {
+  margin-top: 16px;
+}
+
+/* 사이클 고리. 12초에 한 바퀴. 구슬 · 그어지는 선 · 켜지는 단계가 같은 박자로 돈다. */
+.arcade .loop {
+  --dur: 12s;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  container-type: inline-size;
+}
+.arcade .loop svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.arcade .loop-tick {
+  fill: none;
+  stroke: var(--line2);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 9;
+}
+.arcade .loop-base {
+  fill: none;
+  stroke: #10262b;
+  stroke-width: 12;
+}
+/* drop-shadow를 걸면 Chrome에서 고리 둘레에 네모난 테두리가 비친다. */
+.arcade .loop-run {
+  fill: none;
+  stroke: url(#loop-g);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 943;
+  stroke-dashoffset: 943;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: arc-draw var(--dur) linear infinite;
+}
+@keyframes arc-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes arc-rot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.arcade .loop-orb {
+  position: absolute;
+  inset: 0;
+  animation: arc-rot var(--dur) linear infinite;
+}
+.arcade .loop-orb i {
+  position: absolute;
+  left: 50%;
+  top: 12.5%;
+  width: 18px;
+  height: 18px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: #f4ffe0;
+  box-shadow: 0 0 12px 4px var(--lime), 0 0 40px 12px rgba(61, 255, 176, 0.5);
+}
+.arcade .loop ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.arcade .loop li {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: rotate(var(--a)) translateY(-37.5cqw) rotate(calc(-1 * var(--a)));
+}
+.arcade .loop li span {
+  --c: var(--mint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  translate: -50% -50%;
+  min-width: 78px;
+  padding: 7px 14px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  background: #0b1a17;
+  border: 2px solid color-mix(in srgb, var(--c) 70%, transparent);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  animation: arc-lit var(--dur) linear infinite;
+  animation-delay: calc(var(--i) * var(--dur) / var(--n));
+}
+.arcade .loop li.me span {
+  --c: var(--pink);
+}
+.arcade .loop li small {
+  font: 10px var(--mono);
+  color: var(--c);
+  letter-spacing: 0.1em;
+}
+@keyframes arc-lit {
+  0% {
+    background: var(--c);
+    color: #07110e;
+    scale: 1.15;
+  }
+  12% {
+    background: #0b1a17;
+    color: var(--tx);
+    scale: 1;
+  }
+}
+.arcade .loop-core {
+  position: absolute;
+  inset: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(61, 255, 176, 0.18), transparent 70%);
+}
+.arcade .loop-core .lab {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+.arcade .loop-core b {
+  font: 800 clamp(16px, 5.4cqw, 24px) var(--mono);
+  color: var(--lime);
+  text-shadow: 0 0 18px rgba(216, 255, 90, 0.7);
+}
+.arcade .loop-core .legend {
+  display: flex;
+  gap: 10px;
+  font: 10px var(--mono);
+  color: var(--tx3);
+}
+.arcade .loop-core .legend span::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+.arcade .loop-core .legend .me::before {
+  background: var(--pink);
+}
+
+/* 숫자 칸은 0에서 세어 올라간다 */
+@property --arc-n {
+  syntax: '<integer>';
+  inherits: false;
+  initial-value: 0;
+}
+.arcade b.count {
+  --arc-n: var(--to);
+  counter-reset: arc-n var(--arc-n);
+  animation: arc-count 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
+}
+.arcade b.count span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.arcade b.count::after {
+  content: counter(arc-n);
+  content: counter(arc-n) / '';
+}
+/* 아래쪽 칸의 숫자는 화면에 들어온 뒤에 센다. */
+.arcade.reveal-on [data-reveal]:not(.in) b.count {
+  animation-play-state: paused;
+}
+@keyframes arc-count {
+  from {
+    --arc-n: 0;
+  }
+}
+.arcade .kit-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.arcade .kit-tiles .tile {
+  padding: 14px 20px 16px;
+  background: rgba(7, 17, 14, 0.85);
+  border: 1px solid var(--line2);
+  border-bottom: 3px solid var(--line2);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+}
+.arcade .kit-tiles b {
+  display: block;
+  margin-top: 4px;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.arcade .kit-tiles .tile:nth-child(1) {
+  border-bottom-color: var(--mint);
+}
+.arcade .kit-tiles .tile:nth-child(1) b {
+  color: var(--mint);
+  text-shadow: 0 0 18px rgba(61, 255, 176, 0.6);
+}
+.arcade .kit-tiles .tile:nth-child(2) {
+  border-bottom-color: var(--lime);
+}
+.arcade .kit-tiles .tile:nth-child(2) b {
+  color: var(--lime);
+  text-shadow: 0 0 18px rgba(216, 255, 90, 0.6);
+}
+.arcade .kit-tiles .tile:nth-child(3) {
+  border-bottom-color: var(--pink);
+}
+.arcade .kit-tiles .tile:nth-child(3) b {
+  color: var(--pink);
+  text-shadow: 0 0 18px rgba(255, 138, 209, 0.6);
+}
+
+/* 끝 */
+.arcade .continue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 80px 16px 50px;
+  text-align: center;
+}
+.arcade .continue > .lab {
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 800;
+  color: var(--pink);
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 24px rgba(255, 138, 209, 0.6);
+  animation: arc-blink 1.1s steps(2, jump-none) infinite;
+}
+.arcade .continue p {
+  margin: 20px 0 0;
+  font: 12px var(--mono);
+  color: var(--tx3);
+}
+
+/* 좁은 화면 */
+@media (max-width: 860px) {
+  .arcade .kit-inner {
+    padding: 60px 18px 24px;
+  }
+  .arcade .game-body {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 6px 18px 22px;
+  }
+  .arcade .kit-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .arcade .loop {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 520px) {
+  .arcade .loop li span {
+    min-width: 58px;
+    padding: 5px 9px;
+    font-size: 13px;
+  }
+  .arcade .game-tags .chip.dim {
+    display: none;
+  }
+  .arcade .games {
+    gap: 56px;
+  }
+  .arcade .kit-tiles {
+    grid-template-columns: 1fr 1fr;
+  }
+  .arcade .kit-tiles .tile:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* 움직임 줄이기 */
+@media (prefers-reduced-motion: reduce) {
+  .arcade *,
+  .arcade *::before,
+  .arcade *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .arcade .sparkles span {
+    opacity: 0.7;
+  }
+  .arcade .loop-orb {
+    display: none;
+  }
+  .arcade .loop-run {
+    stroke-dashoffset: 0;
+  }
+  .arcade.reveal-on [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .arcade .game {
+    transform: none;
+  }
+}

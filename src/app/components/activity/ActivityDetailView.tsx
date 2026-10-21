@@ -4,7 +4,7 @@ import './detail.css';
 
 interface ActivityDetailViewProps {
   detail: ActivityDetail;
-  // 슬라이드 패널 안에서는 닫기 버튼을, 단독 페이지에서는 이력서로 돌아가는 링크를 둔다.
+  // 슬라이드 패널 안에서는 닫기 버튼을, 단독 페이지에서는 게임 페이지로 돌아가는 링크를 둔다.
   onClose?: () => void;
   // 다른 상세 페이지로 가는 링크를 눌렀을 때. 패널 안에서는 내용만 바꾸고, 없으면 주소로 이동한다.
   onNavigate?: (href: string) => void;
@@ -247,8 +247,8 @@ const ActivityDetailView = ({ detail, onClose, onNavigate }: ActivityDetailViewP
               ← 닫기
             </button>
           ) : (
-            <a className="back" href={withBasePath('/')}>
-              ← 이력서로
+            <a className="back" href={withBasePath('/games')}>
+              ← 게임 목록
             </a>
           )}
           <span className="lab">{detail.title}</span>

@@ -32,7 +32,7 @@ interface ProjectInfoProps {
 }
 
 // '[글자](주소)'는 바깥 링크로 그린다.
-const renderLinks = (text: string, keyPrefix: string) =>
+export const renderLinks = (text: string, keyPrefix: string) =>
   text.split(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/).map((part, i, parts) => {
     if (i % 3 === 0) return part;
     if (i % 3 === 2) return null;

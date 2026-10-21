@@ -14,7 +14,7 @@ interface ActivityCardProps {
 // 패널이 밀려 나가는 시간. detail.css 의 .detail-panel transition 과 맞춘다.
 const SLIDE_MS = 500;
 
-// 상세 내용이 있는 액티비티. 카드 안의 상세 페이지 링크('제작 과정 보기')를 누르면 오른쪽에서 상세 패널이 밀려 나온다
+// 상세 내용이 있는 카드(게임 페이지). 카드 안의 상세 페이지 링크('제작 과정 보기')를 누르면 오른쪽에서 상세 패널이 밀려 나온다
 // (웹에서만 — PDF에는 카드만 찍힌다). 카드의 다른 곳은 눌러도 아무 일도 없다.
 const ActivityCard = ({ detail, children }: ActivityCardProps) => {
   const [open, setOpen] = useState(false);
