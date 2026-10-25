@@ -5,10 +5,10 @@ export const workExperiences = [
     subInfo2: 'Frontend · Android Developer',
     description:
       '차량용 인포테인먼트 플랫폼과 서비스를 만드는 모빌리티 소프트웨어 기업. 차량 AVN 웹앱, 차량 연동 모바일 앱, 생성형 AI 서비스를 개발합니다.',
-    // 2026.10 안드로이드 팀으로 옮겼다. 팀마다 묶어 소제목(팀 · 기간) 아래에 프로젝트를 둔다.
+    // 2026.10 Mobility Service 2팀(Web Frontend)에서 1팀(Android)으로 옮겼다. 팀마다 묶어 소제목(팀 · 기간) 아래에 프로젝트를 둔다.
     teams: [
       {
-        name: 'Android 팀',
+        name: 'Mobility Service 1팀 (Android)',
         period: '2026.10 - 현재',
         projects: [
           {
@@ -29,7 +29,7 @@ export const workExperiences = [
         ],
       },
       {
-        name: 'Frontend 팀',
+        name: 'Mobility Service 2팀 (Web Frontend)',
         period: '2022.03 - 2026.10',
         projects: [
           {
