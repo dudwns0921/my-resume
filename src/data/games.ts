@@ -39,7 +39,6 @@ export const games: Game[] = [
     accent: '#ffd24a',
     links: [
       { label: 'itch.io에서 플레이', href: 'https://dudwns0921.itch.io/nostos' },
-      { label: '제작 과정 보기', href: '/activities/nostos' },
     ],
     description:
       '스무 해 만에 집에 돌아온 오디세우스가 되어, 잔치를 벌이는 구혼자들을 오직 활 하나로 쓰러뜨리는 1인칭 3D 활 싸움. 21~22권의 활 시합과 구혼자 처단 에피소드를 바탕으로 제작.',
@@ -60,7 +59,6 @@ export const games: Game[] = [
     accent: '#8ad8ff',
     links: [
       { label: 'itch.io에서 플레이', href: 'https://dudwns0921.itch.io/keros' },
-      { label: '제작 과정 보기', href: '/activities/keros' },
     ],
     description:
       '세이렌의 바다를 지나는 오디세우스의 배에서 부관이 되어, 홀린 선원을 붙잡아 이타카까지 버티는 3인칭 3D 디펜스. 세이렌 에피소드를 바탕으로 제작.',
@@ -80,7 +78,6 @@ export const games: Game[] = [
     accent: '#ff9a5a',
     links: [
       { label: 'itch.io에서 플레이', href: 'https://dudwns0921.itch.io/outis' },
-      { label: '제작 과정 보기', href: '/activities/outis' },
     ],
     description:
       '외눈박이 거인의 동굴에 갇힌 오디세우스가 잠든 거인 곁을 몰래 오가며 무기를 만들고 선원들과 탈출하는 3인칭 3D 어드벤처. 키클롭스 에피소드를 바탕으로 제작.',

@@ -1,8 +1,6 @@
 import { Fragment } from 'react';
 import { games, gamedevKit, hero, trilogy, type Game } from '@/data/games';
-import { activityDetails } from '@/data/activityDetails';
 import { renderLinks } from '../workExprience/ProjectInfo';
-import ActivityCard from '../activity/ActivityCard';
 import { withBasePath } from '@/utils';
 import Tilt from './Tilt';
 import Reveal from './Reveal';
@@ -27,7 +25,7 @@ const Count = ({ value }: { value: string }) => {
   );
 };
 
-// 링크 묶음. 첫 링크를 크게 둔다. 바깥 링크는 새 탭으로, '/activities/<slug>'는 감싼 ActivityCard가 받아 패널로 연다.
+// 링크 묶음. 첫 링크를 크게 둔다. 바깥 링크는 새 탭으로 연다.
 const Links = ({ links, play }: { links: { label: string; href: string }[]; play?: boolean }) => (
   <div className="btns">
     {links.map((link, i) => {
@@ -68,8 +66,8 @@ const Sparkles = ({ count }: { count: number }) => (
 );
 
 const GameCard = ({ game, index }: { game: Game; index: number }) => {
-  const detail = activityDetails.find((d) => d.slug === game.slug);
-  const card = (
+  return (
+    <div data-reveal>
     <Tilt className="game" style={{ '--accent': game.accent } as React.CSSProperties}>
       <div className="game-frame">
         <div className="game-art">
@@ -116,9 +114,8 @@ const GameCard = ({ game, index }: { game: Game; index: number }) => {
         </div>
       </div>
     </Tilt>
+    </div>
   );
-
-  return <div data-reveal>{detail ? <ActivityCard detail={detail}>{card}</ActivityCard> : card}</div>;
 };
 
 // 사이클 여섯 단계를 고리로 돈다. 빛 구슬이 한 바퀴 도는 동안 단계가 차례로 켜진다.
