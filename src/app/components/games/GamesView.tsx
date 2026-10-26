@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { games, gamedevKit, hero, trilogy, type Game } from '@/data/games';
 import { renderLinks } from '../workExprience/ProjectInfo';
 import { withBasePath } from '@/utils';
@@ -13,17 +12,6 @@ const renderText = (text: string) =>
   text
     .split(/\*\*(.+?)\*\*/)
     .map((part, i) => (i % 2 === 1 ? <mark key={i}>{part}</mark> : renderLinks(part, String(i))));
-
-// 숫자 값은 0에서 세어 올라간다. 읽는 글자는 그대로 두고 세는 숫자는 장식으로만 그린다.
-// CSS 카운터는 쉼표를 찍지 못하므로 '6,959'처럼 쉼표가 든 값은 세지 않고 그대로 둔다.
-const Count = ({ value }: { value: string }) => {
-  if (!/^\d+$/.test(value)) return <b>{value}</b>;
-  return (
-    <b className="count" style={{ '--to': Number(value) } as React.CSSProperties}>
-      <span>{value}</span>
-    </b>
-  );
-};
 
 // 링크 묶음. 첫 링크를 크게 둔다. 바깥 링크는 새 탭으로 연다.
 const Links = ({ links, play }: { links: { label: string; href: string }[]; play?: boolean }) => (
@@ -140,6 +128,13 @@ const CycleLoop = () => {
       <div className="loop-orb" aria-hidden="true">
         <i />
       </div>
+      {/* CEO가 함께 돌리는 다른 사이클들. 흐리게 그려 지금 따라가는 사이클과 구분한다. */}
+      <div className="loop-orb ghost g1" aria-hidden="true">
+        <i />
+      </div>
+      <div className="loop-orb ghost g2" aria-hidden="true">
+        <i />
+      </div>
       <ol>
         {steps.map((step, i) => (
           <li
@@ -159,7 +154,7 @@ const CycleLoop = () => {
         <b>gamedev-kit</b>
         <div className="legend">
           <span className="me">나</span>
-          <span className="ai">CEO가 조율</span>
+          <span className="ai">AI 에이전트</span>
         </div>
       </div>
     </div>
@@ -184,11 +179,25 @@ const KitSection = () => (
               <h3>{gamedevKit.title}</h3>
               <p className="made">{gamedevKit.role}</p>
               <p className="desc">{gamedevKit.description}</p>
-              <ul className="quests">
-                {gamedevKit.achievements.map((a, i) => (
-                  <li key={i}>{renderText(a.description)}</li>
+              {/* 빛 구슬이 지나는 단계가 이 목록에서도 같은 박자로 켜진다. */}
+              <ol className="steps" style={{ '--n': gamedevKit.cycle.length } as React.CSSProperties}>
+                {gamedevKit.cycle.map((step, i) => (
+                  <li
+                    key={step.name}
+                    className={step.byUser ? 'me' : 'ai'}
+                    style={{ '--i': i } as React.CSSProperties}
+                  >
+                    <b>
+                      {pad(i + 1)} {step.name}
+                    </b>
+                    <span>{step.line}</span>
+                  </li>
                 ))}
-              </ul>
+              </ol>
+              <p className="ceo">
+                <b>CEO</b>
+                {gamedevKit.ceo}
+              </p>
               <ul className="stack">
                 {gamedevKit.techStack.map((tech) => (
                   <li key={tech}>{tech}</li>
@@ -196,26 +205,6 @@ const KitSection = () => (
               </ul>
               <Links links={gamedevKit.links} />
             </div>
-          </div>
-          <div className="kit-tiles">
-            {/* CEO가 조율하고 워커가 사이클을 돌리며, 나는 결정만 한다 */}
-            <div className="kit-flow">
-              {gamedevKit.flow.map((step, i) => (
-                <Fragment key={step.who}>
-                  {i > 0 && <i className="flow-arrow" aria-hidden="true" />}
-                  <div className={`flow-step flow-${i}`}>
-                    <span className="lab">{step.what}</span>
-                    <b>{step.who}</b>
-                  </div>
-                </Fragment>
-              ))}
-            </div>
-            {gamedevKit.tiles.map((tile) => (
-              <div key={tile.label} className="tile">
-                <span className="lab">{tile.label}</span>
-                <Count value={tile.value} />
-              </div>
-            ))}
           </div>
         </div>
       </div>

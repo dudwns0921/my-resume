@@ -109,26 +109,21 @@ export const gamedevKit = {
     { label: 'GitHub', href: 'https://github.com/dudwns0921/claude-gamedev-kit' },
     { label: 'Threads', href: 'https://www.threads.com/@glowingjung/post/DeRzUkfGjII?hl=ko' },
   ],
-  description: 'CEO 역할의 Claude가 여러 개발 사이클을 동시에 조율하고, 나는 현황판에서 결정만 하며 게임을 끝까지 만들게 하는 Claude Code 플러그인.',
-  techStack: ['Claude Code', 'Python', 'Godot 4.7', 'Unity'],
-  achievements: [{ description: '새 계정으로 Threads에 소개한 글이 조회 6,959회 · 반응 80건 기록' }],
-  // 사이클 고리에 도는 여섯 단계. byUser는 내가 하는 단계다.
+  // 플러그인 README의 한 줄 소개(2026-10-21 갱신)를 따른다.
+  description: '에이전트가 게임을 한 사이클씩 만들고 여러 사이클을 뒤에서 동시에 돌려, 나는 대시보드에서 결정하고 플레이만 하는 Claude Code 플러그인.',
+  techStack: ['Claude Code', 'Python', 'Godot', 'Unity', 'Web'],
+  // 수치 · 에이전트 · 스킬 대신 사이클이 도는 모습만 보여 준다 (본인 요청, 2026-10-21 — 자세한 것은 소개 사이트에 있다).
+  // 고리의 여섯 단계. byUser는 내가 하는 단계이고, line은 빛 구슬이 지날 때 옆 목록에서 켜지는 설명이다 (플러그인 README의 배너 기준: Goal · Spec · Design · Plan · Build · Play).
   cycle: [
-    { name: '목표', byUser: true },
-    { name: '기획' },
-    { name: '디자인' },
-    { name: '계획' },
-    { name: '구현' },
-    { name: '플레이', byUser: true },
+    { name: '목표', byUser: true, line: '이번에 무엇을 만들지 내가 정해서 말한다.' },
+    { name: '기획', line: '플레이어가 무엇을 하면 어떻게 되는지를 규칙과 숫자로 쓴다.' },
+    { name: '디자인', line: '그 규칙이 게임에서 어떻게 보이고 들릴지를 정리한다.' },
+    { name: '계획', line: '앞에서 쓴 내용을 작업 여러 개로 나누고 만들 순서를 짠다.' },
+    { name: '구현', line: '겹치지 않는 작업은 여러 AI가 하나씩 맡아 동시에 만든다.' },
+    { name: '플레이', byUser: true, line: '만들어진 빌드를 내가 직접 해 보고, 찾은 문제는 원인부터 고친다.' },
   ],
-  // 일의 흐름: 작업은 CEO가 조율하고, 나는 결정만 한다 (본인 요청, 2026-10-21).
-  flow: [
-    { who: 'CEO', what: '모든 작업 조율' },
-    { who: '워커', what: '여러 사이클을 동시에' },
-    { who: '나', what: '결정만' },
-  ],
-  // 스킬 · 에이전트 수는 두지 않는다 (본인 요청, 2026-10-21).
-  tiles: [{ label: 'Threads 글 조회', value: '6,959' }],
+  // CEO (플러그인 0.85.0, README의 'Several cycles at once' 절): 고리에는 흐린 빛 구슬 둘이 더 돌아 동시에 도는 사이클을 보여 준다.
+  ceo: 'CEO 창이 다음 목표를 제안하고 사이클마다 일꾼을 띄워, 여러 사이클이 뒤에서 동시에 돈다. 일꾼은 내가 결정하거나 플레이할 곳에서만 멈추고, CEO는 아무것도 대신 정하지 않는다.',
 };
 
 // 첫 화면. 오디세이보다 gamedev-kit과 AI로 게임을 만든다는 것을 앞에 둔다 (본인 요청, 2026-10-21).

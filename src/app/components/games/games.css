@@ -942,6 +942,18 @@ body:has(.arcade) {
   background: #f4ffe0;
   box-shadow: 0 0 12px 4px var(--lime), 0 0 40px 12px rgba(61, 255, 176, 0.5);
 }
+.arcade .loop-orb.ghost i {
+  width: 12px;
+  height: 12px;
+  opacity: 0.55;
+  box-shadow: 0 0 10px 3px var(--pink);
+}
+.arcade .loop-orb.g1 {
+  animation-delay: calc(var(--dur) / -3);
+}
+.arcade .loop-orb.g2 {
+  animation-delay: calc(var(--dur) / -1.5);
+}
 .arcade .loop ol {
   list-style: none;
   margin: 0;
@@ -1030,133 +1042,68 @@ body:has(.arcade) {
   background: var(--pink);
 }
 
-/* 숫자 칸은 0에서 세어 올라간다 */
-@property --arc-n {
-  syntax: '<integer>';
-  inherits: false;
-  initial-value: 0;
+/* 사이클 단계 목록. 고리의 빛 구슬과 같은 박자(--dur)로 지금 단계가 켜진다. */
+.arcade .steps {
+  --dur: 12s;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-.arcade b.count {
-  --arc-n: var(--to);
-  counter-reset: arc-n var(--arc-n);
-  animation: arc-count 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s both;
+.arcade .steps li {
+  --c: var(--mint);
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding: 7px 12px;
+  border-left: 3px solid color-mix(in srgb, var(--c) 35%, transparent);
+  color: var(--tx3);
+  animation: arc-step var(--dur) linear infinite;
+  animation-delay: calc(var(--i) * var(--dur) / var(--n));
 }
-.arcade b.count span {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
+.arcade .steps li.me {
+  --c: var(--pink);
+}
+.arcade .steps b {
+  font: 700 13px var(--mono);
+  color: var(--c);
   white-space: nowrap;
 }
-.arcade b.count::after {
-  content: counter(arc-n);
-  content: counter(arc-n) / '';
+.arcade .steps span {
+  font-size: 14px;
 }
-/* 아래쪽 칸의 숫자는 화면에 들어온 뒤에 센다. */
-.arcade.reveal-on [data-reveal]:not(.in) b.count {
-  animation-play-state: paused;
-}
-@keyframes arc-count {
-  from {
-    --arc-n: 0;
+@keyframes arc-step {
+  0%,
+  14% {
+    color: var(--tx);
+    border-left-color: var(--c);
+    background: linear-gradient(90deg, color-mix(in srgb, var(--c) 18%, transparent), transparent);
+  }
+  17%,
+  100% {
+    color: var(--tx3);
+    border-left-color: color-mix(in srgb, var(--c) 35%, transparent);
+    background: transparent;
   }
 }
-.arcade .kit-tiles {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+.arcade .ceo {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: var(--tx2);
 }
-.arcade .kit-tiles .tile {
-  padding: 14px 20px 16px;
-  background: rgba(7, 17, 14, 0.85);
-  border: 1px solid var(--line2);
-  border-bottom: 3px solid var(--line2);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
-}
-.arcade .kit-tiles b {
-  display: block;
-  margin-top: 4px;
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.1;
-  font-variant-numeric: tabular-nums;
-}
-.arcade .kit-tiles .tile:nth-child(1) {
-  border-bottom-color: var(--mint);
-}
-.arcade .kit-tiles .tile:nth-child(1) b {
-  color: var(--mint);
-  text-shadow: 0 0 18px rgba(61, 255, 176, 0.6);
-}
-.arcade .kit-tiles .tile:nth-child(2) {
-  border-bottom-color: var(--lime);
-}
-.arcade .kit-tiles .tile:nth-child(2) b {
-  color: var(--lime);
-  text-shadow: 0 0 18px rgba(216, 255, 90, 0.6);
-}
-.arcade .kit-tiles .tile:nth-child(3) {
-  border-bottom-color: var(--pink);
-}
-.arcade .kit-tiles .tile:nth-child(3) b {
-  color: var(--pink);
-  text-shadow: 0 0 18px rgba(255, 138, 209, 0.6);
-}
-
-/* CEO → 워커 → 나: 숫자 칸과 같은 깎은 칸을 화살표로 잇는다 */
-.arcade .kit-tiles {
-  grid-template-columns: 3fr 1fr;
-}
-.arcade .kit-flow {
-  display: grid;
-  grid-template-columns: 1fr 20px 1fr 20px 1fr;
-  align-items: center;
-  gap: 6px;
-}
-.arcade .kit-flow .flow-step {
-  padding: 14px 20px 16px;
-  background: rgba(7, 17, 14, 0.85);
-  border: 1px solid var(--line2);
-  border-bottom: 3px solid var(--mint);
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
-}
-.arcade .kit-flow .flow-arrow {
-  justify-self: center;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid var(--tx3);
-  border-right: 2px solid var(--tx3);
-  transform: rotate(45deg);
-}
-.arcade .kit-flow b {
-  display: block;
-  margin-top: 4px;
-  font-size: clamp(24px, 3.4vw, 34px);
-  line-height: 1.1;
-  color: var(--mint);
-  text-shadow: 0 0 18px rgba(61, 255, 176, 0.6);
-}
-.arcade .kit-flow .flow-1 {
-  border-bottom-color: var(--sky);
-}
-.arcade .kit-flow .flow-1 b {
-  color: var(--sky);
-  text-shadow: 0 0 18px rgba(138, 216, 255, 0.6);
-}
-.arcade .kit-flow .flow-2 {
-  border-bottom-color: var(--lime);
-}
-.arcade .kit-flow .flow-2 b {
-  color: var(--lime);
-  text-shadow: 0 0 18px rgba(216, 255, 90, 0.6);
-}
-/* 남은 숫자 칸(Threads)은 핑크로 */
-.arcade .kit-tiles > .tile.tile {
-  border-bottom-color: var(--pink);
-}
-.arcade .kit-tiles > .tile.tile b {
-  color: var(--pink);
-  text-shadow: 0 0 18px rgba(255, 138, 209, 0.6);
+.arcade .ceo b {
+  flex: none;
+  font: 800 11px/1 var(--mono);
+  letter-spacing: 0.1em;
+  padding: 5px 8px;
+  color: #07110e;
+  background: var(--rainbow);
 }
 
 /* 끝 */
@@ -1200,9 +1147,6 @@ body:has(.arcade) {
     max-width: 380px;
     margin: 0 auto;
   }
-  .arcade .kit-tiles {
-    grid-template-columns: 1fr;
-  }
 }
 @media (max-width: 520px) {
   .arcade .loop li span {
@@ -1215,15 +1159,6 @@ body:has(.arcade) {
   }
   .arcade .games {
     gap: 56px;
-  }
-  .arcade .kit-tiles {
-    grid-template-columns: 1fr;
-  }
-  .arcade .kit-flow {
-    grid-template-columns: 1fr;
-  }
-  .arcade .kit-flow .flow-arrow {
-    transform: rotate(135deg);
   }
 }
 
